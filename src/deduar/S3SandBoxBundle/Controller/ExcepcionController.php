@@ -28,9 +28,10 @@ class ExcepcionController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $excepcions = $em->getRepository('S3SandBoxBundle:Excepcion')->findAll();
         $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $excepcions = $em->getRepository('S3SandBoxBundle:Excepcion')
+            ->findBySolicitante($session->get('id'));
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneById($session->get('id'));
         return $this->render('excepcion/index.html.twig', array(

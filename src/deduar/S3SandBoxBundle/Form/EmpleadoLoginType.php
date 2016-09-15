@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class EmpleadoLoginType extends AbstractType
 {
@@ -17,8 +18,9 @@ class EmpleadoLoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('login')
-            ->add('ficha', PasswordType::class, array('label'=>'Password'))
+            ->add('login', TextType::class ,array('attr'=>array('style'=>'width:20%')))
+            ->add('ficha', PasswordType::class, 
+                array('label'=>'Password','attr'=>array('style'=>'width:20%')))
         ;
     }
     
