@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>TypoExcepcion list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typoExcepcion in typoExcepcions %}
+            <tr>
+                <td><a href="{{ path('typoexcepcion_show', { 'id': typoExcepcion.id }) }}">{{ typoExcepcion.id }}</a></td>
+                <td>{{ typoExcepcion.nombre }}</td>
+                <td>{{ typoExcepcion.descripcion }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('typoexcepcion_show', { 'id': typoExcepcion.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('typoexcepcion_edit', { 'id': typoExcepcion.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('typoexcepcion_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

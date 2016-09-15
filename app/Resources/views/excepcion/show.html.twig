@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Excepcion</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ excepcion.id }}</td>
+            </tr>
+            <tr>
+                <th>Solicitante</th>
+                <td>{{ excepcion.solicitante }}</td>
+            </tr>
+            <tr>
+                <th>Fechasolicitud</th>
+                <td>{{ excepcion.fechaSolicitud | date('Y:m:d H:m:s')}}</td>
+            </tr>
+            <tr>
+                <th>Fechacreacion</th>
+                <td>{{ excepcion.fechaCreacion | date('Y:m:d H:m:s')}}</td>
+            </tr>
+            <tr>
+                <th>Motivo</th>
+                <td>{{ excepcion.motivo }}</td>
+            </tr>
+            <tr>
+                <th>Tipo excepcion</th>
+                <td>{{ excepcion.idtypoexcepcion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('excepcion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('excepcion_edit', { 'id': excepcion.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

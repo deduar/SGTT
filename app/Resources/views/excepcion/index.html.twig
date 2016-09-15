@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Excepcion list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Solicitante</th>
+                <th>Fechasolicitud</th>
+                <th>Fechacreacion</th>
+                <th>Motivo</th>
+                <th>Tipo Excepcion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for excepcion in excepcions %}
+            <tr>
+                <td><a href="{{ path('excepcion_show', { 'id': excepcion.id }) }}">{{ excepcion.id }}</a></td>
+                <td>{{ empleado.login }}</td>
+                <td>{{ excepcion.fechaSolicitud |date('Y:m:d H:m:s')}}</td>
+                <td>{{ excepcion.fechaCreacion |date('Y:m:d H:m:s')}}</td>
+                <td>{{ excepcion.motivo }}</td>
+                <td>{{ excepcion.idtypoexcepcion }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('excepcion_show', { 'id': excepcion.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('excepcion_edit', { 'id': excepcion.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('excepcion_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    s3_sand_box.example:
+#        class: deduar\S3SandBoxBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

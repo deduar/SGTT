@@ -1,0 +1,8 @@
+s3_sand_box:
+    resource: "@S3SandBoxBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
