@@ -18,6 +18,7 @@ class EmpleadoType extends AbstractType
             ->add('login')
             ->add('ficha')
             ->add('idpersona')
+            ->add('idsupervisor')
         ;
     }
     

@@ -21,6 +21,10 @@
                 <th>Persona</th>
                 <td><a href="{{ path('persona_edit', {'id': empleado.idpersona.id }) }}" >{{ empleado.idpersona.nombre }} {{ empleado.idpersona.apellido }}</a></td>
             </tr>
+            <tr>
+                <th>Supervisor</th>
+                <td>{{ empleado.idsupervisor }}</td>
+            </tr>
         </tbody>
     </table>
 

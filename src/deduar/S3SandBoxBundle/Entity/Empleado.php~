@@ -81,10 +81,6 @@ class Empleado
         return $this->login;
     }
 
-    public function __toString() {
-        return $this->login;
-    }
-
     /**
      * Set ficha
      *
@@ -131,29 +127,5 @@ class Empleado
     public function getIdpersona()
     {
         return $this->idpersona;
-    }
-
-    /**
-     * Set idsupervisor
-     *
-     * @param \deduar\S3SandBoxBundle\Entity\Empleado $idsupervisor
-     *
-     * @return Empleado
-     */
-    public function setIdsupervisor(\deduar\S3SandBoxBundle\Entity\Empleado $idsupervisor = null)
-    {
-        $this->idsupervisor = $idsupervisor;
-
-        return $this;
-    }
-
-    /**
-     * Get idsupervisor
-     *
-     * @return \deduar\S3SandBoxBundle\Entity\Empleado
-     */
-    public function getIdsupervisor()
-    {
-        return $this->idsupervisor;
     }
 }
