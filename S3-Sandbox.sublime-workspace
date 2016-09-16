@@ -72,35 +72,18 @@
 	"buffers":
 	[
 		{
-			"file": "app/Resources/views/base.html.twig",
+			"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 			"settings":
 			{
-				"buffer_size": 816,
+				"buffer_size": 4673,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "web/css/main.css",
+			"file": "composer.json",
 			"settings":
 			{
-				"buffer_size": 25,
-				"line_ending": "Unix",
-				"name": "main.css"
-			}
-		},
-		{
-			"file": "app/Resources/views/empleado/login.html.twig",
-			"settings":
-			{
-				"buffer_size": 589,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/deduar/S3SandBoxBundle/Form/EmpleadoLoginType.php",
-			"settings":
-			{
-				"buffer_size": 1022,
+				"buffer_size": 2226,
 				"line_ending": "Unix"
 			}
 		}
@@ -157,9 +140,12 @@
 	],
 	"file_history":
 	[
+		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/base.html.twig",
+		"/home/deduar/Projects/S3-Sandbox/web/css/main.css",
+		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/empleado/login.html.twig",
+		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Form/EmpleadoLoginType.php",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/login.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/default.html.twig",
-		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/base.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/excepcion/index.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/TypoExcepcion.php",
@@ -169,8 +155,6 @@
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Controller/EmpleadoController.php",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Controller/TypoExcepcionController.php",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Resources/views/Default/index.html.twig",
-		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Form/EmpleadoLoginType.php",
-		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/empleado/login.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/Empleado.php~",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/Empleado.php",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/Persona.php",
@@ -345,111 +329,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/Resources/views/base.html.twig",
+					"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 816,
+						"buffer_size": 4673,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								375,
-								375
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Syntaxes/HTML (Twig).tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "web/css/main.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 25,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								23,
-								23
-							]
-						],
-						"settings":
-						{
-							"auto_name": "main.css",
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/Resources/views/empleado/login.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 589,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								485,
-								485
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/deduar/S3SandBoxBundle/Form/EmpleadoLoginType.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1022,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								743,
-								743
+								960,
+								960
 							]
 						],
 						"settings":
@@ -459,10 +356,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 135.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "composer.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2226,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1751,
+								1751
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 312.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
