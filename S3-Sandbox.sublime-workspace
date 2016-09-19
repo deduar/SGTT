@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"ex",
+				"excepcions_supervisor"
+			],
+			[
+				"excepcions_",
+				"excepcions_supervisor"
+			],
+			[
+				"su",
+				"supervisor"
+			],
+			[
+				"getId",
+				"getIdsupervisor"
+			],
+			[
+				"id",
+				"idsupervisor"
+			],
+			[
 				"wi",
 				"width"
 			],
@@ -44,10 +64,6 @@
 				"showAction"
 			],
 			[
-				"id",
-				"idpersona"
-			],
-			[
 				"cre",
 				"createNativeQuery"
 			],
@@ -72,18 +88,26 @@
 	"buffers":
 	[
 		{
-			"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
+			"file": "src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
 			"settings":
 			{
-				"buffer_size": 4673,
+				"buffer_size": 3360,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "composer.json",
+			"file": "app/Resources/views/excepcion/index.html.twig",
 			"settings":
 			{
-				"buffer_size": 2226,
+				"buffer_size": 3045,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
+			"settings":
+			{
+				"buffer_size": 5044,
 				"line_ending": "Unix"
 			}
 		}
@@ -124,7 +148,7 @@
 		"/home/deduar/Projects/S3-Sandbox/app",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views",
-		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/empleado",
+		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/excepcion",
 		"/home/deduar/Projects/S3-Sandbox/src",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle",
@@ -140,6 +164,14 @@
 	],
 	"file_history":
 	[
+		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/Empleado.php",
+		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Form/EmpleadoType.php",
+		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/empleado/show.html.twig",
+		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/empleado/index.html.twig",
+		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/Persona.php",
+		"/home/deduar/Projects/S3-Sandbox/composer.json",
+		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
+		"/home/deduar/Projects/S3-Sandbox/test.php",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/base.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/web/css/main.css",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/empleado/login.html.twig",
@@ -147,7 +179,6 @@
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/login.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/default.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/excepcion/index.html.twig",
-		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/TypoExcepcion.php",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/excepcion/show.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
@@ -156,10 +187,6 @@
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Controller/TypoExcepcionController.php",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Resources/views/Default/index.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/Empleado.php~",
-		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/Empleado.php",
-		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/Persona.php",
-		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/empleado/index.html.twig",
-		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/empleado/show.html.twig",
 		"/home/deduar/Projects/S3-Sandbox/app/config/config.yml",
 		"/home/deduar/Projects/S3-Sandbox/app/config/parameters.yml",
 		"/home/deduar/Projects/S3-sandbox/src/deduar/SandboxBundle/Entity/Empleado.php",
@@ -257,6 +284,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<?",
 			"name",
 			"Persona",
 			"persona",
@@ -334,19 +362,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
-					"semi_transient": false,
+					"file": "src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 4673,
+						"buffer_size": 3360,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								960,
-								960
+								0,
+								0
 							]
 						],
 						"settings":
@@ -356,7 +384,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 135.0,
+						"translation.y": 180.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -364,32 +392,62 @@
 				},
 				{
 					"buffer": 1,
-					"file": "composer.json",
+					"file": "app/Resources/views/excepcion/index.html.twig",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2226,
+						"buffer_size": 3045,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1751,
-								1751
+								2091,
+								2091
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"syntax": "Packages/Syntaxes/HTML (Twig).tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 312.0,
+						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5044,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1345,
+								1345
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
