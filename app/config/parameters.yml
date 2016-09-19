@@ -1,11 +1,11 @@
 # This file is auto-generated during the composer install
 parameters:
 
-    database_host: 127.0.0.1
+    database_host: ec2-54-243-63-130.compute-1.amazonaws.com
     database_port: null
-    database_name: s3_sandbox
-    database_user: postgres
-    database_password: root
+    database_name: d7t3orp4ulqf38
+    database_user: gqhphvbiwhltds
+    database_password: 4S71TIHBg3Ft4_W4mZE1IrejZw
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1
