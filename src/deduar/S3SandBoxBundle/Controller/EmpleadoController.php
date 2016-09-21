@@ -1,5 +1,7 @@
 <?php
 
+// comentario vacio
+
 namespace deduar\S3SandBoxBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
