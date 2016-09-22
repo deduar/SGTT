@@ -20,7 +20,7 @@
                 <td><a href="{{ path('empleado_show', { 'id': empleado.id }) }}">{{ empleado.id }}</a></td>
                 <td>{{ empleado.login }}</td>
                 <td>{{ empleado.ficha }}</td>
-                <td>{{ empleado.idpersona.nombre }}</td>
+                <td>{{ empleado.idpersona.nombre }} {{ empleado.idpersona.apellido }}</td>
                 <td>{{ empleado.idsupervisor }}</td>
                 <td>
                     <ul>

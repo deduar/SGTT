@@ -41,7 +41,6 @@
 
     <h1>Excepcion list COMO SUPERVISOR</h1>
 
-    <p>SUPERVISOR : {{ supervisor.id }} / {{ supervisor.login }}</p>
     <table>
         <thead>
             <tr>
@@ -55,21 +54,25 @@
             </tr>
         </thead>
         <tbody>
-        {% for excepcion_supervisor in excepcions_supervisor %}
+        {% for excepcions_supervisor in excepcions_supervisors %}
             <tr>
-                <td><a href="{{ path('excepcion_show', { 'id': excepcion_supervisor.id }) }}">{{ excepcion_supervisor.id }}</a></td>
-                <td>{{ supervisor.login }}</td>
-                <td>{{ excepcion_supervisor.fechaSolicitud |date('Y:m:d H:m:s')}}</td>
-                <td>{{ excepcion_supervisor.fechaCreacion |date('Y:m:d H:m:s')}}</td>
-                <td>{{ excepcion_supervisor.motivo }}</td>
-                <td>{{ excepcion_supervisor.idtypoexcepcion }}</td>
+                <td><a href="{{ path('excepcion_show', { 'id': excepcions_supervisor.id }) }}">{{ excepcions_supervisor.id }}</a></td>
+                {% for supervisor in supervisors %}
+                    {% if excepcions_supervisor.solicitante == supervisor.id  %}
+                        <td>{{ supervisor.login }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td>{{ excepcions_supervisor.fechaSolicitud |date('Y:m:d H:m:s')}}</td>
+                <td>{{ excepcions_supervisor.fechaCreacion |date('Y:m:d H:m:s')}}</td>
+                <td>{{ excepcions_supervisor.motivo }}</td>
+                <td>{{ excepcions_supervisor.idtypoexcepcion }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('excepcion_show', { 'id': excepcion_supervisor.id }) }}">show</a>
+                            <a href="{{ path('excepcion_show', { 'id': excepcions_supervisor.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('excepcion_edit', { 'id': excepcion_supervisor.id }) }}">edit</a>
+                            <a href="{{ path('excepcion_edit', { 'id': excepcions_supervisor.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -77,7 +80,6 @@
         {% endfor %}
          </tbody>
     </table>
-
     <ul>
         <li>
             <a href="{{ path('excepcion_new') }}">Create a new entry</a>

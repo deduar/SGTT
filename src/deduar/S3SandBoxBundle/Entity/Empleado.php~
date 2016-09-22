@@ -39,13 +39,13 @@ class Empleado
      * @ORM\ManyToOne(targetEntity="Persona")
      * @ORM\JoinColumn(name="idpersona", referencedColumnName="id")
      */
-    private $idpersona;
+    private $idpersona; 
 
     /**
      * @ORM\ManyToOne(targetEntity="Empleado")
      * @ORM\JoinColumn(name="idsupervisor", referencedColumnName="id")
      */
-    private $idsupervisor;
+//    private $idsupervisor;
 
     /**
      * Get id
