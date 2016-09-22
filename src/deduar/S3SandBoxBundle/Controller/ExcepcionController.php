@@ -42,14 +42,11 @@ class ExcepcionController extends Controller
             $idSupervisor[] = $supervisors[$i]->getId();
         }
 
-
         $excepcions_supervisors = $em->getRepository('S3SandBoxBundle:Excepcion')
                     ->findBy(array('solicitante'=>$idSupervisor));
 
-
 //        $excepcions_supervisor = $em->getRepository('S3SandBoxBundle:Excepcion')
 //            ->findBySolicitante($supervisor->getId());
-
 
         return $this->render('excepcion/index.html.twig', array(
             'empleado' => $empleado,
