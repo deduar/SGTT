@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Empleado
  *
- * @ORM\Table(name="empleado")
+ * @ORM\Table(name="""empleado"".""tbmEmpleado""")
  * @ORM\Entity(repositoryClass="deduar\S3SandBoxBundle\Repository\EmpleadoRepository")
  */
 class Empleado
@@ -43,7 +43,7 @@ class Empleado
 
     /**
      * @ORM\ManyToOne(targetEntity="Empleado")
-     * @ORM\JoinColumn(name="idsupervisor", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idempleadojefe", referencedColumnName="id")
      */
     private $idsupervisor;
 

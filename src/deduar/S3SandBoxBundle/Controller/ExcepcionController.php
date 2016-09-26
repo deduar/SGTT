@@ -33,13 +33,16 @@ class ExcepcionController extends Controller
         $excepcions = $em->getRepository('S3SandBoxBundle:Excepcion')
             ->findBySolicitante($session->get('id'));
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findOneById($session->get('id'));
+                ->findOneBy(array('id'=>$session->get('id')));
 
         $supervisors = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findByIdsupervisor($session->get('id'));
+                ->findBy(array('idsupervisor'=>$session->get('id')));
 
         for ($i=0; $i < sizeof($supervisors); $i++) { 
             $idSupervisor[] = $supervisors[$i]->getId();
+        } 
+        if (!(sizeof($supervisors))) {
+            $idSupervisor[] = null;
         }
 
         $excepcions_supervisors = $em->getRepository('S3SandBoxBundle:Excepcion')
@@ -65,18 +68,21 @@ class ExcepcionController extends Controller
     public function newAction(Request $request)
     {
         $excepcion = new Excepcion();
+        $excepcion->setSolicitante($request->getSession()->get('id'));
         $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $session = $request->getSession();
-            $excepcion->setSolicitante($session->get('id'));
+            //$session = $request->getSession();
+            //$excepcion->setSolicitante($session->get('id'));
+            $excepcion->setSolicitante($request->get('excepcion')['solicitante']);
             $excepcion->setFechaCreacion(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($excepcion);
             $em->flush();
 
-            return $this->redirectToRoute('excepcion_show', array('id' => $excepcion->getId()));
+            return $this->redirectToRoute('excepcion_show', 
+                        array('id' => $excepcion->getId()));
         }
 
         return $this->render('excepcion/new.html.twig', array(

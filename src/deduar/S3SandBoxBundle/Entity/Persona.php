@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Persona
  *
- * @ORM\Table(name="persona")
+ * @ORM\Table(name="""common"".""tbmPersona""")
  * @ORM\Entity(repositoryClass="deduar\S3SandBoxBundle\Repository\PersonaRepository")
  */
 class Persona
@@ -24,21 +24,21 @@ class Persona
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=30)
+     * @ORM\Column(name="primer_nombre", type="string", length=30)
      */
     private $nombre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="apellido", type="string", length=30)
+     * @ORM\Column(name="primer_apellido", type="string", length=30)
      */
     private $apellido;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="ci", type="integer")
+     * @ORM\Column(name="rif", type="integer")
      */
     private $ci;
 

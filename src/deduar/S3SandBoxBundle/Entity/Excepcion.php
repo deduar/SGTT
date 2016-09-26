@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Excepcion
  *
  * @ORM\Table(name="excepcion")
+ * @ORM\Table(name="""gestion_tiempo"".""tbrEmpleadoExcepcion""")
  * @ORM\Entity(repositoryClass="deduar\S3SandBoxBundle\Repository\ExcepcionRepository")
  */
 class Excepcion
@@ -24,34 +25,34 @@ class Excepcion
     /**
      * @var int
      *
-     * @ORM\Column(name="solicitante", type="integer")
+     * @ORM\Column(name="idempleado", type="integer")
      */
     private $solicitante;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaSolicitud", type="datetimetz")
+     * @ORM\Column(name="fecha_hora_desde", type="datetime")
      */
     private $fechaSolicitud;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaCreacion", type="datetimetz")
+     * @ORM\Column(name="fecha_creacion", type="datetime")
      */
     private $fechaCreacion;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="motivo", type="string", length=255)
+     * @ORM\Column(name="observacion", type="string", length=255)
      */
     private $motivo;
 
     /**
      * @ORM\ManyToOne(targetEntity="TypoExcepcion")
-     * @ORM\JoinColumn(name="idtypoexcepcion", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     private $idtypoexcepcion;
 

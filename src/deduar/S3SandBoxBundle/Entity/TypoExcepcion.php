@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TypoExcepcion
  *
- * @ORM\Table(name="typo_excepcion")
+ * @ORM\Table(name="""gestion_tiempo"".""tbmTipoExcepcion""")
  * @ORM\Entity(repositoryClass="deduar\S3SandBoxBundle\Repository\TypoExcepcionRepository")
  */
 class TypoExcepcion
@@ -24,16 +24,11 @@ class TypoExcepcion
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=30)
+     * @ORM\Column(name="descripcion", type="string", length=30)
      */
     private $nombre;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="descripcion", type="string", length=255)
-     */
-    private $descripcion;
+    
 
 
     /**

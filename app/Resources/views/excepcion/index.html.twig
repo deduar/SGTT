@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Excepcion list PROPIAS</h1>
-
+    <h3>{{empleado.login}}</h3>
     <table>
         <thead>
             <tr>
@@ -20,8 +20,8 @@
             <tr>
                 <td><a href="{{ path('excepcion_show', { 'id': excepcion.id }) }}">{{ excepcion.id }}</a></td>
                 <td>{{ empleado.login }}</td>
-                <td>{{ excepcion.fechaSolicitud |date('Y:m:d H:m:s')}}</td>
-                <td>{{ excepcion.fechaCreacion |date('Y:m:d H:m:s')}}</td>
+                <td>{{ excepcion.fechaSolicitud |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcion.fechaCreacion |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcion.motivo }}</td>
                 <td>{{ excepcion.idtypoexcepcion }}</td>
                 <td>
@@ -62,8 +62,8 @@
                         <td>{{ supervisor.login }}</td>
                     {% endif %}
                 {% endfor %}
-                <td>{{ excepcions_supervisor.fechaSolicitud |date('Y:m:d H:m:s')}}</td>
-                <td>{{ excepcions_supervisor.fechaCreacion |date('Y:m:d H:m:s')}}</td>
+                <td>{{ excepcions_supervisor.fechaSolicitud |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcions_supervisor.fechaCreacion |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcions_supervisor.motivo }}</td>
                 <td>{{ excepcions_supervisor.idtypoexcepcion }}</td>
                 <td>
