@@ -26,10 +26,7 @@ class TypoExcepcion
      *
      * @ORM\Column(name="descripcion", type="string", length=30)
      */
-    private $nombre;
-
-    
-
+    private $descripcion;
 
     /**
      * Get id
@@ -39,34 +36,6 @@ class TypoExcepcion
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     *
-     * @return TypoExcepcion
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get nombre
-     *
-     * @return string
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    public function __toString() {
-        return $this->nombre;
     }
 
     /**
@@ -92,5 +61,10 @@ class TypoExcepcion
     {
         return $this->descripcion;
     }
+
+    public function __toString() {
+        return $this->descripcion;
+    }
+
 }
 
