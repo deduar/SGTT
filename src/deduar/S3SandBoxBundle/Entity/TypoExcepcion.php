@@ -69,10 +69,14 @@ class TypoExcepcion
         return $this->descripcion;
     }
 
-    public function __toString() {
-        return $this->descripcion;
+    /**
+     * String representation of this object
+     * @return string
+     */
+    public function __toString()
+    {
         try {
-            return (string) $this->getDescripcion;
+            return (string) $this->descripcion;
         } catch (Exception $exception) {
             return '';
         }

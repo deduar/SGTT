@@ -52,7 +52,7 @@ class Excepcion
 
     /**
      * @ORM\ManyToOne(targetEntity="TypoExcepcion")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idtipoexcepcion", referencedColumnName="id")
      */
     private $idtypoexcepcion;
 
