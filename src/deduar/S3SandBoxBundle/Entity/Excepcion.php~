@@ -163,27 +163,6 @@ class Excepcion
         return $this->motivo;
     }
 
-    /**
-     * Set idtypoexcepcion
-     *
-     * @param integer $idtypoexcepcion
-     *
-     * @return Excepcion
-     */
-    public function setIdtypoexcepcion($idtypoexcepcion)
-    {
-        $this->idtypoexcepcion = $idtypoexcepcion;
 
-        return $this;
-    }
 
-    /**
-     * Get idtypoexcepcion
-     *
-     * @return integer
-     */
-    public function getIdtypoexcepcion()
-    {
-        return $this->idtypoexcepcion;
-    }
 }
