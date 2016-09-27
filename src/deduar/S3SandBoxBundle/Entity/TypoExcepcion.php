@@ -76,9 +76,9 @@ class TypoExcepcion
     public function __toString()
     {
         try {
-            return (string) $this->descripcion;
-        } catch (Exception $exception) {
-            return '';
+            return $this->getDescripcion();
+        } catch (Exception $e) {
+            return "";
         }
     }
 

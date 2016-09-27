@@ -51,8 +51,9 @@ class Excepcion
     private $motivo;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypoExcepcion")
-     * @ORM\JoinColumn(name="idtipoexcepcion", referencedColumnName="id")
+     * @var int
+     *
+     * @ORM\Column(name="idtipoexcepcion", type="integer")
      */
     private $idtypoexcepcion;
 
