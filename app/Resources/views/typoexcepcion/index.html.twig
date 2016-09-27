@@ -16,7 +16,7 @@
         {% for typoExcepcion in typoExcepcions %}
             <tr>
                 <td><a href="{{ path('typoexcepcion_show', { 'id': typoExcepcion.id }) }}">{{ typoExcepcion.id }}</a></td>
-                <td>{{ typoExcepcion.nombre }}</td>
+                <td>{#{ typoExcepcion.nombre }#}</td>
                 <td>{{ typoExcepcion.descripcion }}</td>
                 <td>
                     <ul>
