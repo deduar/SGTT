@@ -51,9 +51,8 @@ class Excepcion
     private $motivo;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idtipoexcepcion", type="integer")
+     * @ORM\ManyToOne(targetEntity="TypoExcepcion")
+     * @ORM\JoinColumn(name="idtipoexcepcion", referencedColumnName="id")
      */
     private $idtypoexcepcion;
 
@@ -166,11 +165,11 @@ class Excepcion
     /**
      * Set idtypoexcepcion
      *
-     * @param integer $idtypoexcepcion
+     * @param \deduar\S3SandBoxBundle\Entity\TypoExcepcion $idtypoexcepcion
      *
      * @return Excepcion
      */
-    public function setIdtypoexcepcion($idtypoexcepcion)
+    public function setIdtypoexcepcion(\deduar\S3SandBoxBundle\Entity\TypoExcepcion $idtypoexcepcion = null)
     {
         $this->idtypoexcepcion = $idtypoexcepcion;
 
@@ -180,7 +179,7 @@ class Excepcion
     /**
      * Get idtypoexcepcion
      *
-     * @return integer
+     * @return \deduar\S3SandBoxBundle\Entity\TypoExcepcion
      */
     public function getIdtypoexcepcion()
     {
