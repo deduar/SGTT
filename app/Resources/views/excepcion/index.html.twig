@@ -8,8 +8,9 @@
             <tr>
                 <th>Id</th>
                 <th>Solicitante</th>
-                <th>Fechasolicitud</th>
-                <th>Fechacreacion</th>
+                <th>FechaInicio</th>
+                <th>FechaFin</th>
+                <th>FechaCreacion</th>
                 <th>Motivo</th>
                 <th>Tipo Excepcion</th>
                 <th>Actions</th>
@@ -20,9 +21,10 @@
             <tr>
                 <td><a href="{{ path('excepcion_show', { 'id': excepcion.id }) }}">{{ excepcion.id }}</a></td>
                 <td>{{ empleado.login }}</td>
-                <td>{{ excepcion.fechaSolicitud |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcion.fechaInicio |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcion.fechaFin |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcion.fechaCreacion |date('Y-m-d H:m:s')}}</td>
-                <td>{{ excepcion.motivo }}</td>
+                <td>{{ excepcion.observacion }}</td>
                 <td>{{ excepcion.idtypoexcepcion }}</td>
                 <td>
                     <ul>
@@ -46,7 +48,8 @@
             <tr>
                 <th>Id</th>
                 <th>Solicitante</th>
-                <th>Fechasolicitud</th>
+                <th>FechaInicio</th>
+                <th>FechaFin</th>
                 <th>Fechacreacion</th>
                 <th>Motivo</th>
                 <th>Tipo Excepcion</th>
@@ -58,13 +61,14 @@
             <tr>
                 <td><a href="{{ path('excepcion_show', { 'id': excepcions_supervisor.id }) }}">{{ excepcions_supervisor.id }}</a></td>
                 {% for supervisor in supervisors %}
-                    {% if excepcions_supervisor.solicitante == supervisor.id  %}
+                    {% if excepcions_supervisor.idempleado == supervisor.id  %}
                         <td>{{ supervisor.login }}</td>
                     {% endif %}
                 {% endfor %}
-                <td>{{ excepcions_supervisor.fechaSolicitud |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcions_supervisor.fechaInicio |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcions_supervisor.fechaFin |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcions_supervisor.fechaCreacion |date('Y-m-d H:m:s')}}</td>
-                <td>{{ excepcions_supervisor.motivo }}</td>
+                <td>{{ excepcions_supervisor.observacion }}</td>
                 <td>{{ excepcions_supervisor.idtypoexcepcion }}</td>
                 <td>
                     <ul>

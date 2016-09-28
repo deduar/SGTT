@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"fecha",
+				"fechaCreacion"
+			],
+			[
 				"fun",
 				"function"
 			],
@@ -100,15 +104,6 @@
 	"buffers":
 	[
 		{
-			"file": "src/deduar/S3SandBoxBundle/Entity/TypoExcepcion.php",
-			"settings":
-			{
-				"buffer_size": 2044,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/config/parameters.yml",
 			"settings":
 			{
@@ -118,19 +113,19 @@
 			}
 		},
 		{
-			"file": "app/Resources/views/typoexcepcion/index.html.twig",
+			"file": "src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
 			"settings":
 			{
-				"buffer_size": 1245,
+				"buffer_size": 3573,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/Resources/views/typoexcepcion/show.html.twig",
+			"file": "src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
 			"settings":
 			{
-				"buffer_size": 916,
+				"buffer_size": 1704,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -172,7 +167,6 @@
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/typoexcepcion",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/config",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar",
@@ -185,29 +179,30 @@
 	],
 	"file_history":
 	[
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/TypoExcepcionType.php",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/typoexcepcion/index.html.twig",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/index.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/TypoExcepcion.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller/TypoExcepcionController.php",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/config/parameters.yml",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/.gitignore",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/TypoExcepcion.php",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/web/app.php",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/index.html.twig",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Empleado.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Persona.php",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/config/parameters.yml",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/typoexcepcion/index.html.twig",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/typoexcepcion/show.html.twig",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/TypoExcepcionType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/config/config.yml",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller/EmpleadoController.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/new.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/S3-Sandbox.sublime-project",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/.gitignore",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/Procfile",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/composer.json",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/EmpleadoType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/empleado/index.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/empleado/show.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Empleado.php~",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/web/app.php",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Entity/Empleado.php",
 		"/home/deduar/Projects/S3-Sandbox/src/deduar/S3SandBoxBundle/Form/EmpleadoType.php",
 		"/home/deduar/Projects/S3-Sandbox/app/Resources/views/empleado/show.html.twig",
@@ -328,6 +323,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"prod",
 			"3",
 			"solicitante",
 			"(\n",
@@ -406,41 +402,11 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "src/deduar/S3SandBoxBundle/Entity/TypoExcepcion.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2044,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1393,
-								1393
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 875.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "app/config/parameters.yml",
 					"semi_transient": false,
 					"settings":
@@ -452,13 +418,43 @@
 						"selection":
 						[
 							[
-								860,
-								860
+								487,
+								487
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 337.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3573,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1134,
+								1134
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -471,62 +467,32 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/Resources/views/typoexcepcion/index.html.twig",
+					"file": "src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1245,
+						"buffer_size": 1704,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								542,
-								542
+								581,
+								581
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Syntaxes/HTML (Twig).tmLanguage",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 135.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/Resources/views/typoexcepcion/show.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 916,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								312,
-								312
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Syntaxes/HTML (Twig).tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

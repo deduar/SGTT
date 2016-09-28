@@ -11,19 +11,19 @@
             </tr>
             <tr>
                 <th>Solicitante</th>
-                <td>{{ excepcion.solicitante }}</td>
+                <td>{{ excepcion.idempleado }}</td>
             </tr>
             <tr>
                 <th>Fechasolicitud</th>
-                <td>{{ excepcion.fechaSolicitud | date('Y:m:d H:m:s')}}</td>
+                <td>{{ excepcion.fechaInicio | date('Y:m:d H:m:s')}}</td>
             </tr>
             <tr>
                 <th>Fechacreacion</th>
-                <td>{{ excepcion.fechaCreacion | date('Y:m:d H:m:s')}}</td>
+                <td>{{ excepcion.fechaFin | date('Y:m:d H:m:s')}}</td>
             </tr>
             <tr>
                 <th>Motivo</th>
-                <td>{{ excepcion.motivo }}</td>
+                <td>{{ excepcion.observacion }}</td>
             </tr>
             <tr>
                 <th>Tipo excepcion</th>

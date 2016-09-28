@@ -14,11 +14,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Excepcion
 {
     /**
-     * @var int
+     * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="gestion_tiempo.seq_empleadoexcepcion", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -27,14 +28,21 @@ class Excepcion
      *
      * @ORM\Column(name="idempleado", type="integer")
      */
-    private $solicitante;
+    private $idempleado;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_hora_desde", type="datetime")
      */
-    private $fechaSolicitud;
+    private $fechaInicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_hora_hasta", type="datetime")
+     */
+    private $fechaFin;
 
     /**
      * @var \DateTime
@@ -48,119 +56,44 @@ class Excepcion
      *
      * @ORM\Column(name="observacion", type="string", length=255)
      */
-    private $motivo;
+    private $observacion;
 
     /**
      * @ORM\ManyToOne(targetEntity="TypoExcepcion")
-     * @ORM\JoinColumn(name="idtypoexcepcion", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idtipoexcepcion", referencedColumnName="id")
      */
     private $idtypoexcepcion;
 
     /**
-     * Get id
+     * @var string
      *
-     * @return int
+     * @ORM\Column(name="estado", type="string", length=255)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $estado;
 
     /**
-     * Set solicitante
-     *
-     * @param integer $solicitante
-     *
-     * @return Excepcion
+     * @var boolean $ejecutada
+     * @ORM\Column(name="ejecutada", type="boolean", nullable=false)
      */
-    public function setSolicitante($solicitante)
-    {
-        $this->solicitante = $solicitante;
-
-        return $this;
-    }
+    private $ejecutada;    
 
     /**
-     * Get solicitante
-     *
-     * @return int
+     * @var boolean $enviada
+     * @ORM\Column(name="enviada", type="boolean", nullable=false)
      */
-    public function getSolicitante()
-    {
-        return $this->solicitante;
-    }
+    private $enviada;    
 
     /**
-     * Set fechaSolicitud
-     *
-     * @param \DateTime $fechaSolicitud
-     *
-     * @return Excepcion
+     * @var boolean $confirmada
+     * @ORM\Column(name="confirmada", type="boolean", nullable=false)
      */
-    public function setFechaSolicitud($fechaSolicitud)
-    {
-        $this->fechaSolicitud = $fechaSolicitud;
-
-        return $this;
-    }
+    private $confirmada;    
 
     /**
-     * Get fechaSolicitud
-     *
-     * @return \DateTime
+     * @var boolean $remunerada
+     * @ORM\Column(name="remunerada", type="boolean", nullable=false)
      */
-    public function getFechaSolicitud()
-    {
-        return $this->fechaSolicitud;
-    }
+    private $remunerada;    
 
-    /**
-     * Set fechaCreacion
-     *
-     * @param \DateTime $fechaCreacion
-     *
-     * @return Excepcion
-     */
-    public function setFechaCreacion($fechaCreacion)
-    {
-        $this->fechaCreacion = $fechaCreacion;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaCreacion
-     *
-     * @return \DateTime
-     */
-    public function getFechaCreacion()
-    {
-        return $this->fechaCreacion;
-    }
-
-    /**
-     * Set motivo
-     *
-     * @param string $motivo
-     *
-     * @return Excepcion
-     */
-    public function setMotivo($motivo)
-    {
-        $this->motivo = $motivo;
-
-        return $this;
-    }
-
-    /**
-     * Get motivo
-     *
-     * @return string
-     */
-    public function getMotivo()
-    {
-        return $this->motivo;
-    }
-
-
+    
 }

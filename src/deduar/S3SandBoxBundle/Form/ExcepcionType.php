@@ -18,24 +18,29 @@ class ExcepcionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fechaSolicitud')
+            ->add('fechaInicio')
+            ->add('fechaFin')
 //            ->add('fechaCreacion')
-            ->add('motivo')
+            ->add('observacion')
             ->add('idtypoexcepcion')
 //            ->add('solicitante', EntityType::class, array(
 //                'class' => 'S3SandBoxBundle:Empleado'
 //                ))
-            ->add('solicitante', EntityType::class, array(
+            ->add('idempleado', EntityType::class, array(
                 'class' => 'S3SandBoxBundle:Empleado',
                 'preferred_choices' => array('value'=>3),
                 'query_builder' => function (EntityRepository $er) use ($options) {
                     return $er->createQueryBuilder('u')
-                    ->where('u.idsupervisor = '.$options['data']->getSolicitante())
-                    ->orWhere('u.id = '.$options['data']->getSolicitante())
+                    ->where('u.idsupervisor = '.$options['data']->getIdempleado())
+                    ->orWhere('u.id = '.$options['data']->getIdempleado())
                 ;},
-                'data' => $options['data']->getSolicitante()
+                'data' => $options['data']->getIdempleado()
                 ))
 //            ->add('solicitante')
+            ->add('estado')
+            ->add('ejecutada')
+            ->add('enviada')
+            ->add('conformada')
         ;
     }
     

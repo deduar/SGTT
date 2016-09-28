@@ -14,11 +14,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Excepcion
 {
     /**
-     * @var int
+     * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="gestion_tiempo.seq_empleadoexcepcion", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -27,14 +28,21 @@ class Excepcion
      *
      * @ORM\Column(name="idempleado", type="integer")
      */
-    private $solicitante;
+    private $idempleado;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha_hora_desde", type="datetime")
      */
-    private $fechaSolicitud;
+    private $fechaInicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_hora_hasta", type="datetime")
+     */
+    private $fechaFin;
 
     /**
      * @var \DateTime
@@ -48,7 +56,7 @@ class Excepcion
      *
      * @ORM\Column(name="observacion", type="string", length=255)
      */
-    private $motivo;
+    private $observacion;
 
     /**
      * @ORM\ManyToOne(targetEntity="TypoExcepcion")
@@ -57,9 +65,40 @@ class Excepcion
     private $idtypoexcepcion;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=255)
+     */
+    private $estado;
+
+    /**
+     * @var boolean $ejecutada
+     * @ORM\Column(name="ejecutada", type="boolean", nullable=false)
+     */
+    private $ejecutada;    
+
+    /**
+     * @var boolean $enviada
+     * @ORM\Column(name="enviada", type="boolean", nullable=false)
+     */
+    private $enviada;    
+
+    /**
+     * @var boolean $conformada
+     * @ORM\Column(name="conformada", type="boolean", nullable=false)
+     */
+    private $conformada;    
+
+    /**
+     * @var boolean $remunerada
+     * @ORM\Column(name="remunerada", type="boolean", nullable=false)
+     */
+    private $remunerada; 
+
+    /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -67,51 +106,75 @@ class Excepcion
     }
 
     /**
-     * Set solicitante
+     * Set idempleado
      *
-     * @param integer $solicitante
+     * @param integer $idempleado
      *
      * @return Excepcion
      */
-    public function setSolicitante($solicitante)
+    public function setIdempleado($idempleado)
     {
-        $this->solicitante = $solicitante;
+        $this->idempleado = $idempleado;
 
         return $this;
     }
 
     /**
-     * Get solicitante
+     * Get idempleado
      *
-     * @return int
+     * @return integer
      */
-    public function getSolicitante()
+    public function getIdempleado()
     {
-        return $this->solicitante;
+        return $this->idempleado;
     }
 
     /**
-     * Set fechaSolicitud
+     * Set fechaInicio
      *
-     * @param \DateTime $fechaSolicitud
+     * @param \DateTime $fechaInicio
      *
      * @return Excepcion
      */
-    public function setFechaSolicitud($fechaSolicitud)
+    public function setFechaInicio($fechaInicio)
     {
-        $this->fechaSolicitud = $fechaSolicitud;
+        $this->fechaInicio = $fechaInicio;
 
         return $this;
     }
 
     /**
-     * Get fechaSolicitud
+     * Get fechaInicio
      *
      * @return \DateTime
      */
-    public function getFechaSolicitud()
+    public function getFechaInicio()
     {
-        return $this->fechaSolicitud;
+        return $this->fechaInicio;
+    }
+
+    /**
+     * Set fechaFin
+     *
+     * @param \DateTime $fechaFin
+     *
+     * @return Excepcion
+     */
+    public function setFechaFin($fechaFin)
+    {
+        $this->fechaFin = $fechaFin;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaFin
+     *
+     * @return \DateTime
+     */
+    public function getFechaFin()
+    {
+        return $this->fechaFin;
     }
 
     /**
@@ -139,27 +202,147 @@ class Excepcion
     }
 
     /**
-     * Set motivo
+     * Set observacion
      *
-     * @param string $motivo
+     * @param string $observacion
      *
      * @return Excepcion
      */
-    public function setMotivo($motivo)
+    public function setObservacion($observacion)
     {
-        $this->motivo = $motivo;
+        $this->observacion = $observacion;
 
         return $this;
     }
 
     /**
-     * Get motivo
+     * Get observacion
      *
      * @return string
      */
-    public function getMotivo()
+    public function getObservacion()
     {
-        return $this->motivo;
+        return $this->observacion;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     *
+     * @return Excepcion
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set ejecutada
+     *
+     * @param boolean $ejecutada
+     *
+     * @return Excepcion
+     */
+    public function setEjecutada($ejecutada)
+    {
+        $this->ejecutada = $ejecutada;
+
+        return $this;
+    }
+
+    /**
+     * Get ejecutada
+     *
+     * @return boolean
+     */
+    public function getEjecutada()
+    {
+        return $this->ejecutada;
+    }
+
+    /**
+     * Set enviada
+     *
+     * @param boolean $enviada
+     *
+     * @return Excepcion
+     */
+    public function setEnviada($enviada)
+    {
+        $this->enviada = $enviada;
+
+        return $this;
+    }
+
+    /**
+     * Get enviada
+     *
+     * @return boolean
+     */
+    public function getEnviada()
+    {
+        return $this->enviada;
+    }
+
+    /**
+     * Set conformada
+     *
+     * @param boolean $conformada
+     *
+     * @return Excepcion
+     */
+    public function setConformada($conformada)
+    {
+        $this->conformada = $conformada;
+
+        return $this;
+    }
+
+    /**
+     * Get conformada
+     *
+     * @return boolean
+     */
+    public function getConformada()
+    {
+        return $this->conformada;
+    }
+
+    /**
+     * Set remunerada
+     *
+     * @param boolean $remunerada
+     *
+     * @return Excepcion
+     */
+    public function setRemunerada($remunerada)
+    {
+        $this->remunerada = $remunerada;
+
+        return $this;
+    }
+
+    /**
+     * Get remunerada
+     *
+     * @return boolean
+     */
+    public function getRemunerada()
+    {
+        return $this->remunerada;
     }
 
     /**
