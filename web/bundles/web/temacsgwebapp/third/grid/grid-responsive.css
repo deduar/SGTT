@@ -1,0 +1,48 @@
+/* 
+	16 COLUMN - RESPONSIVE GRID SYSTEM
+	DEVELOPED BY DENIS LEBLANC
+	URL - http://responsive.gs
+	LICENSED UNDER GPL & MIT
+*/
+
+/* MAIN CONTAINER */
+.container						{ margin: 0 auto; }
+
+/* SELF CLEARING FLOATS - CLEARFIX METHOD
+----------------------------------------------------------------------------------------------------*/
+.row:after,
+.clr:after,
+.group:after	 				{ content: ""; 
+								  display: block; 
+								  height: 0; 
+								  clear: both; 
+  								  visibility: hidden; }
+
+/* DEFAULT ROW STYLES */
+.row							{ margin-bottom: 0px; } /* set according to preference*/
+								  
+/* DEFAULT COLUMN STYLES */
+.col 							{ display: block;
+								  float:left;
+								  margin-left: 2%; }
+
+/* RESET MARGINS */
+.col:first-child 				{ margin-left: 0; } /* all browsers except IE6 and lower */
+
+/* COLUMN WIDTHS*/
+.grid-1 						{ width: 4.375%; }
+.grid-2 						{ width: 10.75%; }
+.grid-3 						{ width: 17.125%; }
+.grid-4 						{ width: 23.5%; }
+.grid-5 						{ width: 29.875%; }
+.grid-6 						{ width: 36.25%; }
+.grid-7 						{ width: 42.625%; }
+.grid-8 						{ width: 49.0%; }
+.grid-9 						{ width: 55.375%; }
+.grid-10 						{ width: 61.75%; }
+.grid-11 						{ width: 68.125%; }
+.grid-12 						{ width: 74.5%; }
+.grid-13 						{ width: 80.875%; }
+.grid-14 						{ width: 87.25%; }
+.grid-15 						{ width: 93.625%; }
+.grid-16 						{ width: 100%; }
