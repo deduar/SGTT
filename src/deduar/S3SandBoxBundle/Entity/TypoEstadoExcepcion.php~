@@ -1,0 +1,39 @@
+<?php
+
+namespace deduar\S3SandBoxBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * TypoEstadoExcepcion
+ *
+ * @ORM\Table(name="""gestion_timepo"".""tbmEstadoExcepcion""")
+ * @ORM\Entity(repositoryClass="deduar\S3SandBoxBundle\Repository\TypoEstadoExcepcionRepository")
+ */
+class TypoEstadoExcepcion
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="string", length=10)
+     */
+    private $descripcion;
+
+    /**
+     * @var boolean $asignacion
+     * @ORM\Column(name="activo", type="boolean", nullable=false)
+     */
+    private $activo;
+
+ 
+ 
+}

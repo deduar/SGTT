@@ -15,8 +15,8 @@ class TypoEstadoExcepcionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
             ->add('descripcion')
+            ->add('activo')
         ;
     }
     

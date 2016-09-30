@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block data %}
     <h1>Excepcion list PROPIAS</h1>
     <h3>{{empleado.login}}</h3>
     <table>
@@ -13,6 +13,7 @@
                 <th>FechaCreacion</th>
                 <th>Motivo</th>
                 <th>Tipo Excepcion</th>
+                <th>Tipo Estado</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                 <td>{{ excepcion.fechaCreacion |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcion.observacion }}</td>
                 <td>{{ excepcion.idtypoexcepcion }}</td>
+                <td>{{ excepcion.idtypoestadoexcepcion }}</td>
                 <td>
                     <ul>
                         <li>
@@ -53,6 +55,7 @@
                 <th>Fechacreacion</th>
                 <th>Motivo</th>
                 <th>Tipo Excepcion</th>
+                <th>Tipo Estado</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -70,6 +73,7 @@
                 <td>{{ excepcions_supervisor.fechaCreacion |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcions_supervisor.observacion }}</td>
                 <td>{{ excepcions_supervisor.idtypoexcepcion }}</td>
+                <td>{{ excepcions_supervisor.idtypoestadoexcepcion }}</td>
                 <td>
                     <ul>
                         <li>

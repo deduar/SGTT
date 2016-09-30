@@ -7,8 +7,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
                 <th>Descripcion</th>
+                <th>Activo</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,8 +16,8 @@
         {% for typoEstadoExcepcion in typoEstadoExcepcions %}
             <tr>
                 <td><a href="{{ path('typoestadoexcepcion_show', { 'id': typoEstadoExcepcion.id }) }}">{{ typoEstadoExcepcion.id }}</a></td>
-                <td>{{ typoEstadoExcepcion.name }}</td>
                 <td>{{ typoEstadoExcepcion.descripcion }}</td>
+                <td>{{ typoEstadoExcepcion.activo }}</td>
                 <td>
                     <ul>
                         <li>

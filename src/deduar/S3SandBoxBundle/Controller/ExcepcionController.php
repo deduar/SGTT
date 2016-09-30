@@ -75,6 +75,7 @@ class ExcepcionController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             //$session = $request->getSession();
             //$excepcion->setSolicitante($session->get('id'));
+            $excepcion->setEstado("");
             $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
             $excepcion->setFechaCreacion(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();

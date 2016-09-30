@@ -93,7 +93,13 @@ class Excepcion
      * @var boolean $remunerada
      * @ORM\Column(name="remunerada", type="boolean", nullable=false)
      */
-    private $remunerada; 
+    private $remunerada;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TypoEstadoExcepcion")
+     * @ORM\JoinColumn(name="idestadoexcepcion", referencedColumnName="id")
+     */
+    private $idtypoestadoexcepcion; 
 
     /**
      * Get id
@@ -367,5 +373,29 @@ class Excepcion
     public function getIdtypoexcepcion()
     {
         return $this->idtypoexcepcion;
+    }
+
+    /**
+     * Set idtypoestadoexcepcion
+     *
+     * @param \deduar\S3SandBoxBundle\Entity\TypoEstadoExcepcion $idtypoestadoexcepcion
+     *
+     * @return Excepcion
+     */
+    public function setIdtypoestadoexcepcion(\deduar\S3SandBoxBundle\Entity\TypoEstadoExcepcion $idtypoestadoexcepcion = null)
+    {
+        $this->idtypoestadoexcepcion = $idtypoestadoexcepcion;
+
+        return $this;
+    }
+
+    /**
+     * Get idtypoestadoexcepcion
+     *
+     * @return \deduar\S3SandBoxBundle\Entity\TypoEstadoExcepcion
+     */
+    public function getIdtypoestadoexcepcion()
+    {
+        return $this->idtypoestadoexcepcion;
     }
 }

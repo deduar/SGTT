@@ -37,10 +37,11 @@ class ExcepcionType extends AbstractType
                 'data' => $options['data']->getIdempleado()
                 ))
 //            ->add('solicitante')
-            ->add('estado')
+//            ->add('estado')
             ->add('ejecutada')
             ->add('enviada')
             ->add('conformada')
+            ->add('idtypoestadoexcepcion')
         ;
     }
     
