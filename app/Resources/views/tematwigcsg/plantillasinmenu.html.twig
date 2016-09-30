@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>{% block titulo %} Sistema disponibilidad presupuestaria {% endblock %}</title>
+        {% block stylesheets %}
+            {% include ':tematwigcsg:linkscss.html.twig' %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+
+    </head>
+    <body>   
+        <!--Envoltorio principal del sitio -->   
+        <div id="page-wrapper" class="container">
+            <!-- Pagina -->
+            <div id="page" class="">
+                <!-- Envoltorio Cabecera del sitio -->
+                <div id="header-wrapper" class="grid-16" row >
+                    <!-- Cabecera del sitio-->
+                    <div id="header" class="" >
+                        {% include ':tematwigcsg:branding.html.twig' %}
+                        {% include ':tematwigcsg:app-info.html.twig' %}
+                    </div>
+                    <!-- Fin Cabecera-->
+                </div>
+                <!-- Fin Envoltorio Cabecera -->
+
+                
+                <div id="session-wrapper" class="row grid-16">
+                </div>
+
+                <div class="row grid-16">
+                    <!-- Envoltorio de cuerpo del sitio -->
+                    <div id="content-wrapper" class="grid-14 col" style="left: 50%; top: 50%;">
+                        <!--Contenido del sitio -->
+                        <div id="content">
+                            {% block body %}  
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <!-- Fin menu de cuerpo del sitio --> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,8 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'tematwigcsg/plantilla.html.twig' %}
 
-{% block data %}
+{% block body %}
     <h1>Excepcion list PROPIAS</h1>
-    <h3>{{empleado.login}}</h3>
     <table>
         <thead>
             <tr>
@@ -42,6 +41,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <hr/>
 
     <h1>Excepcion list COMO SUPERVISOR</h1>
 

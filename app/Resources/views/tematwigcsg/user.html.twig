@@ -1,0 +1,16 @@
+<div id="inner-user">
+    <ul id="user-links" class="dropdown">
+        <li> 
+            <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button"  >
+                <i class="icon-user"></i>
+                {#{ (app.user.nombre ~ ' ' ~ app.user.apellido) | trans }#}
+                {{empleado.login}}
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li><a href="#"><i class="icon-edit "></i>Opcion</a> </li>                
+                <li><a href="#"><i class="icon-file "></i>Acciones</a> </li>
+            </ul>
+        </li>
+        <li> <a href="{#{ path('fos_user_security_logout') }#}" title="Cerrar Sesión"><i class="icon-off"></i>Salir</a></li>
+    </ul>
+</div>

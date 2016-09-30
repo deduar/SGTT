@@ -1,110 +1,13 @@
 <!DOCTYPE html>
-<!-- Layout: esta es la estructura que debe mantener toda pagina del sitio web-->
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        {% block stylesheets %}
-            <!-- CSS del sitio -->
-            <!--terceros-->
-            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-            <link href="{{ asset('/third/grid/grid-responsive.css') }}" rel="stylesheet" />
-            <link href="{{ asset('/third/bootstrap/css/bootstrap.css') }}" rel="stylesheet" />
-            <link href="{{ asset('/third/grid/media-queries.css') }}" rel="stylesheet" />
-
-            <!-- compartidos-->
-            <link href="{{ asset('/shared/css/fonts.css') }}" rel="stylesheet" />
-            <!--sitio-->
-            <link href="{{ asset('/css/global.css') }}" rel="stylesheet" />
-            <!-- Fin CSS del sitio --> 
-        {% endblock %}
-        <title>{% block title %}Consigua | Sistema de Gestion!{% endblock %}</title>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-    {% block body %}
-        <!--Envoltorio principal del sitio -->   
-        <div id="page-wrapper" class="container">
-            <!-- Pagina -->
-            <div id="page" class="">
-                <!-- Envoltorio Cabecera del sitio -->
-                {% block Head %}
-                <div id="header-wrapper" class="grid-16" row >
-                    <!-- Cabecera del sitio-->
-                    <div id="header" class="" >
-                        <div id="branding" class="row" >
-
-                        </div>
-                        <!-- Envoltorio de Identificación app-->
-                        <div id="app-info-wrap"  >
-
-                        </div>
-                        <!-- Envoltorio de Identificación app-->
-
-                    </div>
-                    <!-- Fin Cabecera-->
-                </div>
-                {% endblock %}
-                <!-- Fin Envoltorio Cabecera -->
-                <!-- Envoltorio Session -->
-                {% block Session %}
-                <div id="session-wrapper" class="row grid-16">
-                    <!-- Migaja de Pan------>
-                    <div id="breadcrumb-wrapper"  class="grid-12 col" >
-
-                    </div>
-                    <!-- Fin migajas de Pan-->
-                    <!-- Información de Usuario-->
-                    <div id="user-wrapper"  class="grid-4 col" >
-
-                    </div>
-                    <!-- Fin Información de Usuario-->
-                </div>
-                {% endblock %}
-                <!-- Fin Envoltorio Session -->
-
-                <div class="row grid-16">
-                    <!-- Envoltorio de cuerpo del sitio -->
-                    {% block data %}
-                    <div id="content-wrapper" class="  grid-12 col">
-                        <!--Contenido del sitio -->
-                        <div id="content"  >
-
-                        </div>
-                        <!-- Fin contenido del sitio-->
-                    </div>
-                    {% endblock %}
-                    <!-- Fin Envoltorio de cuerpo del sitio --> 
-
-                    {% block menu %}
-                    <!-- Envoltorio de menu del sitio -->
-                    <div id="menu-wrapper" class=" grid-4 col">
-                        <!--menu del sitio -->
-                        <div id="menu"  >
-
-                        </div>
-                        <!-- Fin menu del sitio-->
-                    </div>
-                    {% endblock %}
-                    <!-- Fin menu de cuerpo del sitio --> 
-                </div>
-            </div>
-        </div>
-        <!--Fin Pagina -->
-    </div>
-    <!-- Fin Envoltorio Principal -->
-    {% endblock %}
-
-    <!-- JS del sitio -->
-    <!--terceros-->
-    {% block javascripts %}
-        <script src="{{ asset('/third/jquery/jquery-1.8.3.min.js') }}"></script>
-        <script src="{{ asset('/third/bootstrap/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('/third/scrollpane/js/jquery.mousewheel.js') }}"></script>
-        <script src="{{ asset('/third/scrollpane/js/jquery.jscrollpane.min.js') }}"></script>
-        <!-- compartidos-->
-        <!--sitio-->
-        <script src="{{ asset('/js/main.js') }}"></script>
-    {% endblock %}
-    <!-- FIN JS del sitio -->
-</body>
-
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
 </html>

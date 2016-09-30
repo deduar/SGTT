@@ -1,0 +1,65 @@
+{#Asigne la rutaweb con el nombre de la carpeta de su proyecto dentro de la carpeta web/bundles#}
+{% set rutaweb='comsiguascp' %}
+{% set nombrelargoproyecto = 'SISTEMA DISPONIBILIDAD PRESUPUESTARIA' %}
+{% set siglasproyecto = 'SDP' %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>{% block titulo %} Sistema disponibilidad presupuestaria {% endblock %}</title>
+        {% block stylesheets %}
+            {% include ':tematwigcsg:linkscss.html.twig' %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+
+    </head>
+    <body>   
+        <!--Envoltorio principal del sitio -->   
+        <div id="page-wrapper" class="container">
+            <!-- Pagina -->
+            <div id="page" class="">
+                <!-- Envoltorio Cabecera del sitio -->
+                <div id="header-wrapper" class="grid-16" row >
+                    <!-- Cabecera del sitio-->
+                    <div id="header" class="" >
+                        {% include ':tematwigcsg:branding.html.twig' %}
+                        {% include ':tematwigcsg:app-info.html.twig' %}
+                    </div>
+                    <!-- Fin Cabecera-->
+                </div>
+                <!-- Fin Envoltorio Cabecera -->
+
+
+                <div id="session-wrapper" class="row grid-16">
+                    <div id="breadcrumb-wrapper"  class="grid-12 col" >
+
+                    </div>
+                    <div id="user-wrapper"  class="grid-4 col" >
+                        {% include ':tematwigcsg:user.html.twig' %}
+                    </div>
+                </div>
+
+                <div class="row grid-16">
+                    <!-- Envoltorio de cuerpo del sitio -->
+                    <div id="content-wrapper" class="  grid-12 col">
+                        <!--Contenido del sitio -->
+                        <div id="content"  >
+                            {% block body %}                                                              
+                                <div>
+                                    <h3>{{ mensaje }}</h3>
+                                </div>
+                                
+                                <center><a href="{{ path('solicitud') }}">Regresar</a> </center> 
+                                
+                            {% endblock %}
+                        </div>
+                    </div>                    
+                    <!-- Fin menu de cuerpo del sitio --> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

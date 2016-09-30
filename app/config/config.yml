@@ -37,6 +37,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        rutaweb: "web"
+        nombrelargoproyecto: "Sistema de Gestión de Tiempo"
+        siglasproyecto: "SGTT"
 
 # Doctrine Configuration
 doctrine:

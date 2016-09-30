@@ -1,0 +1,17 @@
+{# empty Twig template #}
+{% block button_attributes %}
+{% spaceless %}
+    id="{{ id }}" name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}
+    {% set hasClass = false %}
+    {% for attrname, attrvalue in attr %}
+        {{ attrname }}="{{ attrvalue }}"
+        {% if attrname == "class" %}
+          {% set hasClass = true %}
+        {% endif %}
+    {% endfor %}
+    {% if not hasClass %}
+    class="btn"
+    {% endif %}
+{% endspaceless %}
+{% endblock button_attributes %}
+
