@@ -273,7 +273,7 @@ body{
 #user-links a:hover >[class^="icon-"],
 .options a:hover >[class^="icon-"]
 {
-    background-image: url("../../third/bootstrap/img/azul-glyphicons-halflings.png");
+    background-image: url("../third/bootstrap/img/azul-glyphicons-halflings.png");
 }
 
 
