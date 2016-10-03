@@ -2,7 +2,7 @@
 
 {% block body %}
     <h3>Mis Excpciones</h3>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Editar</th>
@@ -68,13 +68,12 @@
 
     <h3>Excepciones de Personal a Cargo</h3>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Editar</th>
                 <th>Solicitante</th>
-                <th>FechaInicio</th>
-                <th>FechaFin</th>
+                <th>Inicio / Fin</th>
                 <th>Observación</th>
                 <th>Tipo Excepcion</th>
                 <th>Tipo Estado</th>
@@ -93,8 +92,8 @@
                         <td>{{ supervisor.login }}</td>
                     {% endif %}
                 {% endfor %}
-                <td>{{ excepcions_supervisor.fechaInicio |date('Y-m-d H:m:s')}}</td>
-                <td>{{ excepcions_supervisor.fechaFin |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcions_supervisor.fechaInicio |date('Y-m-d H:m:s')}}
+                <br>{{ excepcions_supervisor.fechaFin |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcions_supervisor.observacion }}</td>
                 <td>{{ excepcions_supervisor.idtypoexcepcion }}</td>
                 <td>{{ excepcions_supervisor.idtypoestadoexcepcion }}</td>
