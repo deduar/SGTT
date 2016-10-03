@@ -41,6 +41,7 @@ class ExcepcionType extends AbstractType
             ->add('ejecutada')
             ->add('enviada')
             ->add('conformada')
+            ->add('remunerada')
             ->add('idtypoestadoexcepcion')
         ;
     }

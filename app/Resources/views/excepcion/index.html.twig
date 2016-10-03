@@ -5,35 +5,56 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Editar</th>
                 <th>Solicitante</th>
-                <th>FechaInicio</th>
-                <th>FechaFin</th>
-                <th>Motivo</th>
+                <th>Inicio
+                 / Fin</th>
+                <th>Observación</th>
                 <th>Tipo Excepcion</th>
                 <th>Tipo Estado</th>
-                <th>Actions</th>
+                <th>Ejec</th>
+                <th>Env</th>
+                <th>Conf</th>
+                <th>Remu</th>
             </tr>
         </thead>
         <tbody>
         {% for excepcion in excepcions %}
             <tr>
-                <td><a href="{{ path('excepcion_show', { 'id': excepcion.id }) }}">{{ excepcion.id }}</a></td>
+                <td><a href="{{ path('excepcion_show', { 'id': excepcion.id }) }}" class="glyphicon glyphicon-pencil"></a></td>
                 <td>{{ empleado.login }}</td>
-                <td>{{ excepcion.fechaInicio |date('Y-m-d H:m:s')}}</td>
-                <td>{{ excepcion.fechaFin |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcion.fechaInicio |date('Y-m-d H:m:s')}}
+                <br> {{ excepcion.fechaFin |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcion.observacion }}</td>
                 <td>{{ excepcion.idtypoexcepcion }}</td>
                 <td>{{ excepcion.idtypoestadoexcepcion }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('excepcion_show', { 'id': excepcion.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('excepcion_edit', { 'id': excepcion.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    {% if (excepcion.ejecutada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcion.enviada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcion.conformada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcion.remunerada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
@@ -46,20 +67,23 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Editar</th>
                 <th>Solicitante</th>
                 <th>FechaInicio</th>
                 <th>FechaFin</th>
-                <th>Motivo</th>
+                <th>Observación</th>
                 <th>Tipo Excepcion</th>
                 <th>Tipo Estado</th>
-                <th>Actions</th>
+                <th>Ejec</th>
+                <th>Env</th>
+                <th>Conf</th>
+                <th>Remu</th>
             </tr>
         </thead>
         <tbody>
         {% for excepcions_supervisor in excepcions_supervisors %}
             <tr>
-                <td><a href="{{ path('excepcion_show', { 'id': excepcions_supervisor.id }) }}">{{ excepcions_supervisor.id }}</a></td>
+                <td><a href="{{ path('excepcion_show', { 'id': excepcions_supervisor.id }) }}"class="glyphicon glyphicon-pencil"></a></td>
                 {% for supervisor in supervisors %}
                     {% if excepcions_supervisor.idempleado == supervisor.id  %}
                         <td>{{ supervisor.login }}</td>
@@ -71,14 +95,32 @@
                 <td>{{ excepcions_supervisor.idtypoexcepcion }}</td>
                 <td>{{ excepcions_supervisor.idtypoestadoexcepcion }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('excepcion_show', { 'id': excepcions_supervisor.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('excepcion_edit', { 'id': excepcions_supervisor.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    {% if (excepcions_supervisor.ejecutada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcions_supervisor.enviada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcions_supervisor.conformada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcions_supervisor.remunerada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

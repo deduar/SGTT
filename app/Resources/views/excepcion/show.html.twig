@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'tematwigcsg/plantilla.html.twig' %}
 
 {% block body %}
     <h1>Excepcion</h1>
@@ -22,12 +22,32 @@
                 <td>{{ excepcion.fechaFin | date('Y:m:d H:m:s')}}</td>
             </tr>
             <tr>
-                <th>Motivo</th>
+                <th>Observacion</th>
                 <td>{{ excepcion.observacion }}</td>
             </tr>
             <tr>
                 <th>Tipo excepcion</th>
                 <td>{{ excepcion.idtypoexcepcion }}</td>
+            </tr>
+            <tr>
+                <th>Tipo Estado</th>
+                <td>{{ excepcion.idtypoestadoexcepcion }}</td>
+            </tr>
+            <tr>
+                <th>Ejecutada</th>
+                <td>{{ excepcion.ejecutada }}</td>
+            </tr>
+            <tr>
+                <th>Enviada</th>
+                <td>{{ excepcion.enviada }}</td>
+            </tr>
+            <tr>
+                <th>Conformada</th>
+                <td>{{ excepcion.conformada }}</td>
+            </tr>
+            <tr>
+                <th>Remunerada</th>
+                <td>{{ excepcion.remunerada }}</td>
             </tr>
         </tbody>
     </table>

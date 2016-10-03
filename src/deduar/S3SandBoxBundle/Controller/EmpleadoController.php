@@ -88,6 +88,19 @@ class EmpleadoController extends Controller
     }
 
     /**
+     * Logou empleado. (without validation, be careful !!!)
+     *
+     * @Route("/logout", name="empleado_logout")
+     * @Method({"GET", "POST"})
+     */
+    public function logouAction(Request $request)
+    {   
+        $session = $request->getSession();
+        $session->remove('id');
+        return $this->redirectToRoute('empleado_login');
+    }
+
+    /**
      * Finds and displays a Empleado entity.
      *
      * @Route("/{id}", name="empleado_show")

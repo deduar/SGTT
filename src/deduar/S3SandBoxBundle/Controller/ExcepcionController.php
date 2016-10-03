@@ -12,7 +12,6 @@ use deduar\S3SandBoxBundle\Form\ExcepcionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use deduar\S3SandBoxBundle\Entity\Empleado;
 
-
 /**
  * Excepcion controller.
  *
@@ -98,11 +97,16 @@ class ExcepcionController extends Controller
      * @Route("/{id}", name="excepcion_show")
      * @Method("GET")
      */
-    public function showAction(Excepcion $excepcion)
+    public function showAction(Request $request, Excepcion $excepcion)
     {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
         $deleteForm = $this->createDeleteForm($excepcion);
 
         return $this->render('excepcion/show.html.twig', array(
+            'empleado' => $empleado,
             'excepcion' => $excepcion,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -116,6 +120,10 @@ class ExcepcionController extends Controller
      */
     public function editAction(Request $request, Excepcion $excepcion)
     {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
         $deleteForm = $this->createDeleteForm($excepcion);
         $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
         $editForm->handleRequest($request);
@@ -129,6 +137,7 @@ class ExcepcionController extends Controller
         }
 
         return $this->render('excepcion/edit.html.twig', array(
+            'empleado' => $empleado,
             'excepcion' => $excepcion,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

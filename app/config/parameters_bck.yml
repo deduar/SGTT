@@ -1,0 +1,61 @@
+# This file is auto-generated during the composer install
+parameters:
+
+#
+## Localhost
+#
+#    database_host: localhost
+#    database_port: null
+#    database_name: SGTT
+#    database_user: postgres
+#    database_password: root
+
+#
+## Heroku
+#
+#    database_host: ec2-54-243-63-130.compute-1.amazonaws.com
+#    database_port: null
+#    database_name: d7t3orp4ulqf38
+#    database_user: gqhphvbiwhltds
+#    database_password: 4S71TIHBg3Ft4_W4mZE1IrejZw
+
+#
+## With COMSIGUA DB on localhost
+#
+#    bdgep_database_driver: pdo_pgsql
+#    bdgep_database_host: localhost
+#    bdgep_database_port: null
+#    bdgep_database_name: BDGEP
+#    bdgep_database_user: postgres
+#    bdgep_database_password: root
+    
+#    bdgsg_database_driver: pdo_pgsql
+#    bdgsg_database_host: localhost
+#    bdgsg_database_port: null
+#    bdgsg_database_name: BDGSG
+#    bdgsg_database_user: postgres
+#    bdgsg_database_password: root
+
+#
+## With COMSIGUA DB on COMSIGUA postgreSQL Server 10.10.3.129
+#
+
+    bdgep_database_driver: pdo_pgsql
+    bdgep_database_host: 10.10.3.129
+    bdgep_database_port: null
+    bdgep_database_name: BDGEP
+    bdgep_database_user: usrdbadm
+    bdgep_database_password: cl4v3admin
+
+    bdgsg_database_driver: pdo_pgsql
+    bdgsg_database_host: 10.10.3.129
+    bdgsg_database_port: null
+    bdgsg_database_name: BDGSG
+    bdgsg_database_user: usrdbadm
+    bdgsg_database_password: cl4v3admin
+
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
