@@ -79,9 +79,7 @@ class EmpleadoController extends Controller
                 $session = $request->getSession();
                 $session->set('id',$empleadoSearch->getId());
                 $deleteForm = $this->createDeleteForm($empleadoSearch);
-                return $this->render('empleado/show.html.twig', array(
-                        'empleado' => $empleadoSearch,
-                        'delete_form' => $deleteForm->createView(),));
+                return $this->redirectToRoute('excepcion_index', array('id' => $empleado->getId()));
             }
         }
         return $this->render('empleado/login.html.twig', array(
