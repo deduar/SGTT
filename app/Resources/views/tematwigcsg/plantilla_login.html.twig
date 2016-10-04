@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>{% block titulo %} Sistema de Gestión de Tiempo Trabajado {% endblock %}</title>
+        {% block stylesheets %}
+            {% include ':tematwigcsg:linkscss.html.twig' %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+
+    </head>
+    <body>   
+        <!--Envoltorio principal del sitio -->   
+        <div id="page-wrapper" class="container">
+            <!-- Pagina -->
+            <div id="page" class="">
+                <!-- Envoltorio Cabecera del sitio -->
+                <div id="header-wrapper" class="grid-16" row >
+                    <!-- Cabecera del sitio-->
+                    <div id="header" class="" >
+                        {% include ':tematwigcsg:branding.html.twig' %}
+                        {% include ':tematwigcsg:app-info.html.twig' %}
+                    </div>
+                    <!-- Fin Cabecera-->
+                </div>
+                <!-- Fin Envoltorio Cabecera -->
+
+               <!-- <div id="session-wrapper" class="row grid-16">
+                    <div id="breadcrumb-wrapper"  class="grid-11 col" >
+
+                    </div>
+                    <div id="user-wrapper"  class="grid-5 col">
+                        {#% include ':tematwigcsg:user.html.twig' %#}
+                    </div>
+                </div>  -->              
+                
+                
+              <!-- <div id="session-wrapper" class="row grid-16"  style=" border-top:5px solid #666666;">
+                    <div class="grid-12 col" >
+                        <div class="navbar">
+                            <div class="navbar-inner">       
+                                <ul class="nav">
+                                    <li class="active"><a href="#">Solicitudes</a></li>
+                                    <li><a href="proyectos.php">Proyectos</a></li>
+                                    <li><a href="nosotros.php">Reportes</a>
+                                        <ul class="dropdown-menu">
+                                            <li>SUBMENÚ 1</li>
+                                            <li>SUBMENÚ 2</li>
+                                        </ul>
+                                    </li> 
+                                </ul>                                                               
+                            </div> 
+                        </div>                             
+                    </div>
+                    <div class="grid-4 col" style="position: relative; background: url('../images/bg-navbar-inner.png') left top repeat-x;" >
+                        {#% include ':tematwigcsg:user.html.twig' %#}
+                    </div>                     
+                                        
+                       
+                </div>  -->
+                
+                        
+                        
+                
+              <!--  <div id="session-wrapper" class="row grid-16" style=" border-top:7px solid #666666;" >                    
+                    <div id="breadcrumb-wrapper"  class="grid-11 col" >
+                        <div class="navbar">
+                            <div class="navbar-inner">       
+                                <ul class="nav">
+                                    <li class="active"><a href="#">Inicio</a></li>
+                                    <li><a href="nosotros.php">Nosotros</a></li>
+                                    <li><a href="servicios.php">Servicios</a></li>
+                                    <li><a href="proyectos.php">Proyectos</a></li>
+                                    <li><a href="noticias.php">Noticias</a></li>
+                                    <li><a href="contacto.php">Contacto</a></li>
+                                </ul>        
+                            </div>    
+                        </div>                        
+                        
+                    </div>
+                    <div id="user-wrapper">
+                        {#% include ':tematwigcsg:user.html.twig' %#}
+                    </div>
+                </div> -->
+
+                <div id="sesion-wrapper" class="row grid-16" style=" border-top:7px solid #666666;" >                    
+
+                    <div id="user-wrapper" style=" border-right: #F4F4F4;">
+                        {% include ':tematwigcsg:user.html.twig' %}
+                    </div>
+                </div>        
+                        
+                        
+                <div class="row grid-16">
+                    <!-- Envoltorio de cuerpo del sitio -->
+                    <div id="content-wrapper" class="  grid-15 col">
+                        <!--Contenido del sitio -->
+                        <div id="content"  >
+                            {% block body %}  
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <!-- Envoltorio de menu del sitio -->
+                    
+                    <!-- Fin menu de cuerpo del sitio --> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

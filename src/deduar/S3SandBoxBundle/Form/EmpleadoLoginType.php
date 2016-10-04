@@ -18,9 +18,9 @@ class EmpleadoLoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('login', TextType::class ,array('attr'=>array('style'=>'width:20%')))
+            ->add('login', TextType::class)
             ->add('ficha', PasswordType::class, 
-                array('label'=>'Password','attr'=>array('style'=>'width:20%')))
+                array('label'=>'Password'))
         ;
     }
     

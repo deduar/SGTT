@@ -1,20 +1,36 @@
-{% extends 'tematwigcsg/plantilla.html.twig' %}
+{% extends 'tematwigcsg/plantilla_login.html.twig' %}
 
 {% block body %}
 
 	<div class="row">
-		<div class="col-md-6 col-md-offset-2">
+		<div class="col-md-10 col-md-offset-2">
 			<div class="page-header">
-	    		<h1>Empleado login</h1>
+	    		<h1>Acceso</h1>
 			</div>
 		</div>
 	</div>
 
 	
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-			<div class="row">
-        		<div class="form-group">
+        {#{ form_widget(form) }#}
+        	<div class="form-group">
+        		<div class="row">
+					<div class="col-md-2">
+    					{{ form_label(form.login) }}
+    				</div>
+    				<div class="col-md-2">
+    					{{ form_widget(form.login) }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">
+    					{{ form_label(form.ficha) }}
+    				</div>
+    				<div class="col-md-2">
+    					{{ form_widget(form.ficha) }}
+					</div>
+				</div>
+				<div class="row">
         			<div class="col-md-2 col-md-offset-2">
             		<button type="submit" class="btn btn-primary">Login</button>
         		</div>
