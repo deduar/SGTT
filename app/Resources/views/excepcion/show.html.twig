@@ -49,8 +49,8 @@
 
     <ul>
         <a href="{{ path('excepcion_edit', { 'id': excepcion.id }) }}"><span class="btn btn-primary">Modificar</span></a>
-        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Enviar</span></a>
-        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Conformar</span></a>
+        <a href="{#{ path('excepcion_new') }#}"><span class="btn btn-primary disabled">Enviar</span></a>
+        <a href="{#{ path('excepcion_new') }#}"><span class="btn btn-primary disabled">Conformar</span></a>
     </ul>
 
 {% endblock %}

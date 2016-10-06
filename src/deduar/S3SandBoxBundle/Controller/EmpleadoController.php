@@ -111,11 +111,18 @@ class EmpleadoController extends Controller
      * @Route("/{id}", name="empleado_show")
      * @Method("GET")
      */
-    public function showAction(Empleado $empleado)
+    public function showAction(Request $request, Empleado $empleado)
     {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
+        $persona = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$empleado->getIdpersona()));
         $deleteForm = $this->createDeleteForm($empleado);
 
         return $this->render('empleado/show.html.twig', array(
+            'persona' => $persona,
             'empleado' => $empleado,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -129,6 +136,12 @@ class EmpleadoController extends Controller
      */
     public function editAction(Request $request, Empleado $empleado)
     {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
+        $persona = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$empleado->getIdpersona()));
         $deleteForm = $this->createDeleteForm($empleado);
         $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\EmpleadoType', $empleado);
         $editForm->handleRequest($request);
@@ -142,6 +155,7 @@ class EmpleadoController extends Controller
         }
 
         return $this->render('empleado/edit.html.twig', array(
+            'persona' => $persona,
             'empleado' => $empleado,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

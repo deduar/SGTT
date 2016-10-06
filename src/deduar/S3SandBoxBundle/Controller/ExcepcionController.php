@@ -34,6 +34,9 @@ class ExcepcionController extends Controller
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneBy(array('id'=>$session->get('id')));
 
+        $persona = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$empleado->getIdpersona()));
+
         $supervisors = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findBy(array('idsupervisor'=>$session->get('id')));
 
@@ -51,6 +54,7 @@ class ExcepcionController extends Controller
 //            ->findBySolicitante($supervisor->getId());
 
         return $this->render('excepcion/index.html.twig', array(
+            'persona' => $persona,
             'empleado' => $empleado,
             'excepcions' => $excepcions,
             'supervisors' => $supervisors,
@@ -66,6 +70,12 @@ class ExcepcionController extends Controller
      */
     public function newAction(Request $request)
     {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
+        $persona = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$empleado->getIdpersona()));
         $excepcion = new Excepcion();
         $excepcion->setIdempleado($request->getSession()->get('id'));
         $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
@@ -86,6 +96,8 @@ class ExcepcionController extends Controller
         }
 
         return $this->render('excepcion/new.html.twig', array(
+            'persona' => $persona,
+            'empleado' => $empleado,
             'excepcion' => $excepcion,
             'form' => $form->createView(),
         ));
@@ -103,9 +115,12 @@ class ExcepcionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneBy(array('id'=>$session->get('id')));
+        $persona = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$empleado->getIdpersona()));
         $deleteForm = $this->createDeleteForm($excepcion);
 
         return $this->render('excepcion/show.html.twig', array(
+            'persona' => $persona,
             'empleado' => $empleado,
             'excepcion' => $excepcion,
             'delete_form' => $deleteForm->createView(),
@@ -124,6 +139,8 @@ class ExcepcionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneBy(array('id'=>$session->get('id')));
+        $persona = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$empleado->getIdpersona()));
         $deleteForm = $this->createDeleteForm($excepcion);
         $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
         $editForm->handleRequest($request);
@@ -137,6 +154,7 @@ class ExcepcionController extends Controller
         }
 
         return $this->render('excepcion/edit.html.twig', array(
+            'persona' => $persona,
             'empleado' => $empleado,
             'excepcion' => $excepcion,
             'edit_form' => $editForm->createView(),

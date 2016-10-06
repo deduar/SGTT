@@ -105,7 +105,7 @@ class PersonaController extends Controller
             $em->persist($persona);
             $em->flush();
 
-            return $this->redirectToRoute('persona_edit', array('id' => $persona->getId()));
+            return $this->redirectToRoute('empleado_show', array('id' => $empleado->getId()));
         }
 
         return $this->render('persona/edit.html.twig', array(

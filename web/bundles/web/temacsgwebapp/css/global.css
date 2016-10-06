@@ -495,7 +495,7 @@ select[multiple="multiple"]{
      background:none;
      background-color: #ffffff;
 }
-
+/*
 form .btn{
     margin-bottom: 5px;
     background:url('../images/bg-table-head.png') top left repeat-x;
@@ -508,7 +508,7 @@ form .btn{
     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
 }
-
+*/
 .boton{
     margin-bottom: 5px;
     background:url('../images/bg-table-head.png') top left repeat-x;
