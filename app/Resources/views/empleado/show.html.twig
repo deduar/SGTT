@@ -1,34 +1,34 @@
 {% extends 'tematwigcsg/plantilla.html.twig' %}
 
 {% block body %}
-    <h1>Empleado</h1>
+    <h1>Ficha del Empleado</h1>
 
-    <table>
+    <table class="table table-vertical">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th class="table-vertical">Id</th>
                 <td>{{ empleado.id }}</td>
             </tr>
             <tr>
-                <th>Login</th>
+                <th class="table-vertical">Login</th>
                 <td>{{ empleado.login }}</td>
             </tr>
             <tr>
-                <th>Ficha</th>
+                <th class="table-vertical">Ficha</th>
                 <td>{{ empleado.ficha }}</td>
             </tr>
             <tr>
-                <th>Persona</th>
+                <th class="table-vertical">Persona</th>
                 <td><a href="{{ path('persona_edit', {'id': empleado.idpersona.id }) }}" >{{ empleado.idpersona.nombre }} {{ empleado.idpersona.apellido }}</a></td>
             </tr>
             <tr>
-                <th>Supervisor</th>
+                <th class="table-vertical">Supervisor</th>
                 <td>{{ empleado.idsupervisor }}</td>
             </tr> 
         </tbody>
     </table>
 
-    <ul>
+<!--    <ul>
         <li>
             <a href="{{ path('empleado_index') }}">Back to the list</a>
         </li>
@@ -40,5 +40,5 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul> -->
 {% endblock %}

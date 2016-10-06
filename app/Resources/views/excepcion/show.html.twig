@@ -2,66 +2,55 @@
 
 {% block body %}
 
-    <table>
-        <tbody class="table">
+    <table class="table">
+        <tbody> 
             <tr>
-                <th>Id</th>
-                <td>{{ excepcion.id }}</td>
-            </tr>
-            <tr>
-                <th>Solicitante</th>
+                <th class="table-vertical">Solicitante</th>
                 <td>{{ excepcion.idempleado }}</td>
             </tr>
             <tr>
-                <th>Fechasolicitud</th>
+                <th class="table-vertical">Fechasolicitud</th>
                 <td>{{ excepcion.fechaInicio | date('Y:m:d H:m:s')}}</td>
             </tr>
             <tr>
-                <th>Fechacreacion</th>
+                <th class="table-vertical">Fechacreacion</th>
                 <td>{{ excepcion.fechaFin | date('Y:m:d H:m:s')}}</td>
             </tr>
             <tr>
-                <th>Observacion</th>
+                <th class="table-vertical">Observacion</th>
                 <td>{{ excepcion.observacion }}</td>
             </tr>
             <tr>
-                <th>Tipo excepcion</th>
+                <th class="table-vertical">Tipo excepcion</th>
                 <td>{{ excepcion.idtypoexcepcion }}</td>
             </tr>
             <tr>
-                <th>Tipo Estado</th>
+                <th class="table-vertical">Tipo Estado</th>
                 <td>{{ excepcion.idtypoestadoexcepcion }}</td>
             </tr>
             <tr>
-                <th>Ejecutada</th>
+                <th class="table-vertical">Ejecutada</th>
                 <td>{{ excepcion.ejecutada }}</td>
             </tr>
             <tr>
-                <th>Enviada</th>
+                <th class="table-vertical">Enviada</th>
                 <td>{{ excepcion.enviada }}</td>
             </tr>
             <tr>
-                <th>Conformada</th>
+                <th class="table-vertical">Conformada</th>
                 <td>{{ excepcion.conformada }}</td>
             </tr>
             <tr>
-                <th>Remunerada</th>
+                <th class="table-vertical">Remunerada</th>
                 <td>{{ excepcion.remunerada }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('excepcion_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('excepcion_edit', { 'id': excepcion.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+        <a href="{{ path('excepcion_edit', { 'id': excepcion.id }) }}"><span class="btn btn-primary">Modificar</span></a>
+        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Enviar</span></a>
+        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Conformar</span></a>
     </ul>
+
 {% endblock %}

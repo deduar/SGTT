@@ -26,10 +26,16 @@ class EmpleadoController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
         $em = $this->getDoctrine()->getManager();
         $empleados = $em->getRepository('S3SandBoxBundle:Empleado')->findAll();
-        return $this->render('empleado/index.html.twig', 
-            array('empleados' => $empleados,));
+        return $this->render('empleado/index.html.twig', array(
+            'empleado' => $empleado,
+            'empleados' => $empleados
+            ));
     }
 
     /**

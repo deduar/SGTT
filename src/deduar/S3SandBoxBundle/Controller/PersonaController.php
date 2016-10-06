@@ -22,13 +22,17 @@ class PersonaController extends Controller
      * @Route("/", name="persona_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
 
         $personas = $em->getRepository('S3SandBoxBundle:Persona')->findAll();
 
         return $this->render('persona/index.html.twig', array(
+            'empleado' => $empleado,
             'personas' => $personas,
         ));
     }
@@ -65,11 +69,16 @@ class PersonaController extends Controller
      * @Route("/{id}", name="persona_show")
      * @Method("GET")
      */
-    public function showAction(Persona $persona)
+    public function showAction(Request $request, Persona $persona)
     {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
         $deleteForm = $this->createDeleteForm($persona);
 
         return $this->render('persona/show.html.twig', array(
+            'empleado' => $empleado,
             'persona' => $persona,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -83,6 +92,10 @@ class PersonaController extends Controller
      */
     public function editAction(Request $request, Persona $persona)
     {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
         $deleteForm = $this->createDeleteForm($persona);
         $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\PersonaType', $persona);
         $editForm->handleRequest($request);
@@ -97,6 +110,7 @@ class PersonaController extends Controller
 
         return $this->render('persona/edit.html.twig', array(
             'persona' => $persona,
+            'empleado' => $empleado,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

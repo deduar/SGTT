@@ -152,7 +152,7 @@ body{
 /***********USER INFO*******/
 #user-links{
     list-style: none;
-    margin-top:13px;
+    margin-top:9px;
     height: 25px;
     float: left;
     background: url('../images/bg-breadcrumb.png') left center repeat-x;
@@ -352,7 +352,7 @@ body{
 
 }
 /**************************************TABLE***********************************/
-
+/*
 .table{
     border-radius: 10px;
     -moz-border-radius: 10px;
@@ -384,7 +384,7 @@ body{
 .table tr:nth-child(even) td{
     background-color: #ececef;
 }
-
+*/
 /********* FORMULARIOS*******************************************************/
 
 .form-wrapper{
