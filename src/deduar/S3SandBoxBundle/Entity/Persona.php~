@@ -1,0 +1,172 @@
+<?php
+
+namespace deduar\S3SandBoxBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Persona
+ *
+ * @ORM\Table(name="""common"".""tbmPersona""")
+ * @ORM\Entity(repositoryClass="deduar\S3SandBoxBundle\Repository\PersonaRepository")
+ */
+class Persona
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="primer_nombre", type="string", length=30)
+     */
+    private $pNombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="segundo_nombre", type="string", length=30)
+     */
+    private $sNombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="primer_apellido", type="string", length=30)
+     */
+    private $pApellido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="segundo_apellido", type="string", length=30)
+     */
+    private $sApellido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_documento", type="string", length=1)
+     */
+    private $tDocumento;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nro_documento", type="string", length=10)
+     */
+    private $ci;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="rif", type="string", length=14)
+     */
+    private $rif;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexo", type="string", length=1)
+     */
+    private $sexo;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idestadocivil", type="integer")
+     */
+    private $idestadocivil;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nacionalidad", type="string", length=1)
+     */
+    private $nacionalidad;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idciudad_nac", type="integer")
+     */
+    private $idciudadNac;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_nacimiento", type="datetime")
+     */
+    private $fechanacimiento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion_1", type="string", length=255)
+     */
+    private $direccion1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion_2", type="string", length=255)
+     */
+    private $direccion2;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idciudad_hab", type="integer")
+     */
+    private $idciudadHab;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idtipovivienda", type="integer")
+     */
+    private $idtipovivienda;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tlf_habitacion", type="string", length=20)
+     */
+    private $tlfHabitacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tlf_movil", type="string", length=20)
+     */
+    private $tlfMovil;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tlf_emergencia", type="string", length=20)
+     */
+    private $tlfEmergencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="persona_contacto", type="string", length=100)
+     */
+    private $personaContacto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=200)
+     */
+    private $email;
+
+
+}

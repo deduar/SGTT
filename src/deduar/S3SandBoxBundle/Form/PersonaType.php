@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 class PersonaType extends AbstractType
 {
     /**
@@ -15,9 +17,28 @@ class PersonaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre')
-            ->add('apellido')
+            ->add('pNombre')
+            ->add('sNombre')
+            ->add('pApellido')
+            ->add('sApellido')
+            ->add('tDocumento')
             ->add('ci')
+            ->add('rif')
+            ->add('sexo')
+            ->add('idestadocivil')
+            ->add('nacionalidad')
+            ->add('idciudadNac')
+            ->add('idestadocivil')
+            ->add('fechanacimiento', DateType::class, array('format' => 'yyyy-MM-dd'))
+            ->add('direccion1')
+            ->add('direccion2')
+            ->add('idciudadHab')
+            ->add('idtipovivienda')
+            ->add('tlfHabitacion')
+            ->add('tlfMovil')
+            ->add('tlfEmergencia')
+            ->add('personaContacto')
+            ->add('email')
         ;
     }
     
