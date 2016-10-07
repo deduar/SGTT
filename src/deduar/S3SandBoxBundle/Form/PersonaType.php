@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class PersonaType extends AbstractType
@@ -18,27 +20,55 @@ class PersonaType extends AbstractType
     {
         $builder
             ->add('pNombre')
-            ->add('sNombre')
+            ->add('sNombre', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
             ->add('pApellido')
-            ->add('sApellido')
-            ->add('tDocumento')
-            ->add('ci')
-            ->add('rif')
-            ->add('sexo')
-            ->add('idestadocivil')
+            ->add('sApellido', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('tDocumento', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('ci', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('rif', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('sexo', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('idestadocivil', IntegerType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
             ->add('nacionalidad')
             ->add('idciudadNac')
             ->add('idestadocivil')
             ->add('fechanacimiento', DateType::class, array('format' => 'yyyy-MM-dd'))
-            ->add('direccion1')
-            ->add('direccion2')
+            ->add('direccion1', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('direccion2', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
             ->add('idciudadHab')
             ->add('idtipovivienda')
-            ->add('tlfHabitacion')
-            ->add('tlfMovil')
-            ->add('tlfEmergencia')
-            ->add('personaContacto')
-            ->add('email')
+            ->add('tlfHabitacion', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('tlfMovil', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('tlfEmergencia', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('personaContacto', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
+            ->add('email', TextType::class, array(
+                'required'    => false,
+                'empty_data'  => null))
         ;
     }
     

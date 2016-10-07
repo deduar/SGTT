@@ -22,37 +22,37 @@ parameters:
 #
 ## With COMSIGUA DB on localhost
 #
-#    bdgep_database_driver: pdo_pgsql
-#    bdgep_database_host: localhost
-#    bdgep_database_port: null
-#    bdgep_database_name: BDGEP
-#    bdgep_database_user: postgres
-#    bdgep_database_password: root
+    bdgep_database_driver: pdo_pgsql
+    bdgep_database_host: localhost
+    bdgep_database_port: null
+    bdgep_database_name: BDGEP
+    bdgep_database_user: postgres
+    bdgep_database_password: root
     
-#    bdgsg_database_driver: pdo_pgsql
-#    bdgsg_database_host: localhost
-#    bdgsg_database_port: null
-#    bdgsg_database_name: BDGSG
-#    bdgsg_database_user: postgres
-#    bdgsg_database_password: root
+    bdgsg_database_driver: pdo_pgsql
+    bdgsg_database_host: localhost
+    bdgsg_database_port: null
+    bdgsg_database_name: BDGSG
+    bdgsg_database_user: postgres
+    bdgsg_database_password: root
 
 #
 ## With COMSIGUA DB on COMSIGUA postgreSQL Server 10.10.3.129
 #
 
-    bdgep_database_driver: pdo_pgsql
-    bdgep_database_host: 10.10.3.129
-    bdgep_database_port: null
-    bdgep_database_name: BDGEP
-    bdgep_database_user: usrdbadm
-    bdgep_database_password: cl4v3admin
+#    bdgep_database_driver: pdo_pgsql
+#    bdgep_database_host: 10.10.3.129
+#    bdgep_database_port: null
+#    bdgep_database_name: BDGEP
+#    bdgep_database_user: usrdbadm
+#    bdgep_database_password: cl4v3admin
 
-    bdgsg_database_driver: pdo_pgsql
-    bdgsg_database_host: 10.10.3.129
-    bdgsg_database_port: null
-    bdgsg_database_name: BDGSG
-    bdgsg_database_user: usrdbadm
-    bdgsg_database_password: cl4v3admin
+#    bdgsg_database_driver: pdo_pgsql
+#    bdgsg_database_host: 10.10.3.129
+#    bdgsg_database_port: null
+#    bdgsg_database_name: BDGSG
+#    bdgsg_database_user: usrdbadm
+#    bdgsg_database_password: cl4v3admin
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1
