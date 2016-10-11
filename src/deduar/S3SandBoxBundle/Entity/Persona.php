@@ -78,9 +78,8 @@ class Persona
     private $sexo;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idestadocivil", type="integer")
+     * @ORM\ManyToOne(targetEntity="Estadocivil")
+     * @ORM\JoinColumn(name="idestadocivil", referencedColumnName="id")
      */
     private $idestadocivil;
 
@@ -92,9 +91,8 @@ class Persona
     private $nacionalidad;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idciudad_nac", type="integer")
+     * @ORM\ManyToOne(targetEntity="Ciudad")
+     * @ORM\JoinColumn(name="idciudad_nac", referencedColumnName="id")
      */
     private $idciudadNac;
 
@@ -120,16 +118,14 @@ class Persona
     private $direccion2;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idciudad_hab", type="integer")
+     * @ORM\ManyToOne(targetEntity="Ciudad")
+     * @ORM\JoinColumn(name="idciudad_hab", referencedColumnName="id")
      */
     private $idciudadHab;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idtipovivienda", type="integer")
+     * @ORM\ManyToOne(targetEntity="Tipovivienda")
+     * @ORM\JoinColumn(name="idtipovivienda", referencedColumnName="id")
      */
     private $idtipovivienda;
 
@@ -200,6 +196,11 @@ class Persona
     public function getPNombre()
     {
         return $this->pNombre;
+    }
+
+    public function __toString() {
+        $personaNombreApellido = $this->pNombre . $this->pApellido;
+        return $personaNombreApellido;
     }
 
     /**
