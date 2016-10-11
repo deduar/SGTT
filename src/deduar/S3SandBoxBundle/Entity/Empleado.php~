@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Empleado
  *
- * @ORM\Table(name="empleado")
+ * @ORM\Table(name="""empleado"".""tbmEmpleado""")
  * @ORM\Entity(repositoryClass="deduar\S3SandBoxBundle\Repository\EmpleadoRepository")
  */
 class Empleado
@@ -22,11 +22,10 @@ class Empleado
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="login", type="string", length=30)
+     * @ORM\ManyToOne(targetEntity="Persona")
+     * @ORM\JoinColumn(name="idpersona", referencedColumnName="id")
      */
-    private $login;
+    private $idpersona;
 
     /**
      * @var int
@@ -36,96 +35,94 @@ class Empleado
     private $ficha;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Persona")
-     * @ORM\JoinColumn(name="idpersona", referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="sindicalizado", type="string", length=1)
      */
-    private $idpersona; 
+    private $sindicalizado;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idcategoria", type="integer")
+     */
+    private $idcategoria;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idcargo", type="integer")
+     */
+    private $idcargo;
 
     /**
      * @ORM\ManyToOne(targetEntity="Empleado")
-     * @ORM\JoinColumn(name="idsupervisor", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idempleadojefe", referencedColumnName="id")
      */
-//    private $idsupervisor;
+    private $idsupervisor;
 
     /**
-     * Get id
+     * @var int
      *
-     * @return int
+     * @ORM\Column(name="idareaubicacion", type="integer")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $idareaubicacion;
 
     /**
-     * Set login
+     * @var string
      *
-     * @param string $login
-     *
-     * @return Empleado
+     * @ORM\Column(name="login", type="string", length=30)
      */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-
-        return $this;
-    }
+    private $login;
 
     /**
-     * Get login
+     * @var int
      *
-     * @return string
+     * @ORM\Column(name="idgrupo", type="integer")
      */
-    public function getLogin()
-    {
-        return $this->login;
-    }
+    private $idgrupo;
 
     /**
-     * Set ficha
+     * @var string
      *
-     * @param integer $ficha
-     *
-     * @return Empleado
+     * @ORM\Column(name="foto", type="string", length=255)
      */
-    public function setFicha($ficha)
-    {
-        $this->ficha = $ficha;
-
-        return $this;
-    }
+    private $foto;
 
     /**
-     * Get ficha
+     * @var int
      *
-     * @return int
+     * @ORM\Column(name="idestadoempleado", type="integer")
      */
-    public function getFicha()
-    {
-        return $this->ficha;
-    }
+    private $idestadoempleado;
 
     /**
-     * Set idpersona
+     * @var string
      *
-     * @param \deduar\S3SandBoxBundle\Entity\Persona $idpersona
-     *
-     * @return Empleado
+     * @ORM\Column(name="telefono", type="string", length=15)
      */
-    public function setIdpersona(\deduar\S3SandBoxBundle\Entity\Persona $idpersona = null)
-    {
-        $this->idpersona = $idpersona;
-
-        return $this;
-    }
+    private $telefono;
 
     /**
-     * Get idpersona
+     * @var string
      *
-     * @return \deduar\S3SandBoxBundle\Entity\Persona
+     * @ORM\Column(name="abreviado", type="string", length=15)
      */
-    public function getIdpersona()
-    {
-        return $this->idpersona;
-    }
+    private $abreviado;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idtiponomina", type="integer")
+     */
+    private $idtiponomina;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="personajefe", type="integer")
+     */
+    private $personajefe;
+
+
 }

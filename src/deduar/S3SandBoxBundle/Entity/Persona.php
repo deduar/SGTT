@@ -57,15 +57,13 @@ class Persona
     private $tDocumento;
 
     /**
-     * @var int
-     *
+     * @var string
      * @ORM\Column(name="nro_documento", type="string", length=10)
      */
     private $ci;
 
     /**
-     * @var int
-     *
+     * @var string
      * @ORM\Column(name="rif", type="string", length=14)
      */
     private $rif;

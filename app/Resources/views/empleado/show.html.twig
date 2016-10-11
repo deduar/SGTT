@@ -10,21 +10,61 @@
                 <td>{{ empleado.id }}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Login</th>
-                <td>{{ empleado.login }}</td>
+                <th class="table-vertical">Persona</th>
+                <td><a href="{{ path('persona_edit', {'id': empleado.idpersona.id }) }}" >{{ empleado.idpersona.pNombre }} {{ empleado.idpersona.sNombre }} {{ empleado.idpersona.pApellido }} {{ empleado.idpersona.sApellido }}</a></td>
             </tr>
             <tr>
                 <th class="table-vertical">Ficha</th>
                 <td>{{ empleado.ficha }}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Persona</th>
-                <td><a href="{{ path('persona_edit', {'id': empleado.idpersona.id }) }}" >{{ empleado.idpersona.pNombre }} {{ empleado.idpersona.sNombre }} {{ empleado.idpersona.pApellido }} {{ empleado.idpersona.sApellido }}</a></td>
+                <th class="table-vertical">Sindicalizado</th>
+                <td>{{ empleado.sindicalizado }}</td>
+            </tr> 
+            <tr>
+                <th class="table-vertical">IdCategoria</th>
+                <td>{{ empleado.idcategoria }}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Supervisor</th>
+                <th class="table-vertical">IdCargo</th>
+                <td>{{ empleado.idcargo }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">IdSupervisor</th>
                 <td>{{ empleado.idsupervisor }}</td>
-            </tr> 
+            </tr>
+            <tr>
+                <th class="table-vertical">IdAreaUbicacion</th>
+                <td>{{ empleado.idareaubicacion }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Login</th>
+                <td>{{ empleado.login }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">IdGrupo</th>
+                <td>{{ empleado.idgrupo }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Foto</th>
+                <td>{{ empleado.foto }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Telefono</th>
+                <td>{{ empleado.telefono }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Abreviado</th>
+                <td>{{ empleado.abreviado }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">IdTipoNomina</th>
+                <td>{{ empleado.idtiponomina }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">PersonaJefe</th>
+                <td>{{ empleado.personajefe }}</td>
+            </tr>
         </tbody>
     </table>
 

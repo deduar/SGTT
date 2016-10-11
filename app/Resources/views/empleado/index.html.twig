@@ -7,39 +7,43 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Login</th>
+                <th>IdPersona</th>
                 <th>Ficha</th>
-                <th>Persona</th>
-                <th>Supervisor</th>
-                <th>Actions</th>
+                <th>Sindicalizado</th>
+                <th>IdCategoria</th>
+                <th>IdSupervisor</th>
+                <th>IdAreaUbicacion</th>
+                <th>Login</th>
+                <th>IdGrupo</th>
+                <th>Foto</th>
+                <th>IdEstadoEmpleado</th>
+                <th>Telefono</th>
+                <th>Abreviado</th>
+                <th>IdTipoNomina</th>
+                <th>PersonaJefe</th>
             </tr>
         </thead>
         <tbody>
         {% for empleado in empleados %}
             <tr>
                 <td><a href="{{ path('empleado_show', { 'id': empleado.id }) }}">{{ empleado.id }}</a></td>
-                <td>{{ empleado.login }}</td>
-                <td>{{ empleado.ficha }}</td>
                 <td>{{ empleado.idpersona.nombre }} {{ empleado.idpersona.apellido }}</td>
+                <td>{{ empleado.ficha }}</td>
+                <td>{{ empleado.sindicalizado }}</td>
+                <td>{{ empleado.idcategoria }}</td>
                 <td>{{ empleado.idsupervisor }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('empleado_show', { 'id': empleado.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('empleado_edit', { 'id': empleado.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{{ empleado.idareaubicacion }}</td>
+                <td>{{ empleado.login }}</td>
+                <td>{{ empleado.idgrupo }}</td>
+                <td>{{ empleado.foto }}</td>
+                <td>{{ empleado.idestadoempleado }}</td>
+                <td>{{ empleado.telefono }}</td>
+                <td>{{ empleado.abreviado }}</td>
+                <td>{{ empleado.idtiponomina }}</td>
+                <td>{{ empleado.personajefe }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('empleado_new') }}">Create a new entry</a>
-        </li>
-    </ul>
 {% endblock %}

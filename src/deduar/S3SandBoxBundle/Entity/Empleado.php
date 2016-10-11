@@ -22,11 +22,10 @@ class Empleado
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="login", type="string", length=30)
+     * @ORM\ManyToOne(targetEntity="Persona")
+     * @ORM\JoinColumn(name="idpersona", referencedColumnName="id")
      */
-    private $login;
+    private $idpersona;
 
     /**
      * @var int
@@ -36,10 +35,23 @@ class Empleado
     private $ficha;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Persona")
-     * @ORM\JoinColumn(name="idpersona", referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="sindicalizado", type="string", length=1)
      */
-    private $idpersona;
+    private $sindicalizado;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Categoria")
+     * @ORM\JoinColumn(name="idcategoria", referencedColumnName="id")
+     */
+    private $idcategoria;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Cargo")
+     * @ORM\JoinColumn(name="idcargo", referencedColumnName="id")
+     */
+    private $idcargo;
 
     /**
      * @ORM\ManyToOne(targetEntity="Empleado")
@@ -48,13 +60,195 @@ class Empleado
     private $idsupervisor;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Area")
+     * @ORM\JoinColumn(name="idareaubicacion", referencedColumnName="id")
+     */
+    private $idareaubicacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=30)
+     */
+    private $login;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Grupo")
+     * @ORM\JoinColumn(name="idgrupo", referencedColumnName="id")
+     */
+    private $idgrupo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="foto", type="string", length=255)
+     */
+    private $foto;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="idestadoempleado", type="integer")
+     */
+    private $idestadoempleado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="string", length=15)
+     */
+    private $telefono;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="abreviado", type="string", length=15)
+     */
+    private $abreviado;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Tiponomina")
+     * @ORM\JoinColumn(name="idtiponomina", referencedColumnName="id")
+     */
+    private $idtiponomina;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="personajefe", type="integer")
+     */
+    private $personajefe;
+
+
+
+    /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set ficha
+     *
+     * @param integer $ficha
+     *
+     * @return Empleado
+     */
+    public function setFicha($ficha)
+    {
+        $this->ficha = $ficha;
+
+        return $this;
+    }
+
+    /**
+     * Get ficha
+     *
+     * @return integer
+     */
+    public function getFicha()
+    {
+        return $this->ficha;
+    }
+
+    /**
+     * Set sindicalizado
+     *
+     * @param string $sindicalizado
+     *
+     * @return Empleado
+     */
+    public function setSindicalizado($sindicalizado)
+    {
+        $this->sindicalizado = $sindicalizado;
+
+        return $this;
+    }
+
+    /**
+     * Get sindicalizado
+     *
+     * @return string
+     */
+    public function getSindicalizado()
+    {
+        return $this->sindicalizado;
+    }
+
+    /**
+     * Set idcategoria
+     *
+     * @param integer $idcategoria
+     *
+     * @return Empleado
+     */
+    public function setIdcategoria($idcategoria)
+    {
+        $this->idcategoria = $idcategoria;
+
+        return $this;
+    }
+
+    /**
+     * Get idcategoria
+     *
+     * @return integer
+     */
+    public function getIdcategoria()
+    {
+        return $this->idcategoria;
+    }
+
+    /**
+     * Set idcargo
+     *
+     * @param integer $idcargo
+     *
+     * @return Empleado
+     */
+    public function setIdcargo($idcargo)
+    {
+        $this->idcargo = $idcargo;
+
+        return $this;
+    }
+
+    /**
+     * Get idcargo
+     *
+     * @return integer
+     */
+    public function getIdcargo()
+    {
+        return $this->idcargo;
+    }
+
+    /**
+     * Set idareaubicacion
+     *
+     * @param integer $idareaubicacion
+     *
+     * @return Empleado
+     */
+    public function setIdareaubicacion($idareaubicacion)
+    {
+        $this->idareaubicacion = $idareaubicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get idareaubicacion
+     *
+     * @return integer
+     */
+    public function getIdareaubicacion()
+    {
+        return $this->idareaubicacion;
     }
 
     /**
@@ -82,31 +276,175 @@ class Empleado
     }
 
     public function __toString() {
-        return $this->login;
+        return $this->getLogin();
     }
 
     /**
-     * Set ficha
+     * Set idgrupo
      *
-     * @param integer $ficha
+     * @param integer $idgrupo
      *
      * @return Empleado
      */
-    public function setFicha($ficha)
+    public function setIdgrupo($idgrupo)
     {
-        $this->ficha = $ficha;
+        $this->idgrupo = $idgrupo;
 
         return $this;
     }
 
     /**
-     * Get ficha
+     * Get idgrupo
      *
-     * @return int
+     * @return integer
      */
-    public function getFicha()
+    public function getIdgrupo()
     {
-        return $this->ficha;
+        return $this->idgrupo;
+    }
+
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     *
+     * @return Empleado
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+
+    /**
+     * Set idestadoempleado
+     *
+     * @param integer $idestadoempleado
+     *
+     * @return Empleado
+     */
+    public function setIdestadoempleado($idestadoempleado)
+    {
+        $this->idestadoempleado = $idestadoempleado;
+
+        return $this;
+    }
+
+    /**
+     * Get idestadoempleado
+     *
+     * @return integer
+     */
+    public function getIdestadoempleado()
+    {
+        return $this->idestadoempleado;
+    }
+
+    /**
+     * Set telefono
+     *
+     * @param string $telefono
+     *
+     * @return Empleado
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get telefono
+     *
+     * @return string
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * Set abreviado
+     *
+     * @param string $abreviado
+     *
+     * @return Empleado
+     */
+    public function setAbreviado($abreviado)
+    {
+        $this->abreviado = $abreviado;
+
+        return $this;
+    }
+
+    /**
+     * Get abreviado
+     *
+     * @return string
+     */
+    public function getAbreviado()
+    {
+        return $this->abreviado;
+    }
+
+    /**
+     * Set idtiponomina
+     *
+     * @param integer $idtiponomina
+     *
+     * @return Empleado
+     */
+    public function setIdtiponomina($idtiponomina)
+    {
+        $this->idtiponomina = $idtiponomina;
+
+        return $this;
+    }
+
+    /**
+     * Get idtiponomina
+     *
+     * @return integer
+     */
+    public function getIdtiponomina()
+    {
+        return $this->idtiponomina;
+    }
+
+    /**
+     * Set personajefe
+     *
+     * @param integer $personajefe
+     *
+     * @return Empleado
+     */
+    public function setPersonajefe($personajefe)
+    {
+        $this->personajefe = $personajefe;
+
+        return $this;
+    }
+
+    /**
+     * Get personajefe
+     *
+     * @return integer
+     */
+    public function getPersonajefe()
+    {
+        return $this->personajefe;
     }
 
     /**
