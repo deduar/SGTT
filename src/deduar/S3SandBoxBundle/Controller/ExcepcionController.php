@@ -141,11 +141,13 @@ class ExcepcionController extends Controller
                 ->findOneBy(array('id'=>$session->get('id')));
         $persona = $em->getRepository('S3SandBoxBundle:Persona')
                 ->findOneBy(array('id'=>$empleado->getIdpersona()));
+
         $deleteForm = $this->createDeleteForm($excepcion);
         $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $excepcion->setIdempleado($excepcion->getIdempleado()->getId());
             $em = $this->getDoctrine()->getManager();
             $em->persist($excepcion);
             $em->flush();

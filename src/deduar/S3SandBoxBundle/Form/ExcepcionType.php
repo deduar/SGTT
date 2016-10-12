@@ -28,7 +28,6 @@ class ExcepcionType extends AbstractType
 //                ))
             ->add('idempleado', EntityType::class, array(
                 'class' => 'S3SandBoxBundle:Empleado',
-                'preferred_choices' => array('value'=>3),
                 'query_builder' => function (EntityRepository $er) use ($options) {
                     return $er->createQueryBuilder('u')
                     ->where('u.idsupervisor = '.$options['data']->getIdempleado())
