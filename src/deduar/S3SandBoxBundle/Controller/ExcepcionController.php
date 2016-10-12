@@ -40,15 +40,29 @@ class ExcepcionController extends Controller
         $supervisors = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findBy(array('idsupervisor'=>$session->get('id')));
 
-        for ($i=0; $i < sizeof($supervisors); $i++) { 
-            $idSupervisor[] = $supervisors[$i]->getId();
-        } 
+        
         if (!(sizeof($supervisors))) {
             $idSupervisor[] = null;
+        } else {
+            for ($i=0; $i < sizeof($supervisors); $i++) { 
+                $idSupervisor[] = $supervisors[$i]->getId();
+            } 
         }
 
         $excepcions_supervisors = $em->getRepository('S3SandBoxBundle:Excepcion')
                     ->findBy(array('idempleado'=>$idSupervisor));
+
+        for ($i=0; $i < sizeof($excepcions); $i++) {
+            $duracions[] =  
+                $excepcions[$i]->getFechaFin()->diff($excepcions[$i]->getFechaInicio())
+                ->format('%y Años %m Meses %d Dias %h Horas %i Minutos %s Segundos');
+        }
+
+        for ($i=0; $i < sizeof($excepcions_supervisors); $i++){
+            $duracions_supervisors[] = 
+                $excepcions_supervisors[$i]->getFechaFin()->diff($excepcions_supervisors[$i]->getFechaInicio())->format('%y Años %m Meses %d Dias %h Horas %i Minutos %s Segundos');
+        }
+
 
 //        $excepcions_supervisor = $em->getRepository('S3SandBoxBundle:Excepcion')
 //            ->findBySolicitante($supervisor->getId());
@@ -57,8 +71,10 @@ class ExcepcionController extends Controller
             'persona' => $persona,
             'empleado' => $empleado,
             'excepcions' => $excepcions,
+            'duracions' => $duracions,
             'supervisors' => $supervisors,
-            'excepcions_supervisors' => $excepcions_supervisors
+            'excepcions_supervisors' => $excepcions_supervisors,
+            'duracions_supervisors' => $duracions_supervisors
         ));
     }
 

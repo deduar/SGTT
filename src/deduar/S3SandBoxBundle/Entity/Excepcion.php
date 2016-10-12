@@ -24,11 +24,10 @@ class Excepcion
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idempleado", type="integer")
+     * @ORM\ManyToOne(targetEntity="TypoExcepcion")
+     * @ORM\JoinColumn(name="idtipoexcepcion", referencedColumnName="id")
      */
-    private $idempleado;
+    private $idtypoexcepcion;
 
     /**
      * @var \DateTime
@@ -45,13 +44,6 @@ class Excepcion
     private $fechaFin;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fecha_creacion", type="datetime")
-     */
-    private $fechaCreacion;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="observacion", type="string", length=255)
@@ -59,10 +51,11 @@ class Excepcion
     private $observacion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TypoExcepcion")
-     * @ORM\JoinColumn(name="idtipoexcepcion", referencedColumnName="id")
+     * @var int
+     *
+     * @ORM\Column(name="idempleado", type="integer")
      */
-    private $idtypoexcepcion;
+    private $idempleado;
 
     /**
      * @var string
@@ -70,6 +63,13 @@ class Excepcion
      * @ORM\Column(name="estado", type="string", length=255)
      */
     private $estado;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_creacion", type="datetime")
+     */
+    private $fechaCreacion;
 
     /**
      * @var boolean $ejecutada

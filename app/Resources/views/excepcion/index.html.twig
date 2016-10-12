@@ -7,6 +7,7 @@
             <tr>
                 <th>Inicio</th>
                 <th> Fin</th>
+                <th> Duración</th>
                 <th>Tipo Excepcion</th>
                 <th>Tipo Estado</th>
                 <th>Ejec</th>
@@ -21,6 +22,7 @@
             <tr>
                 <td>{{ excepcion.fechaInicio |date('Y-m-d H:m:s')}}</td>
                 <td> {{ excepcion.fechaFin |date('Y-m-d H:m:s')}}</td>
+                <td> {{ duracions[loop.index0] }}</td>
                 <td>{{ excepcion.idtypoexcepcion }}</td>
                 <td>{{ excepcion.idtypoestadoexcepcion }}</td>
                 <td>
@@ -73,6 +75,7 @@
                 <th>Solicitante</th>
                 <th>Inicio</th>
                 <th>Fin</th>
+                <th> Duración</th>
                 <th>Tipo Excepcion</th>
                 <th>Tipo Estado</th>
                 <th>Ejec</th>
@@ -92,6 +95,7 @@
                 {% endfor %}
                 <td>{{ excepcions_supervisor.fechaInicio |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcions_supervisor.fechaFin |date('Y-m-d H:m:s')}}</td>
+                <td> {{ duracions_supervisors[loop.index0] }}</td>
                 <td>{{ excepcions_supervisor.idtypoexcepcion }}</td>
                 <td>{{ excepcions_supervisor.idtypoestadoexcepcion }}</td>
                 <td>

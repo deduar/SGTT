@@ -9,6 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 class ExcepcionType extends AbstractType
 {
     /**
@@ -18,14 +20,10 @@ class ExcepcionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('idtypoexcepcion')
             ->add('fechaInicio')
             ->add('fechaFin')
-//            ->add('fechaCreacion')
             ->add('observacion')
-            ->add('idtypoexcepcion')
-//            ->add('solicitante', EntityType::class, array(
-//                'class' => 'S3SandBoxBundle:Empleado'
-//                ))
             ->add('idempleado', EntityType::class, array(
                 'class' => 'S3SandBoxBundle:Empleado',
                 'query_builder' => function (EntityRepository $er) use ($options) {
@@ -35,8 +33,15 @@ class ExcepcionType extends AbstractType
                 ;},
                 'data' => $options['data']->getIdempleado()
                 ))
-//            ->add('solicitante')
-//            ->add('estado')
+            ->add('estado', ChoiceType::class, array(
+                    'choices'=>array(
+                            'Creada' => 'Creada',
+                            'Por Confirma' => 'Por Confirmar',
+                            'Aprobada' => 'Aprobada',
+                            'Negada' => 'Negada'
+                        )
+                ))
+            //->add('fechaCreacion')
             ->add('ejecutada')
             ->add('enviada')
             ->add('conformada')
