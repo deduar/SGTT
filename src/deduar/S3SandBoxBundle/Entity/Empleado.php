@@ -86,9 +86,8 @@ class Empleado
     private $foto;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idestadoempleado", type="integer")
+     * @ORM\ManyToOne(targetEntity="Estado")
+     * @ORM\JoinColumn(name="idestadoempleado", referencedColumnName="id")
      */
     private $idestadoempleado;
 
