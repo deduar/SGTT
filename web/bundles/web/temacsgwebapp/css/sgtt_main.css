@@ -17,6 +17,23 @@ th {
 	border: 2px solid;
 }
 
+label {
+	width: 130px;
+	font-size: 1.3em;
+	margin-bottom: 15px;
+}
+
 select {
-	width: 160px;
+	height: 30px;
+	width: 270px;
+	font-size: 1em;
+}
+
+input {
+	height: 30px !important;
+	font-size: 30px;
+}
+
+.btn {
+	margin-top: 20px;
 }

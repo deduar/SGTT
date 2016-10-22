@@ -25,6 +25,7 @@ class ExcepcionType extends AbstractType
             ->add('fechaFin')
             ->add('observacion')
             ->add('idempleado', EntityType::class, array(
+                'label'=>'Empleado',
                 'class' => 'S3SandBoxBundle:Empleado',
                 'query_builder' => function (EntityRepository $er) use ($options) {
                     return $er->createQueryBuilder('u')

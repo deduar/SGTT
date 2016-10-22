@@ -549,7 +549,7 @@ legend{
     font-weight: bold;
 }
 
-form .btn:hover,
+/*form .btn:hover,*/
 form .btn:active,
 form .btn.active,
 form .btn.disabled,

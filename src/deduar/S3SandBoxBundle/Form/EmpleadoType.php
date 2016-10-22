@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 class EmpleadoType extends AbstractType
 {
     /**
@@ -24,12 +27,18 @@ class EmpleadoType extends AbstractType
             ->add('idareaubicacion')
             ->add('login')
             ->add('idgrupo')
-            ->add('foto')
+            ->add('foto', IntegerType::class, array('attr'=>array('disabled'=>true)))
             ->add('idestadoempleado')
             ->add('telefono')
             ->add('abreviado')
             ->add('idtiponomina')
             ->add('personajefe')
+            ->add('save', SubmitType::class, array(
+                    'label' => 'Guardar Cambios',
+                    'attr'  => array('class' => 'btn btn-primary col-sm-offset-1 col-sm-2')))
+            ->add('cancel', SubmitType::class, array(
+                    'label' => 'Cancelar Cambios',
+                    'attr'  => array('class' => 'btn btn-danger col-sm-offset-1 col-sm-2')))
         ;
     }
     

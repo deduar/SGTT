@@ -101,11 +101,15 @@ class PersonaController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if ($editForm->get('cancel')->isClicked()) {
+                return $this->redirectToRoute('empleado_show', array('id'=>$empleado->getId()));
+            } else {
             $em = $this->getDoctrine()->getManager();
             $em->persist($persona);
             $em->flush();
 
             return $this->redirectToRoute('empleado_show', array('id' => $empleado->getId()));
+            }
         }
 
         return $this->render('persona/edit.html.twig', array(
