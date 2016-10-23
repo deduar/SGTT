@@ -24,9 +24,8 @@ label {
 }
 
 select {
-	height: 30px;
-	width: 270px;
-	font-size: 1em;
+	width: 120px;
+	float: left;
 }
 
 input {
@@ -38,6 +37,14 @@ input {
 	margin-top: 20px;
 }
 
+.btn.btn-primary{
+	margin-bottom: 20px;
+}
+
 tr.main_header th {
 	background-color: #000fff;
+}
+
+tr.main_header a {
+	color: #FFF;
 }

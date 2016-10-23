@@ -29,23 +29,32 @@ class ExcepcionController extends Controller
     public function indexAction(Request $request)
     {
         switch ($request->get('crit')) {
-            case 'ted':
-                $criteria = 'idtypoexcepcion';
+            case '1d':
+                $criteria = 'fechaInicio';
                 $dir = 'ASC';
                 break;
-            case 'teu':
-                $criteria = 'idtypoexcepcion';
+            case '1u':
+                $criteria = 'fechaInicio';
                 $dir = 'DESC';
                 break;
 
-            case 'end':
-                $criteria = 'enviada';
+            case '2d':
+                $criteria = 'fechaFin';
                 $dir = 'DESC';
                 break;
 
-            case 'enu':
-                $criteria = 'enviada';
+            case '2u':
+                $criteria = 'fechaFin';
+                $dir = 'ASC';
+                break;
+            case '4d':
+                $criteria = 'observacion';
                 $dir = 'DESC';
+                break;
+
+            case '4u':
+                $criteria = 'observacion';
+                $dir = 'ASC';
                 break;
             
             default:

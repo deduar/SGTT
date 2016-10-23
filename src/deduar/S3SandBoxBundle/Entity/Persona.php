@@ -197,7 +197,7 @@ class Persona
     }
 
     public function __toString() {
-        $personaNombreApellido = $this->pNombre . $this->pApellido;
+        $personaNombreApellido = $this->pNombre.' '.$this->pApellido;
         return $personaNombreApellido;
     }
 
