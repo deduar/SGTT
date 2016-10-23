@@ -12,10 +12,27 @@ class ExcepcionRepository extends \Doctrine\ORM\EntityRepository
 {
 	public function findAllOrderedByName($idSup,$criteria,$direc)
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT e FROM S3SandBoxBundle:Excepcion e 
+        $e_s = $this->getEntityManager()
+        	->createQuery('SELECT e FROM S3SandBoxBundle:Excepcion e 
             	WHERE e.idempleado = '.$idSup.' ORDER BY e.'.$criteria.' '.$direc)
             ->getResult();
+
+    	return $e_s;  //retorna un array de objetos (Excepcion)
+		//return $e_s[0];  //retorna el primer objeto (Excepcion) del array
+
+
+// El metodo original en ExcepcionesController
+/*        $repository = $this->getDoctrine()
+            ->getRepository('S3SandBoxBundle:Excepcion');
+ 
+        $query = $repository->createQueryBuilder('e')
+            ->where('e.idempleado > :session_id')
+            ->setParameter('session_id', $session->get('id'))
+            ->orderBy($criteria, $direction)
+            ->getQuery();
+
+        $excepcions_supervisors = $query->getResult(); */
+
     }
 
 }

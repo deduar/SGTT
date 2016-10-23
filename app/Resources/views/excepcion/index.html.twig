@@ -86,16 +86,18 @@
             </tr>
         </thead>
         <tbody>
-        {% for excepcions_supervisor in excepcions_supervisors %}
+        {% for excepcions_supervisor_i in excepcions_supervisors %}
             <tr>
                 {% for supervisor in supervisors %}
-                    {% if excepcions_supervisor.idempleado == supervisor.id  %}
-                        <td>{{ supervisor.login }}</td>
+                    {% if excepcions_supervisor_i[0].idempleado == supervisor.id  %}
+                        <td rowspan={{excepcions_supervisor_i|length}}>{{ supervisor.login }}</td>
                     {% endif %}
                 {% endfor %}
+            {% for excepcions_supervisor in  excepcions_supervisor_i %}
+            
                 <td>{{ excepcions_supervisor.fechaInicio |date('Y-m-d H:m:s')}}</td>
                 <td>{{ excepcions_supervisor.fechaFin |date('Y-m-d H:m:s')}}</td>
-                <td> {{ duracions_supervisors[loop.index0] }}</td>
+                <td>{{ duracions_supervisors[loop.index0] }}</td>
                 <td>{{ excepcions_supervisor.idtypoexcepcion }}</td>
                 <td>{{ excepcions_supervisor.idtypoestadoexcepcion }}</td>
                 <td>
@@ -133,6 +135,7 @@
                         class="glyphicon glyphicon-pencil"></a>
                     </td>
             </tr>
+        {% endfor %}
         {% endfor %}
          </tbody>
     </table>
