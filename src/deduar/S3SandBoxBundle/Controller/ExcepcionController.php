@@ -28,6 +28,33 @@ class ExcepcionController extends Controller
      */
     public function indexAction(Request $request)
     {
+        switch ($request->get('crit')) {
+            case 'ted':
+                $criteria = 'idtypoexcepcion';
+                $dir = 'ASC';
+                break;
+            case 'teu':
+                $criteria = 'idtypoexcepcion';
+                $dir = 'DESC';
+                break;
+
+            case 'end':
+                $criteria = 'enviada';
+                $dir = 'DESC';
+                break;
+
+            case 'enu':
+                $criteria = 'enviada';
+                $dir = 'DESC';
+                break;
+            
+            default:
+                $criteria = 'id';
+                $dir = 'DESC';
+                break;
+        }
+
+
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
         $excepcions = $em->getRepository('S3SandBoxBundle:Excepcion')
@@ -55,7 +82,7 @@ class ExcepcionController extends Controller
 
         for($i=0; $i<sizeof($idSupervisor);$i++) {
             $e_s[] = ($em->getRepository('S3SandBoxBundle:Excepcion')
-               ->findAllOrderedByName($idSupervisor[$i],'enviada','ASC'));
+               ->findAllOrderedByName($idSupervisor[$i],$criteria,$dir));
             $excepcions_supervisors[] = $e_s[$i];
         }
 /*
