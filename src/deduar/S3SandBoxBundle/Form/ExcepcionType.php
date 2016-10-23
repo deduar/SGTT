@@ -10,6 +10,8 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class ExcepcionType extends AbstractType
 {
@@ -48,6 +50,12 @@ class ExcepcionType extends AbstractType
             ->add('conformada')
             ->add('remunerada')
             ->add('idtypoestadoexcepcion')
+            ->add('save', SubmitType::class, array(
+                    'label' => 'Guardar Excepción',
+                    'attr'  => array('class' => 'btn btn-primary col-sm-offset-1 col-sm-2')))
+            ->add('cancel', SubmitType::class, array(
+                    'label' => 'Cancelar Excepción',
+                    'attr'  => array('class' => 'btn btn-danger col-sm-offset-1 col-sm-2')))
         ;
     }
     

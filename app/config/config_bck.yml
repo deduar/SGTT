@@ -1,0 +1,100 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: "@S3SandBoxBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    #esi:             ~
+    #translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    globals:
+        rutaweb: "web"
+        nombrelargoproyecto: "Sistema de Gestión de Tiempo"
+        siglasproyecto: "SGTT"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection: bdgep
+        connections:
+            default:
+                driver:   pdo_pgsql
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  UTF8
+#            bdgep:
+#                driver:   "%bdgep_database_driver%"
+#                host:     "%bdgep_database_host%"
+#                port:     "%bdgep_database_port%"
+#                dbname:   "%bdgep_database_name%"
+#                user:     "%bdgep_database_user%"
+#                password: "%bdgep_database_password%"
+#                charset:  UTF8
+#            bdgsg:
+#                driver:   "%bdgsg_database_driver%"
+#                host:     "%bdgsg_database_host%"
+#                port:     "%bdgsg_database_port%"
+#                dbname:   "%bdgsg_database_name%"
+#                user:     "%bdgsg_database_user%"
+#                password: "%bdgsg_database_password%"
+#                charset:  UTF8
+
+
+    orm:
+        default_entity_manager: bdgep
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    S3SandBoxBundle:  ~
+#            bdgep:
+#                connection: bdgep
+#                mappings:
+#                    S3SandBoxBundle:  ~
+#            bdgsg:
+#               connection: bdgsg
+#                mappings:
+#                    S3SandBoxBundle:  ~
+
+
+
+#g Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }

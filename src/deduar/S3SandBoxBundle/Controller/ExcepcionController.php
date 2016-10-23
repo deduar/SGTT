@@ -19,6 +19,7 @@ use deduar\S3SandBoxBundle\Entity\Empleado;
  */
 class ExcepcionController extends Controller
 {
+
     /**
      * Lists all Excepcion entities.
      *
@@ -39,7 +40,7 @@ class ExcepcionController extends Controller
 
         $supervisors = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findBy(array('idsupervisor'=>$session->get('id')));
-        
+
         if (!(sizeof($supervisors))) {
             $idSupervisor[] = null;
         } else {
@@ -48,8 +49,22 @@ class ExcepcionController extends Controller
             } 
         }
 
+        //$excepcions_supervisors = $em->getRepository('S3SandBoxBundle:Excepcion')
+        //            ->findBy(array('idempleado'=>$idSupervisor));
+
         $excepcions_supervisors = $em->getRepository('S3SandBoxBundle:Excepcion')
-                    ->findBy(array('idempleado'=>$idSupervisor));
+               ->findAllOrderedByName($idSupervisor[0],'idtypoestadoexcepcion','DESC');
+
+/*        $repository = $this->getDoctrine()
+            ->getRepository('S3SandBoxBundle:Excepcion');
+ 
+        $query = $repository->createQueryBuilder('e')
+            ->where('e.idempleado > :session_id')
+            ->setParameter('session_id', $session->get('id'))
+            ->orderBy($criteria, $direction)
+            ->getQuery();
+
+        $excepcions_supervisors = $query->getResult(); */
 
         for ($i=0; $i < sizeof($excepcions); $i++) {
             $duracions[] =  
@@ -96,18 +111,22 @@ class ExcepcionController extends Controller
         $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            //$session = $request->getSession();
-            //$excepcion->setSolicitante($session->get('id'));
-            $excepcion->setEstado("");
-            $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
-            $excepcion->setFechaCreacion(new \DateTime('now'));
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($excepcion);
-            $em->flush();
+        if ($form->get('cancel')->isClicked()) {
+            return $this->redirectToRoute('excepcion_index');
+        } else {
+            if ($form->isSubmitted() && $form->isValid()) {
+                //$session = $request->getSession();
+                //$excepcion->setSolicitante($session->get('id'));
+                $excepcion->setEstado("");
+                $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
+                $excepcion->setFechaCreacion(new \DateTime('now'));
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($excepcion);
+                $em->flush();
 
-            return $this->redirectToRoute('excepcion_show', 
-                        array('id' => $excepcion->getId()));
+                return $this->redirectToRoute('excepcion_show', 
+                            array('id' => $excepcion->getId()));
+            }
         }
 
         return $this->render('excepcion/new.html.twig', array(

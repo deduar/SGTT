@@ -10,4 +10,12 @@ namespace deduar\S3SandBoxBundle\Repository;
  */
 class ExcepcionRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findAllOrderedByName($idSup,$criteria,$direc)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT e FROM S3SandBoxBundle:Excepcion e 
+            	WHERE e.idempleado = '.$idSup.' ORDER BY e.'.$criteria.' '.$direc)
+            ->getResult();
+    }
+
 }

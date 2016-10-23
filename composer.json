@@ -61,7 +61,7 @@
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters2.yml"
         },
         "branch-alias": {
             "dev-master": "3.1-dev"
