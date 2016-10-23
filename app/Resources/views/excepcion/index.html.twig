@@ -71,9 +71,9 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>1</th>
-                <th>1</th>
+            <tr class="main_header">
+                <th class="main_header">1</th>
+                <th >1</th>
                 <th>1</th>
                 <th>1</th>
                 <th><a href="{{path('excepcion_index',{'crit':'ted'})}}">
@@ -96,7 +96,7 @@
                 <th>1</th>
                 <th>1</th>
             </tr>
-
+    {% for excepcions_supervisor_i in excepcions_supervisors %}
             <tr>
                 <th>Solicitante</th>
                 <th>Inicio</th>
@@ -112,7 +112,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for excepcions_supervisor_i in excepcions_supervisors %}
+        
             <tr>
                 {% for supervisor in supervisors %}
                     {% if excepcions_supervisor_i[0].idempleado == supervisor.id  %}

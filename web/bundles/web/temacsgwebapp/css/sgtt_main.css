@@ -37,3 +37,7 @@ input {
 .btn {
 	margin-top: 20px;
 }
+
+tr.main_header th {
+	background-color: #000fff;
+}
