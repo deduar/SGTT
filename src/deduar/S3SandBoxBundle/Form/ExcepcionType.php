@@ -53,10 +53,16 @@ class ExcepcionType extends AbstractType
                         ;},
                         'data' => $options['data']->getIdempleado())) */
             ->add('idempleado', EntityType::class,
-                array('class'=>'S3SandBoxBundle:Persona',
+                array('class'=>'S3SandBoxBundle:Empleado',
                       'label'=>'Empleado',
                       'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9')))
+                      'attr'=>array('class'=>'col-sm-9'),
+                      'query_builder' => function (EntityRepository $er) use ($options) {
+                        return $er->createQueryBuilder('u')
+                            ->where('u.idsupervisor = '.$options['data']->getIdempleado())
+                            ->orWhere('u.id = '.$options['data']->getIdempleado());
+                        },
+                        'data' => $options['data']->getIdempleado()))
             ->add('estado', ChoiceType::class, 
                 array('label'=>'Estado de la Excepción',
                       'label_attr'=>array('class'=>'col-sm-3'),

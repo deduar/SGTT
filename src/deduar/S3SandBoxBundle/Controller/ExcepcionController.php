@@ -94,11 +94,7 @@ class ExcepcionController extends Controller
                ->findAllOrderedByName($idSupervisor[$i],$criteria,$dir));
             $excepcions_supervisors[] = $e_s[$i];
         }
-/*
-print_r(gettype($excepcions_supervisors[0][0]));
-print_r(sizeof($excepcions_supervisors[2]));
-die();
-*/
+        
         for ($i=0; $i < sizeof($excepcions); $i++) {
             $duracions[] =  
                 $excepcions[$i]->getFechaFin()->diff($excepcions[$i]->getFechaInicio())
