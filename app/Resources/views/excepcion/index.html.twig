@@ -21,8 +21,8 @@
         {% for excepcion in excepcions %}
             <tr>
                 <td>{{ excepcion.fechaInicio |date('Y-m-d H:m:s')}}</td>
-                <td> {{ excepcion.fechaFin |date('Y-m-d H:m:s')}}</td>
-                <td> {{ duracions[loop.index0] }}</td>
+                <td>{{ excepcion.fechaFin |date('Y-m-d H:m:s')}}</td>
+                <td>{{ duracions[loop.index0] }}</td>
                 <td>{{ excepcion.idtypoexcepcion }}</td>
                 <td>{{ excepcion.idtypoestadoexcepcion }}</td>
                 <td>

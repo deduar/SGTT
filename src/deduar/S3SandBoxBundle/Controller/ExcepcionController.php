@@ -122,7 +122,7 @@ class ExcepcionController extends Controller
             } 
         }
 
-        //$excepcions_supervisors = $em->getRepository('S3SandBoxBundle:Excepcion')
+        //$excepcions_supervisors = $em-getRepository('S3SandBoxBundle:Excepcion')
         //            ->findBy(array('idempleado'=>$idSupervisor));
 
 
