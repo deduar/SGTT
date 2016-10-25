@@ -93,7 +93,6 @@ class ExcepcionController extends Controller
                 $criteria = 'remunerada';
                 $dir = 'ASC';
                 break;
-            
             default:
                 $criteria = 'id';
                 $dir = 'DESC';
