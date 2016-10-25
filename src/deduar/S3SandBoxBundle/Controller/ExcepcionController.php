@@ -191,8 +191,7 @@ class ExcepcionController extends Controller
                 $em->persist($excepcion);
                 $em->flush();
 
-                return $this->redirectToRoute('excepcion_show', 
-                            array('id' => $excepcion->getId()));
+                return $this->redirectToRoute('excepcion_index');
             }
         }
 
@@ -253,7 +252,7 @@ class ExcepcionController extends Controller
             $em->persist($excepcion);
             $em->flush();
 
-            return $this->redirectToRoute('excepcion_edit', array('id' => $excepcion->getId()));
+            return $this->redirectToRoute('excepcion_index');
         }
 
         return $this->render('excepcion/edit.html.twig', array(
