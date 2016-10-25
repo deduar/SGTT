@@ -37,23 +37,60 @@ class ExcepcionController extends Controller
                 $criteria = 'fechaInicio';
                 $dir = 'DESC';
                 break;
-
             case '2d':
                 $criteria = 'fechaFin';
                 $dir = 'DESC';
                 break;
-
             case '2u':
                 $criteria = 'fechaFin';
                 $dir = 'ASC';
                 break;
             case '4d':
-                $criteria = 'observacion';
+                $criteria = 'idtypoexcepcion';
                 $dir = 'DESC';
                 break;
-
             case '4u':
-                $criteria = 'observacion';
+                $criteria = 'idtypoexcepcion';
+                $dir = 'ASC';
+                break;
+            case '5d':
+                $criteria = 'idtypoestadoexcepcion';
+                $dir = 'DESC';
+                break;
+            case '5u':
+                $criteria = 'idtypoestadoexcepcion';
+                $dir = 'ASC';
+                break;
+            case '6d':
+                $criteria = 'ejecutada';
+                $dir = 'DESC';
+                break;
+            case '6u':
+                $criteria = 'ejecutada';
+                $dir = 'ASC';
+                break;
+            case '7d':
+                $criteria = 'enviada';
+                $dir = 'DESC';
+                break;
+            case '7u':
+                $criteria = 'enviada';
+                $dir = 'ASC';
+                break;
+            case '8d':
+                $criteria = 'conformada';
+                $dir = 'DESC';
+                break;
+            case '8u':
+                $criteria = 'conformada';
+                $dir = 'ASC';
+                break;
+            case '9d':
+                $criteria = 'remunerada';
+                $dir = 'DESC';
+                break;
+            case '9u':
+                $criteria = 'remunerada';
                 $dir = 'ASC';
                 break;
             
