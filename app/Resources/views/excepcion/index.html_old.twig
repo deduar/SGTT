@@ -1,0 +1,207 @@
+{% extends 'tematwigcsg/plantilla.html.twig' %}
+
+{% block body %}
+    <h3>Mis Excpciones</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Inicio</th>
+                <th> Fin</th>
+                <th> Duración</th>
+                <th>Tipo Excepcion</th>
+                <th>Tipo Estado</th>
+                <th>Ejec</th>
+                <th>Env</th>
+                <th>Conf</th>
+                <th>Remu</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for excepcion in excepcions %}
+            <tr>
+                <td>{{ excepcion.fechaInicio |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcion.fechaFin |date('Y-m-d H:m:s')}}</td>
+                <td>{{ duracions[loop.index0] }}</td>
+                <td>{{ excepcion.idtypoexcepcion }}</td>
+                <td>{{ excepcion.idtypoestadoexcepcion }}</td>
+                <td>
+                    {% if (excepcion.ejecutada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcion.enviada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcion.conformada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcion.remunerada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('excepcion_show', { 'id': excepcion.id }) }}"> 
+                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('excepcion_edit', { 'id': excepcion.id }) }}"> 
+                       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <hr/>
+
+    <h3>Excepciones de Personal a Cargo</h3>
+
+    <table class="table">
+        <thead>
+            <tr class="main_header">
+                <th></th>
+                <th><a href="{{path('excepcion_index',{'crit':'1d'})}}">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <a href="{{path('excepcion_index',{'crit':'1u'})}}">
+                        <span class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th><a href="{{path('excepcion_index',{'crit':'2d'})}}">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <a href="{{path('excepcion_index',{'crit':'2u'})}}">
+                        <span class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th></th>
+                <th><a href="{{path('excepcion_index',{'crit':'4d'})}}">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <a href="{{path('excepcion_index',{'crit':'4u'})}}">
+                        <span class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th><a href="{{path('excepcion_index',{'crit':'5d'})}}">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <a href="{{path('excepcion_index',{'crit':'5u'})}}">
+                        <span class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th><a href="{{path('excepcion_index',{'crit':'6d'})}}">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <a href="{{path('excepcion_index',{'crit':'6u'})}}">
+                        <span class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th><a href="{{path('excepcion_index',{'crit':'7d'})}}">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <a href="{{path('excepcion_index',{'crit':'7u'})}}">
+                        <span class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th><a href="{{path('excepcion_index',{'crit':'8d'})}}">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <a href="{{path('excepcion_index',{'crit':'8u'})}}">
+                        <span class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th><a href="{{path('excepcion_index',{'crit':'9d'})}}">
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <a href="{{path('excepcion_index',{'crit':'9u'})}}">
+                        <span class="glyphicon glyphicon-triangle-top"></span>
+                    </a>
+                </th>
+                <th></th>
+            </tr>
+    {% for excepcions_supervisor_i in excepcions_supervisors %}
+            <tr>
+                <th>Solicitante</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th> Duración</th>
+                <th>Tipo Excep</th>
+                <th>Tipo Estado</th>
+                <th>Ejec</th>
+                <th>Env</th>
+                <th>Conf</th>
+                <th>Remu</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+                {% for supervisor in supervisors %}
+                    {% if excepcions_supervisor_i[0].idempleado == supervisor.id  %}
+                        <td rowspan={{excepcions_supervisor_i|length}}>{{ supervisor.login }}</td>
+                    {% endif %}
+                {% endfor %}
+            {% for excepcions_supervisor in  excepcions_supervisor_i %}
+            
+                <td>{{ excepcions_supervisor.fechaInicio |date('Y-m-d H:m:s')}}</td>
+                <td>{{ excepcions_supervisor.fechaFin |date('Y-m-d H:m:s')}}</td>
+                <td>{{ duracions_supervisors[loop.index0] }}</td>
+                <td>{{ excepcions_supervisor.idtypoexcepcion }}</td>
+                <td>{{ excepcions_supervisor.idtypoestadoexcepcion }}</td>
+                <td>
+                    {% if (excepcions_supervisor.ejecutada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcions_supervisor.enviada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcions_supervisor.conformada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if (excepcions_supervisor.remunerada) %}
+                        <span class="glyphicon glyphicon-ok"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('excepcion_show', { 'id': excepcions_supervisor.id }) }}" 
+                        class="glyphicon glyphicon-search"></a>
+                    <a href="{{ path('excepcion_edit', { 'id': excepcions_supervisor.id }) }}"
+                        class="glyphicon glyphicon-pencil"></a>
+                    </td>
+            </tr>
+        {% endfor %}
+        {% endfor %}
+         </tbody>
+    </table>
+    <ul>
+        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Nueva Excepción</span></a>
+    </ul>
+{% endblock %}

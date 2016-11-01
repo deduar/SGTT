@@ -18,14 +18,14 @@ th {
 }
 
 label {
-	width: 130px;
+/*	width: 130px;
 	font-size: 1.3em;
-	margin-bottom: 15px;
+	margin-bottom: 15px; */
 }
 
 select {
-	width: 120px;
-	float: left;
+/*	width: 120px;
+	float: left; */
 }
 
 input {

@@ -104,6 +104,7 @@ class ExcepcionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $excepcions = $em->getRepository('S3SandBoxBundle:Excepcion')
             ->findBy(array('idempleado'=>$session->get('id')));
+
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneBy(array('id'=>$session->get('id')));
 
@@ -121,29 +122,45 @@ class ExcepcionController extends Controller
             } 
         }
 
-        //$excepcions_supervisors = $em-getRepository('S3SandBoxBundle:Excepcion')
-        //            ->findBy(array('idempleado'=>$idSupervisor));
+        for ($i=0; $i<sizeof($supervisors); $i++) {
+            $personas_supervisors[] = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findBy(array('id'=>$supervisors[$i]->getId()));
+        }
+/*
+print_r(gettype($personas_supervisors));
+print_r(sizeof($personas_supervisors));
+print_r($personas_supervisors[0][0]->getPNombre());
+die();
+*/
+        $excepcions_supervisors = $em->getRepository('S3SandBoxBundle:Excepcion')
+                    ->findBy(array('idempleado'=>$idSupervisor));
 
 
-        for($i=0; $i<sizeof($idSupervisor);$i++) {
+        /*for($i=0; $i<sizeof($idSupervisor);$i++) {
             $e_s[] = ($em->getRepository('S3SandBoxBundle:Excepcion')
                ->findAllOrderedByName($idSupervisor[$i],$criteria,$dir));
             $excepcions_supervisors[] = $e_s[$i];
-        }
-        
+        }*/
+       
         for ($i=0; $i < sizeof($excepcions); $i++) {
             $duracions[] =  
                 $excepcions[$i]->getFechaFin()->diff($excepcions[$i]->getFechaInicio())
                 ->format('%y Años %m Meses %d Dias %h Horas %i Minutos');
         }
-
-        for ($i=0; $i < sizeof($excepcions_supervisors); $i++){
+ 
+/*        for ($i=0; $i < sizeof($excepcions_supervisors); $i++){
             for ($j=0; $j<sizeof($excepcions_supervisors[$i]);$j++) {
             $duracions_supervisors[] = 
                 $excepcions_supervisors[$i][$j]->getFechaFin()->diff($excepcions_supervisors[$i][$j]->getFechaInicio())->format('%y Años %m Meses %d Dias %h Horas %i Minutos');
             }
-        }
+        } */
 
+        for($i=0; $i<sizeof($excepcions_supervisors);$i++){
+            $duracions_supervisors[] = 
+                $excepcions_supervisors[$i]->getFechaFin()->
+                diff($excepcions_supervisors[$i]->getFechaInicio())->
+                format('%y Años %m Meses %d Dias %h Horas %i Minutos');
+        }
 
 //        $excepcions_supervisor = $em->getRepository('S3SandBoxBundle:Excepcion')
 //            ->findBySolicitante($supervisor->getId());
@@ -155,7 +172,8 @@ class ExcepcionController extends Controller
             'duracions' => $duracions,
             'supervisors' => $supervisors,
             'excepcions_supervisors' => $excepcions_supervisors,
-            'duracions_supervisors' => $duracions_supervisors
+            'duracions_supervisors' => $duracions_supervisors,
+            'personas_supervisors' => $personas_supervisors
         ));
     }
 
