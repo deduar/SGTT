@@ -29,8 +29,8 @@ select {
 }
 
 input {
-	height: 30px !important;
-	font-size: 30px;
+/*	height: 30px !important;
+	font-size: 30px; */
 }
 
 .btn {

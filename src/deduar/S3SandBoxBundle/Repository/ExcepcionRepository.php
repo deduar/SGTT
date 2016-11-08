@@ -10,7 +10,7 @@ namespace deduar\S3SandBoxBundle\Repository;
  */
 class ExcepcionRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function findAllOrderedByName($idSup,$criteria,$direc)
+/*	public function findAllOrderedByName($idSup,$criteria,$direc)
     {
         $e_s = $this->getEntityManager()
         	->createQuery('SELECT e FROM S3SandBoxBundle:Excepcion e 
@@ -22,7 +22,7 @@ class ExcepcionRepository extends \Doctrine\ORM\EntityRepository
 
 
 // El metodo original en ExcepcionesController
-/*        $repository = $this->getDoctrine()
+        $repository = $this->getDoctrine()
             ->getRepository('S3SandBoxBundle:Excepcion');
  
         $query = $repository->createQueryBuilder('e')
@@ -31,8 +31,8 @@ class ExcepcionRepository extends \Doctrine\ORM\EntityRepository
             ->orderBy($criteria, $direction)
             ->getQuery();
 
-        $excepcions_supervisors = $query->getResult(); */
+        $excepcions_supervisors = $query->getResult(); 
 
-    }
+    } */
 
 }

@@ -2,8 +2,28 @@
 
 {% block body %}
 
+	{% form_theme form 'bootstrap_3_layout.html.twig' %}
     {{ form_start(form) }}
         {{ form_widget(form) }}
     {{ form_end(form) }}
+
+
+	<script type="text/javascript">
+	    $(function () {
+	        $('#datetimepicker6').datetimepicker({
+	        	viewMode: 'years',
+                format: 'YYYY/MM/DD HH:mm'
+	        });
+	        $('#datetimepicker7').datetimepicker({
+	            useCurrent: false //Important! See issue #1075
+	        });
+	        $("#datetimepicker6").on("dp.change", function (e) {
+	            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+	        });
+	        $("#datetimepicker7").on("dp.change", function (e) {
+	            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+	        });
+	    });
+	</script>
 
 {% endblock %}

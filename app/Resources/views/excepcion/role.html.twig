@@ -1,0 +1,61 @@
+{% extends 'tematwigcsg/plantilla.html.twig' %}
+
+{% block body %}
+    <h3>Nivel 0</h3>
+        <table class="table">
+        <tr>
+            <th>Id Empleado</th>
+        </tr>
+        {% for excepcion_n0 in excepcions_n0 %}
+            <tr>
+                <td>{{ excepcion_n0.idempleado }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+    <h3>Nivel 1</h3>
+        <table class="table">
+        <tr>
+            <th>Supervisado</th>
+        </tr>
+        {% for supervisor_n1 in supervisors_n1 %}
+            <tr>
+                <td> {{ supervisor_n1.idpersona }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+
+    {% if supervisors_n2[0] is not defined %}
+    <h3>Nivel 2</h3>
+        <table class="table">
+        <tr>
+            <th>Supervisado</th>
+        </tr>
+        
+        {% for supervisor_n2 in supervisors_n2 %}
+            <tr>
+                <td> {{ supervisor_n2[loop.index0].idpersona }}</td>
+            </tr>
+        {% endfor %}
+        
+        </table>
+    {% endif %}
+
+
+    {% if supervisors_n3[0] is not defined %}
+    <h3>Nivel 3</h3>
+        <table class="table">
+        <tr>
+            <th>Supervisado</th>
+        </tr>
+        
+        {% for supervisor_n3 in supervisors_n3 %}
+            <tr>
+                <td> {{ supervisor_n3[loop.index0].idpersona }}</td>
+            </tr>
+        {% endfor %}
+        
+        </table>
+    {% endif %}
+
+{% endblock %}

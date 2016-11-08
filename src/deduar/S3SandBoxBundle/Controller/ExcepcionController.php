@@ -28,78 +28,6 @@ class ExcepcionController extends Controller
      */
     public function indexAction(Request $request)
     {
-        switch ($request->get('crit')) {
-            case '1d':
-                $criteria = 'fechaInicio';
-                $dir = 'ASC';
-                break;
-            case '1u':
-                $criteria = 'fechaInicio';
-                $dir = 'DESC';
-                break;
-            case '2d':
-                $criteria = 'fechaFin';
-                $dir = 'DESC';
-                break;
-            case '2u':
-                $criteria = 'fechaFin';
-                $dir = 'ASC';
-                break;
-            case '4d':
-                $criteria = 'idtypoexcepcion';
-                $dir = 'DESC';
-                break;
-            case '4u':
-                $criteria = 'idtypoexcepcion';
-                $dir = 'ASC';
-                break;
-            case '5d':
-                $criteria = 'idtypoestadoexcepcion';
-                $dir = 'DESC';
-                break;
-            case '5u':
-                $criteria = 'idtypoestadoexcepcion';
-                $dir = 'ASC';
-                break;
-            case '6d':
-                $criteria = 'ejecutada';
-                $dir = 'DESC';
-                break;
-            case '6u':
-                $criteria = 'ejecutada';
-                $dir = 'ASC';
-                break;
-            case '7d':
-                $criteria = 'enviada';
-                $dir = 'DESC';
-                break;
-            case '7u':
-                $criteria = 'enviada';
-                $dir = 'ASC';
-                break;
-            case '8d':
-                $criteria = 'conformada';
-                $dir = 'DESC';
-                break;
-            case '8u':
-                $criteria = 'conformada';
-                $dir = 'ASC';
-                break;
-            case '9d':
-                $criteria = 'remunerada';
-                $dir = 'DESC';
-                break;
-            case '9u':
-                $criteria = 'remunerada';
-                $dir = 'ASC';
-                break;
-            default:
-                $criteria = 'id';
-                $dir = 'DESC';
-                break;
-        }
-
-
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
         $excepcions = $em->getRepository('S3SandBoxBundle:Excepcion')
@@ -126,12 +54,7 @@ class ExcepcionController extends Controller
             $personas_supervisors[] = $em->getRepository('S3SandBoxBundle:Persona')
                 ->findBy(array('id'=>$supervisors[$i]->getId()));
         }
-/*
-print_r(gettype($personas_supervisors));
-print_r(sizeof($personas_supervisors));
-print_r($personas_supervisors[0][0]->getPNombre());
-die();
-*/
+
         $excepcions_supervisors = $em->getRepository('S3SandBoxBundle:Excepcion')
                     ->findBy(array('idempleado'=>$idSupervisor));
 
@@ -148,7 +71,7 @@ die();
                 ->format('%y Años %m Meses %d Dias %h Horas %i Minutos');
         }
  
-/*        for ($i=0; $i < sizeof($excepcions_supervisors); $i++){
+        /*for ($i=0; $i < sizeof($excepcions_supervisors); $i++){
             for ($j=0; $j<sizeof($excepcions_supervisors[$i]);$j++) {
             $duracions_supervisors[] = 
                 $excepcions_supervisors[$i][$j]->getFechaFin()->diff($excepcions_supervisors[$i][$j]->getFechaInicio())->format('%y Años %m Meses %d Dias %h Horas %i Minutos');
@@ -162,8 +85,8 @@ die();
                 format('%y Años %m Meses %d Dias %h Horas %i Minutos');
         }
 
-//        $excepcions_supervisor = $em->getRepository('S3SandBoxBundle:Excepcion')
-//            ->findBySolicitante($supervisor->getId());
+        //$excepcions_supervisor = $em->getRepository('S3SandBoxBundle:Excepcion')
+        //    ->findBySolicitante($supervisor->getId());
 
         return $this->render('excepcion/index.html.twig', array(
             'persona' => $persona,
@@ -174,6 +97,53 @@ die();
             'excepcions_supervisors' => $excepcions_supervisors,
             'duracions_supervisors' => $duracions_supervisors,
             'personas_supervisors' => $personas_supervisors
+        ));
+    }
+
+    /**
+     * Lists all Excepcion entities grouped by role recursive.
+     *
+     * @Route("/role", name="excepcion_role_index")
+     * @Method("GET")
+     */
+    public function roleAction(Request $request)
+    {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$session->get('id')));
+        $persona = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$empleado->getIdpersona()));
+
+        $excepcions_n0 = $em->getRepository('S3SandBoxBundle:Excepcion')
+            ->findBy(array('idempleado'=>$session->get('id')));
+
+        $supervisors_n1 = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findBy(array('idsupervisor'=>$session->get('id')));
+
+        for($i=0; $i<sizeof($supervisors_n1);$i++){
+           $supervisors_n2[] = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findBy(array('idsupervisor'=>
+                    $supervisors_n1[$i]->getIdpersona()->getId()));
+        }     
+
+        if($supervisors_n2[0] != null) {
+            for($i=0; $i<sizeof($supervisors_n2);$i++){
+               $supervisors_n3[] = $em->getRepository('S3SandBoxBundle:Empleado')
+                    ->findBy(array('idsupervisor'=>
+                        $supervisors_n2[$i]->getIdpersona()->getId()));
+            }
+        } else {
+            $supervisors_n3[] = null;
+        }
+
+        return $this->render('excepcion/role.html.twig', array(
+            'empleado'=>$empleado,
+            'persona'=>$persona,
+            'excepcions_n0'=>$excepcions_n0,
+            'supervisors_n1'=>$supervisors_n1,
+            'supervisors_n2'=>$supervisors_n2,
+            'supervisors_n3'=>$supervisors_n3,
         ));
     }
 
