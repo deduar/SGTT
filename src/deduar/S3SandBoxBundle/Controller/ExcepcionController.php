@@ -110,13 +110,36 @@ class ExcepcionController extends Controller
     {
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
+
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneBy(array('id'=>$session->get('id')));
         $persona = $em->getRepository('S3SandBoxBundle:Persona')
                 ->findOneBy(array('id'=>$empleado->getIdpersona()));
 
-        $excepcions_n0 = $em->getRepository('S3SandBoxBundle:Excepcion')
-            ->findBy(array('idempleado'=>$session->get('id')));
+$id[]=$session->get('id');
+
+while (sizeof($id)) {
+
+    print_r($id);
+
+    $excepciones = $em->getRepository('S3SandBoxBundle:Excepcion')
+                    ->findByIdempleado($id);
+    $empleados = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findByIdsupervisor($id);
+
+    $id=null;
+    for($i=0;$i<(sizeof($empleados));$i++){
+        $id[]=$empleados[$i]->getId();
+    }
+
+    for($i=0;$i<sizeof($excepciones);$i++){
+        echo " - ";
+        print_r($excepciones[$i]->getId());
+    }
+    echo "<br>";
+}
+
+die();
 
         $supervisors_n1 = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findBy(array('idsupervisor'=>$session->get('id')));

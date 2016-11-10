@@ -16,10 +16,12 @@
     <h3>Nivel 1</h3>
         <table class="table">
         <tr>
+            <th>Id</th>
             <th>Supervisado</th>
         </tr>
         {% for supervisor_n1 in supervisors_n1 %}
             <tr>
+                <td> {{ supervisor_n1.id }}</td>
                 <td> {{ supervisor_n1.idpersona }}</td>
             </tr>
         {% endfor %}

@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"getI",
+				"getId"
+			],
+			[
+				"supervisor_",
+				"supervisors_n2"
+			],
+			[
+				"supe",
+				"supervisors_n2"
+			],
+			[
+				"su",
+				"supervisors_n2"
+			],
+			[
+				"getId",
+				"getIdsupervisor"
+			],
+			[
+				"supo",
+				"supervisors_n1"
+			],
+			[
+				"excepc",
+				"excepcions_n0"
+			],
+			[
+				"Excepcion_",
+				"excepcions_n0"
+			],
+			[
+				"per",
+				"persona"
+			],
+			[
+				"excep",
+				"excepcions_n0"
+			],
+			[
+				"exc",
+				"excepcions_n0"
+			],
+			[
 				"datet",
 				"datetimepicker7"
 			],
@@ -24,10 +68,6 @@
 				"excepcions_supervisors"
 			],
 			[
-				"getI",
-				"getId"
-			],
-			[
 				"getid",
 				"getIdempleado"
 			],
@@ -38,10 +78,6 @@
 			[
 				"sc",
 				"scheme"
-			],
-			[
-				"excepc",
-				"excepcions"
 			],
 			[
 				"dura",
@@ -100,10 +136,6 @@
 				"excepcions"
 			],
 			[
-				"getId",
-				"getIdempleado"
-			],
-			[
 				"id",
 				"idsupervisor"
 			],
@@ -150,10 +182,6 @@
 			[
 				"user",
 				"userId"
-			],
-			[
-				"su",
-				"supervisors"
 			],
 			[
 				"excepcions_",
@@ -229,28 +257,20 @@
 			}
 		},
 		{
-			"file": "app/Resources/views/excepcion/new.html.twig",
+			"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 			"settings":
 			{
-				"buffer_size": 851,
+				"buffer_size": 10763,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
+			"file": "app/Resources/views/excepcion/role.html.twig",
 			"settings":
 			{
-				"buffer_size": 5678,
+				"buffer_size": 1502,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "web/bundles/web/temacsgwebapp/third/datapicker/index.html",
-			"settings":
-			{
-				"buffer_size": 2043,
 				"line_ending": "Unix"
 			}
 		}
@@ -295,6 +315,7 @@
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/web",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/web/bundles",
@@ -303,10 +324,12 @@
 	],
 	"file_history":
 	[
+		"/home/deduar/Projects/S3-Sandbox_SGTT/web/bundles/web/temacsgwebapp/third/datapicker/index.html",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/new.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/composer.json",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/web/bundles/web/temacsgwebapp/css/sgtt_main.css",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/web/bundles/web/temacsgwebapp/third/datapicker/index.html",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/tematwigcsg/linkscss.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/tematwigcsg/script.html.twig",
 		"/home/deduar/Projects/datapicker_sandbox/index.html",
@@ -317,8 +340,6 @@
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/tematwigcsg/plantilla.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/edit.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/.gitignore",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/new.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Persona.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Empleado.php",
@@ -448,6 +469,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"length",
 			"findAllOrderedByName",
 			"supervisor",
 			"new",
@@ -552,7 +574,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -582,94 +604,67 @@
 						"translation.y": 388.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/Resources/views/excepcion/new.html.twig",
+					"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 851,
+						"buffer_size": 10763,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								208,
-								208
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5678,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1177,
-								1177
+								4944,
+								4944
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1782.0,
+						"translation.y": 2088.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "web/bundles/web/temacsgwebapp/third/datapicker/index.html",
+					"buffer": 2,
+					"file": "app/Resources/views/excepcion/role.html.twig",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2043,
+						"buffer_size": 1502,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								586,
-								586
+								752,
+								752
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Syntaxes/HTML (Twig).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 432.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -752,7 +747,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 178.0,
+	"side_bar_width": 160.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
