@@ -116,57 +116,31 @@ class ExcepcionController extends Controller
         $persona = $em->getRepository('S3SandBoxBundle:Persona')
                 ->findOneBy(array('id'=>$empleado->getIdpersona()));
 
-$id[]=$session->get('id');
+        $id[]=$session->get('id');
+        $nivel=0;
 
-while (sizeof($id)) {
+        while (sizeof($id)) {
+            $nivel = $nivel+1;
+            $excepciones = $em->getRepository('S3SandBoxBundle:Excepcion')
+                            ->findByIdempleado($id);
+            $empleados = $em->getRepository('S3SandBoxBundle:Empleado')
+                        ->findByIdsupervisor($id);
 
-    print_r($id);
-
-    $excepciones = $em->getRepository('S3SandBoxBundle:Excepcion')
-                    ->findByIdempleado($id);
-    $empleados = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findByIdsupervisor($id);
-
-    $id=null;
-    for($i=0;$i<(sizeof($empleados));$i++){
-        $id[]=$empleados[$i]->getId();
-    }
-
-    for($i=0;$i<sizeof($excepciones);$i++){
-        echo " - ";
-        print_r($excepciones[$i]->getId());
-    }
-    echo "<br>";
-}
-
-die();
-
-        $supervisors_n1 = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findBy(array('idsupervisor'=>$session->get('id')));
-
-        for($i=0; $i<sizeof($supervisors_n1);$i++){
-           $supervisors_n2[] = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findBy(array('idsupervisor'=>
-                    $supervisors_n1[$i]->getIdpersona()->getId()));
-        }     
-
-        if($supervisors_n2[0] != null) {
-            for($i=0; $i<sizeof($supervisors_n2);$i++){
-               $supervisors_n3[] = $em->getRepository('S3SandBoxBundle:Empleado')
-                    ->findBy(array('idsupervisor'=>
-                        $supervisors_n2[$i]->getIdpersona()->getId()));
+            $id=null;
+            for($i=0;$i<(sizeof($empleados));$i++){
+                $id[]=$empleados[$i]->getId();
             }
-        } else {
-            $supervisors_n3[] = null;
+
+            for($i=0;$i<sizeof($excepciones);$i++){
+                $ex[] = $excepciones[$i];
+            }
         }
 
         return $this->render('excepcion/role.html.twig', array(
             'empleado'=>$empleado,
             'persona'=>$persona,
-            'excepcions_n0'=>$excepcions_n0,
-            'supervisors_n1'=>$supervisors_n1,
-            'supervisors_n2'=>$supervisors_n2,
-            'supervisors_n3'=>$supervisors_n3,
+            'ex' => $ex,
+            'nivel' => $nivel
         ));
     }
 

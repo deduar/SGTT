@@ -13,6 +13,20 @@
             </a>
         </li>
         <li>         
+            {% if (nivel == 1) %}
+                    : Empleado
+            {% endif %}
+            {% if (nivel == 2) %}
+                    : Supervisor
+            {% endif %}
+            {% if (nivel == 3) %}
+                    : Jefe de Departamento
+            {% endif %}
+            {% if (nivel == 4) %}
+                    : Gerente
+            {% endif %}
+        </li>
+        <li>         
             <a href="{{ path('empleado_logout') }}" title="Cerrar Sesión">
                 <i class="glyphicon glyphicon-off"></i>Salir
             </a>

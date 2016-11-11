@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"getId",
+				"getId"
+			],
+			[
+				"ece",
+				"excepciones"
+			],
+			[
+				"emp",
+				"empleados"
+			],
+			[
+				"emple",
+				"empleados"
+			],
+			[
+				"findBy",
+				"findByIdempleado"
+			],
+			[
+				"Exec",
+				"Excepcion"
+			],
+			[
 				"getI",
 				"getId"
 			],
@@ -18,10 +42,6 @@
 			[
 				"su",
 				"supervisors_n2"
-			],
-			[
-				"getId",
-				"getIdsupervisor"
 			],
 			[
 				"supo",
@@ -192,10 +212,6 @@
 				"width"
 			],
 			[
-				"emp",
-				"empleado"
-			],
-			[
 				"fe",
 				"fechaCreacion"
 			],
@@ -206,10 +222,6 @@
 			[
 				"iss",
 				"isset"
-			],
-			[
-				"emple",
-				"empleadoSearch"
 			],
 			[
 				"Passwor",
@@ -260,7 +272,7 @@
 			"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 			"settings":
 			{
-				"buffer_size": 10763,
+				"buffer_size": 11162,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -574,7 +586,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -590,8 +602,8 @@
 						"selection":
 						[
 							[
-								487,
-								487
+								860,
+								860
 							]
 						],
 						"settings":
@@ -601,10 +613,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 388.0,
+						"translation.y": 342.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -613,15 +625,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10763,
+						"buffer_size": 11162,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4944,
-								4944
+								4266,
+								4266
 							]
 						],
 						"settings":
@@ -631,10 +643,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2088.0,
+						"translation.y": 2044.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -664,7 +676,7 @@
 						"translation.y": 432.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
