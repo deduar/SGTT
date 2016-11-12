@@ -1,8 +1,15 @@
 {% extends 'tematwigcsg/plantilla.html.twig' %}
 
 {% block body %}
-    <h3>Mis Excepciones</h3>
-    <table class="table">
+
+    <ul class="tab">
+      <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Propias')" id="defaultOpen">Excepciones Propias</a></li>
+      <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Supervisados')">Excepciones de Personal a Cargos</a></li>
+    </ul>
+
+    <div id="Propias" class="tabcontent">
+    
+    <table class="table" id="ex">
         <thead>
             <tr>
                 <th>Inicio</th>
@@ -23,7 +30,7 @@
                 <tr>
                     <td>{{ e.fechaInicio|date('Y-m-d H:m:s') }}</td>
                     <td>{{ e.fechaFin|date('Y-m-d H:m:s') }}</td>
-                    <td>Duracion</td>
+                    <td>{{ duracions[loop.index0] }}</td>
                     <td>{{ e.idtypoexcepcion }}</td>
                     <td>{{ e.idtypoestadoexcepcion }}</td>
                     <td>
@@ -67,9 +74,11 @@
             {% endfor %}
         </tbody>
     </table>
+    </div>
+    
+    <div id="Supervisados" class="tabcontent">
 
-    <h3>Excepciones de Personal a Cargo</h3>
-    <table class="table">
+    <table class="table" id="exs">
         <thead>
             <tr>
                 <th>Solicitante</th>
@@ -89,10 +98,14 @@
             {% for e in ex %}
                 {% if (ex[0].idempleado != e.idempleado) %}
                 <tr>
-                    <td>{{ e.idempleado }}</td>
+                    {% for person in persons %}
+                        {% if (person.id == e.idempleado) %}
+                            <td>{{ person.pNombre }} {{ person.pApellido }}</td>
+                        {% endif %}
+                    {% endfor %}
                     <td>{{ e.fechaInicio|date('Y-m-d H:m:s') }}</td>
                     <td>{{ e.fechaFin|date('Y-m-d H:m:s') }}</td>
-                    <td>Duracion</td>
+                    <td>{{ duracions[loop.index0] }}</td>
                     <td>{{ e.idtypoexcepcion }}</td>
                     <td>{{ e.idtypoestadoexcepcion }}</td>
                     <td>
@@ -136,6 +149,37 @@
             {% endfor %}
         </tbody>
     </table>
+    </div>
 
+   
+    <ul>
+        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Nueva Excepción</span></a>
+    </ul>
+
+       
+
+    <script>
+    $(document).ready(function() {
+        $('#ex').DataTable();
+        $('#exs').DataTable();
+    });
+    </script>
+
+    <script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    };
+    document.getElementById("defaultOpen").click();
+    </script>
 
 {% endblock %}

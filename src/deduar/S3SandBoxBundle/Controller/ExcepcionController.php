@@ -88,6 +88,9 @@ class ExcepcionController extends Controller
         //$excepcions_supervisor = $em->getRepository('S3SandBoxBundle:Excepcion')
         //    ->findBySolicitante($supervisor->getId());
 
+
+        $nivel = $session->get('nivel');
+
         return $this->render('excepcion/index.html.twig', array(
             'persona' => $persona,
             'empleado' => $empleado,
@@ -96,17 +99,18 @@ class ExcepcionController extends Controller
             'supervisors' => $supervisors,
             'excepcions_supervisors' => $excepcions_supervisors,
             'duracions_supervisors' => $duracions_supervisors,
-            'personas_supervisors' => $personas_supervisors
+            'personas_supervisors' => $personas_supervisors,
+            'nivel' => $nivel
         ));
     }
 
     /**
-     * Lists all Excepcion entities grouped by role recursive.
+     * Lists all Excepcion grouped by role recursive.
      *
-     * @Route("/role", name="excepcion_role_index")
+     * @Route("/role", name="excepcions_index")
      * @Method("GET")
      */
-    public function roleAction(Request $request)
+    public function exsAction(Request $request)
     {
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -117,6 +121,7 @@ class ExcepcionController extends Controller
                 ->findOneBy(array('id'=>$empleado->getIdpersona()));
 
         $id[]=$session->get('id');
+        $persons[]=$persona;
         $nivel=0;
 
         while (sizeof($id)) {
@@ -125,6 +130,12 @@ class ExcepcionController extends Controller
                             ->findByIdempleado($id);
             $empleados = $em->getRepository('S3SandBoxBundle:Empleado')
                         ->findByIdsupervisor($id);
+            $personas = $em->getRepository('S3SandBoxBundle:Persona')
+                        ->findById($id);
+
+            for ($i=0; $i < sizeof($personas); $i++) { 
+                $persons[]=$personas[$i];
+            }
 
             $id=null;
             for($i=0;$i<(sizeof($empleados));$i++){
@@ -133,16 +144,29 @@ class ExcepcionController extends Controller
 
             for($i=0;$i<sizeof($excepciones);$i++){
                 $ex[] = $excepciones[$i];
+                $duracions[] = 
+                    $excepciones[$i]->getFechaFin()->
+                    diff($excepciones[$i]->getFechaInicio())->
+                    format('%y Años %m Meses %d Dias %h Horas %i Minutos');
             }
         }
+
+        if (!(isset($ex))) {
+            $ex = null;
+        }
+
+        $session->set('nivel',$nivel);
 
         return $this->render('excepcion/role.html.twig', array(
             'empleado'=>$empleado,
             'persona'=>$persona,
             'ex' => $ex,
-            'nivel' => $nivel
+            'nivel' => $nivel,
+            'persons' => $persons,
+            'duracions' => $duracions
         ));
     }
+
 
     /**
      * Creates a new Excepcion entity.
@@ -180,11 +204,14 @@ class ExcepcionController extends Controller
             }
         }
 
+        $nivel = $session->get('nivel');
+
         return $this->render('excepcion/new.html.twig', array(
             'persona' => $persona,
             'empleado' => $empleado,
             'excepcion' => $excepcion,
             'form' => $form->createView(),
+            'nivel' => $nivel
         ));
     }
 
