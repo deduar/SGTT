@@ -32,10 +32,7 @@ class EmpleadoController extends Controller
                 ->findOneBy(array('id'=>$session->get('id')));
         $em = $this->getDoctrine()->getManager();
         $empleados = $em->getRepository('S3SandBoxBundle:Empleado')->findAll();
-        return $this->render('empleado/index.html.twig', array(
-            'empleado' => $empleado,
-            'empleados' => $empleados
-            ));
+        return $this->render('empleado/index.html.twig');
     }
 
     /**
@@ -58,10 +55,7 @@ class EmpleadoController extends Controller
             return $this->redirectToRoute('empleado_show', array('id' => $empleado->getId()));
         }
 
-        return $this->render('empleado/new.html.twig', array(
-            'empleado' => $empleado,
-            'form' => $form->createView(),
-        ));
+        return $this->render('empleado/new.html.twig');
     }
 
     /**
@@ -78,17 +72,33 @@ class EmpleadoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $empleadoSearch = $em->getRepository('S3SandBoxBundle:Empleado')
-                            ->findOneBy(array('login'=>$empleado->getLogin()));
-            if ($empleadoSearch) {
+            $e = $em->getRepository('S3SandBoxBundle:Empleado')
+                    ->findOneBy(array('login'=>$empleado->getLogin()));
+            $p = $em->getRepository('S3SandBoxBundle:Persona')
+                    ->findOneBy(array('id'=>$e->getIdpersona()));
+            if ($e) {
                 $session = $request->getSession();
-                $session->set('id',$empleadoSearch->getId());
-                $deleteForm = $this->createDeleteForm($empleadoSearch);
-                return $this->redirectToRoute('excepcion_index', array('id' => $empleado->getId()));
+                $session->set('id',$e->getId());
+                $name = $p->getPNombre().' '.' '.$p->getSNombre().' '.$p->getPApellido().' '.$p->getSApellido();
+                $session->set('name',$name);
+
+                $id[]=$session->get('id');
+                $nivel=0;
+                while (sizeof($id)) {
+                    $nivel = $nivel+1;
+                    $empleados = $em->getRepository('S3SandBoxBundle:Empleado')
+                                ->findByIdsupervisor($id);
+                    $id=null;
+                    for($i=0;$i<(sizeof($empleados));$i++){
+                        $id[]=$empleados[$i]->getId();
+                    }
+                }
+                $session->set('nivel',$nivel);
+                $deleteForm = $this->createDeleteForm($e);
+                return $this->redirectToRoute('excepcion_index');
             }
         }
         return $this->render('empleado/login.html.twig', array(
-            'empleado' => $empleado,
             'form' => $form->createView(),));
     }
 
@@ -117,12 +127,8 @@ class EmpleadoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneBy(array('id'=>$session->get('id')));
-        $persona = $em->getRepository('S3SandBoxBundle:Persona')
-                ->findOneBy(array('id'=>$empleado->getIdpersona()));
         $deleteForm = $this->createDeleteForm($empleado);
-
         return $this->render('empleado/show.html.twig', array(
-            'persona' => $persona,
             'empleado' => $empleado,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -140,8 +146,6 @@ class EmpleadoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneBy(array('id'=>$session->get('id')));
-        $persona = $em->getRepository('S3SandBoxBundle:Persona')
-                ->findOneBy(array('id'=>$empleado->getIdpersona()));
         $deleteForm = $this->createDeleteForm($empleado);
         $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\EmpleadoType', $empleado);
         $editForm->handleRequest($request);
@@ -155,13 +159,10 @@ class EmpleadoController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('empleado_show', array('id'=>$empleado->getId()));
-            //return $this->redirectToRoute('empleado_edit', array('id' => $empleado->getId()));
             }
         }
 
         return $this->render('empleado/edit.html.twig', array(
-            'persona' => $persona,
-            'empleado' => $empleado,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

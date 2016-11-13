@@ -7,11 +7,11 @@
         <tbody>
             <tr>
                 <th class="table-vertical">Id</th>
-                <td>{{ empleado.id }}</td>
+                <td>{{ app.session.get('id') }}</td>
             </tr>
             <tr>
                 <th class="table-vertical">Persona</th>
-                <td><a href="{{ path('persona_edit', {'id': empleado.idpersona.id }) }}" >{{ empleado.idpersona.pNombre }} {{ empleado.idpersona.sNombre }} {{ empleado.idpersona.pApellido }} {{ empleado.idpersona.sApellido }}</a></td>
+                <td><a href="{{ path('persona_edit', {'id': empleado.id }) }}" >{{app.session.get('name')}}</a></td>
             </tr>
             <tr>
                 <th class="table-vertical">Ficha</th>

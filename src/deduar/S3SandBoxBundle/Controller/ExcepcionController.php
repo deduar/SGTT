@@ -23,94 +23,80 @@ class ExcepcionController extends Controller
     /**
      * Lists all Excepcion entities.
      *
+     * @Route("/modifcar1", name="modificar1")
+     * @Method("GET")
+     */
+    public function modificar1Action(Request $request)
+    {
+        print_r($request->request->all());
+        die('modificar1');
+    }
+
+
+    /**
+     * Lists all Excepcion entities.
+     *
+     * @Route("/{id}/gen_report", name="gen_report")
+     * @Method({"GET", "POST"})
+     */
+    public function genReportAction(Request $request, Excepcion $excepcion)
+    {
+        $session = $request->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $persona = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$excepcion->getIdempleado()));
+        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$excepcion->getIdempleado()));
+
+        print_r("DATOS DEL EMPLEADO -------"); echo"<br>";
+        print_r($excepcion->getId()); echo"<br>";
+        print_r($persona->getPNombre());
+        print_r($persona->getPApellido()); echo"<br>";
+        //print_r($empleado->getIdgrupo()->getDescripcion()); echo"<br>";
+        print_r($empleado->getFicha()); echo"<br>";
+        print_r($excepcion->getFechaCreacion()); echo"<br>";
+        print_r($excepcion->getFechaInicio()); echo"<br>";
+        print_r($excepcion->getFechaFin()); echo"<br>";
+        print_r($excepcion->getFechaFin()->
+                diff($excepcion->getFechaInicio())->
+                format('%y Años %m Meses %d Dias %h Horas %i Minutos'));
+        echo"<br>";
+        print_r($excepcion->getObservacion()); echo"<br>";
+
+        print_r("DATOS DEL Supervisor -------"); echo"<br>";
+        $em_j = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$excepcion->getIdempleado()));
+
+        print_r($em_j->getIdsupervisor()->getId()); echo"<br>";
+        $p_j = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$em_j->getIdsupervisor()->getId()));
+        print_r($p_j->getPNombre());
+        print_r($p_j->getPApellido()); echo "<br>";
+        print_r($em_j->getIdcargo()->getNombre()); echo "<br>";
+        //print_r($this->date = new \DateTime());echo "<br>";
+
+        print_r("DATOS DEL Gerente -------"); echo"<br>";
+        print_r($em_j->getIdsupervisor()->getIdsupervisor()->getId()); echo"<br>";
+        $em_s = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array
+                ('id'=>$em_j->getIdsupervisor()->getIdsupervisor()->getId()));
+        print_r($em_s->getId());
+        $p_s = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$em_s->getId()));
+        print_r($p_s->getPNombre());
+        print_r($p_s->getPApellido()); echo"<br>";
+        print_r($em_s->getIdcargo()->getNombre()); echo "<br>";
+
+        die('GenReport to pdf ------>');
+    }        
+
+    /**
+     * Lists all Excepcion entities.
+     *
      * @Route("/", name="excepcion_index")
      * @Method("GET")
      */
     public function indexAction(Request $request)
-    {
-        $session = $request->getSession();
-        $em = $this->getDoctrine()->getManager();
-        $excepcions = $em->getRepository('S3SandBoxBundle:Excepcion')
-            ->findBy(array('idempleado'=>$session->get('id')));
-
-        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findOneBy(array('id'=>$session->get('id')));
-
-        $persona = $em->getRepository('S3SandBoxBundle:Persona')
-                ->findOneBy(array('id'=>$empleado->getIdpersona()));
-
-        $supervisors = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findBy(array('idsupervisor'=>$session->get('id')));
-
-        if (!(sizeof($supervisors))) {
-            $idSupervisor[] = null;
-        } else {
-            for ($i=0; $i < sizeof($supervisors); $i++) { 
-                $idSupervisor[] = $supervisors[$i]->getId();
-            } 
-        }
-
-        for ($i=0; $i<sizeof($supervisors); $i++) {
-            $personas_supervisors[] = $em->getRepository('S3SandBoxBundle:Persona')
-                ->findBy(array('id'=>$supervisors[$i]->getId()));
-        }
-
-        $excepcions_supervisors = $em->getRepository('S3SandBoxBundle:Excepcion')
-                    ->findBy(array('idempleado'=>$idSupervisor));
-
-
-        /*for($i=0; $i<sizeof($idSupervisor);$i++) {
-            $e_s[] = ($em->getRepository('S3SandBoxBundle:Excepcion')
-               ->findAllOrderedByName($idSupervisor[$i],$criteria,$dir));
-            $excepcions_supervisors[] = $e_s[$i];
-        }*/
-       
-        for ($i=0; $i < sizeof($excepcions); $i++) {
-            $duracions[] =  
-                $excepcions[$i]->getFechaFin()->diff($excepcions[$i]->getFechaInicio())
-                ->format('%y Años %m Meses %d Dias %h Horas %i Minutos');
-        }
- 
-        /*for ($i=0; $i < sizeof($excepcions_supervisors); $i++){
-            for ($j=0; $j<sizeof($excepcions_supervisors[$i]);$j++) {
-            $duracions_supervisors[] = 
-                $excepcions_supervisors[$i][$j]->getFechaFin()->diff($excepcions_supervisors[$i][$j]->getFechaInicio())->format('%y Años %m Meses %d Dias %h Horas %i Minutos');
-            }
-        } */
-
-        for($i=0; $i<sizeof($excepcions_supervisors);$i++){
-            $duracions_supervisors[] = 
-                $excepcions_supervisors[$i]->getFechaFin()->
-                diff($excepcions_supervisors[$i]->getFechaInicio())->
-                format('%y Años %m Meses %d Dias %h Horas %i Minutos');
-        }
-
-        //$excepcions_supervisor = $em->getRepository('S3SandBoxBundle:Excepcion')
-        //    ->findBySolicitante($supervisor->getId());
-
-
-        $nivel = $session->get('nivel');
-
-        return $this->render('excepcion/index.html.twig', array(
-            'persona' => $persona,
-            'empleado' => $empleado,
-            'excepcions' => $excepcions,
-            'duracions' => $duracions,
-            'supervisors' => $supervisors,
-            'excepcions_supervisors' => $excepcions_supervisors,
-            'duracions_supervisors' => $duracions_supervisors,
-            'personas_supervisors' => $personas_supervisors,
-            'nivel' => $nivel
-        ));
-    }
-
-    /**
-     * Lists all Excepcion grouped by role recursive.
-     *
-     * @Route("/role", name="excepcions_index")
-     * @Method("GET")
-     */
-    public function exsAction(Request $request)
     {
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -122,10 +108,8 @@ class ExcepcionController extends Controller
 
         $id[]=$session->get('id');
         $persons[]=$persona;
-        $nivel=0;
 
         while (sizeof($id)) {
-            $nivel = $nivel+1;
             $excepciones = $em->getRepository('S3SandBoxBundle:Excepcion')
                             ->findByIdempleado($id);
             $empleados = $em->getRepository('S3SandBoxBundle:Empleado')
@@ -155,13 +139,8 @@ class ExcepcionController extends Controller
             $ex = null;
         }
 
-        $session->set('nivel',$nivel);
-
-        return $this->render('excepcion/role.html.twig', array(
-            'empleado'=>$empleado,
-            'persona'=>$persona,
+        return $this->render('excepcion/index.html.twig', array(
             'ex' => $ex,
-            'nivel' => $nivel,
             'persons' => $persons,
             'duracions' => $duracions
         ));
@@ -204,14 +183,9 @@ class ExcepcionController extends Controller
             }
         }
 
-        $nivel = $session->get('nivel');
-
         return $this->render('excepcion/new.html.twig', array(
-            'persona' => $persona,
-            'empleado' => $empleado,
             'excepcion' => $excepcion,
-            'form' => $form->createView(),
-            'nivel' => $nivel
+            'form' => $form->createView()
         ));
     }
 
@@ -232,8 +206,6 @@ class ExcepcionController extends Controller
         $deleteForm = $this->createDeleteForm($excepcion);
 
         return $this->render('excepcion/show.html.twig', array(
-            'persona' => $persona,
-            'empleado' => $empleado,
             'excepcion' => $excepcion,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -268,11 +240,9 @@ class ExcepcionController extends Controller
         }
 
         return $this->render('excepcion/edit.html.twig', array(
-            'persona' => $persona,
-            'empleado' => $empleado,
             'excepcion' => $excepcion,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'delete_form' => $deleteForm->createView()
         ));
     }
 

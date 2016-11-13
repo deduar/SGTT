@@ -7,22 +7,22 @@
             </a>
         </li>
         <li> 
-            <a href="{{ path('empleado_show',{ 'id': empleado.id }) }}" class="dropdown-toggle" data-toggle="dropdown" role="button"  >
+            <a href="{{path('empleado_show',{'id':app.session.get('id')})}}" class="dropdown-toggle" data-toggle="dropdown" role="button">
                 <i class="glyphicon glyphicon-user"></i>
-                {{persona.pNombre}} {{persona.sNombre}} {{persona.pApellido}} {{persona.sApellido}}
+                {{app.session.get('name')}}
             </a>
         </li>
         <li>         
-            {% if (nivel == 1) %}
+            {% if (app.session.get('nivel') == 1) %}
                     : Empleado
             {% endif %}
-            {% if (nivel == 2) %}
+            {% if (app.session.get('nivel') == 2) %}
                     : Supervisor
             {% endif %}
-            {% if (nivel == 3) %}
+            {% if (app.session.get('nivel') == 3) %}
                     : Jefe de Departamento
             {% endif %}
-            {% if (nivel == 4) %}
+            {% if (app.session.get('nivel') == 4) %}
                     : Gerente
             {% endif %}
         </li>
