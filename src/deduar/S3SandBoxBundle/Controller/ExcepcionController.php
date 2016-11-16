@@ -68,26 +68,27 @@ class ExcepcionController extends Controller
                 ->findOneBy(array('id'=>$excepcion->getIdempleado()));
 
         print_r($em_j->getIdsupervisor()->getId()); echo"<br>";
-        $p_j = $em->getRepository('S3SandBoxBundle:Persona')
-                ->findOneBy(array('id'=>$em_j->getIdsupervisor()->getId()));
-        print_r($p_j->getPNombre());
-        print_r($p_j->getPApellido()); echo "<br>";
-        print_r($em_j->getIdcargo()->getNombre()); echo "<br>";
-        //print_r($this->date = new \DateTime());echo "<br>";
+        if (sizeof($em_s)) {
+            $p_j = $em->getRepository('S3SandBoxBundle:Persona')
+                    ->findOneBy(array('id'=>$em_j->getIdsupervisor()->getId()));
+            print_r($p_j->getPNombre());
+            print_r($p_j->getPApellido()); echo "<br>";
+            print_r($em_j->getIdcargo()->getNombre()); echo "<br>";
+            //print_r($this->date = new \DateTime());echo "<br>";
 
-        print_r("DATOS DEL Gerente -------"); echo"<br>";
+            print_r("DATOS DEL Gerente -------"); echo"<br>";
             print_r($em_j->getIdsupervisor()->getIdsupervisor()->getId());
             echo"<br>";
             $em_s = $em->getRepository('S3SandBoxBundle:Empleado')
                     ->findOneBy(array
                     ('id'=>$em_j->getIdsupervisor()->getIdsupervisor()->getId()));
-            if (sizeof($em_s)) {
-                print_r($em_s->getId());
-                $p_s = $em->getRepository('S3SandBoxBundle:Persona')
-                        ->findOneBy(array('id'=>$em_s->getId()));
-                print_r($p_s->getPNombre());
-                print_r($p_s->getPApellido()); echo"<br>";
-                print_r($em_s->getIdcargo()->getNombre()); echo "<br>";
+
+            print_r($em_s->getId());
+            $p_s = $em->getRepository('S3SandBoxBundle:Persona')
+                    ->findOneBy(array('id'=>$em_s->getId()));
+            print_r($p_s->getPNombre());
+            print_r($p_s->getPApellido()); echo"<br>";
+            print_r($em_s->getIdcargo()->getNombre()); echo "<br>";
         }
         
 
