@@ -24,7 +24,7 @@ class ExcepcionController extends Controller
      * Lists all Excepcion entities.
      *
      * @Route("/modifcar1", name="modificar1")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function modificar1Action(Request $request)
     {

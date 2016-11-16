@@ -31,7 +31,23 @@
                     <td><input type="checkbox" name="checkboxArray"></td>
                     <td>{{ e.fechaInicio|date('Y-m-d H:m:s') }}</td>
                     <td>{{ e.fechaFin|date('Y-m-d H:m:s') }}</td>
-                    <td>{{ duracions[loop.index0] }}</td>
+                    <td>
+                        {% if(duracions[loop.index0]|slice(0,2) != 0) %}
+                            {{ duracions[loop.index0]|slice(0,2)}} Año
+                        {% endif %}
+                        {% if(duracions[loop.index0]|slice(7,2) != 0) %}
+                            {{ duracions[loop.index0]|slice(7,2)}} Mes
+                        {% endif %}
+                        {% if(duracions[loop.index0]|slice(15,2) != 0) %}
+                            {{ duracions[loop.index0]|slice(15,2)}} Dia
+                        {% endif %}
+                        {% if(duracions[loop.index0]|slice(21,2) != 0) %}
+                            {{ duracions[loop.index0]|slice(21,2)}} Hora
+                        {% endif %}
+                        {% if(duracions[loop.index0]|slice(29,2) != 0) %}
+                            {{ duracions[loop.index0]|slice(29,2)}} Minuto
+                        {% endif %}
+                    </td>
                     <td>{{ e.idtypoexcepcion }}</td>
                     <td>{{ e.idtypoestadoexcepcion }}</td>
                     <td>
@@ -84,6 +100,7 @@
     <table class="table" id="exs">
         <thead>
             <tr>
+                <th>Acciones en Lote</th>
                 <th>Solicitante</th>
                 <th>Inicio</th>
                 <th> Fin</th>
@@ -101,6 +118,7 @@
             {% for e in ex %}
                 {% if (ex[0].idempleado != e.idempleado) %}
                 <tr>
+                    <td><input type="checkbox" name="checkboxArray"></td>
                     {% for person in persons %}
                         {% if (person.id == e.idempleado) %}
                             <td>{{ person.pNombre }} {{ person.pApellido }}</td>
@@ -108,7 +126,23 @@
                     {% endfor %}
                     <td>{{ e.fechaInicio|date('Y-m-d H:m:s') }}</td>
                     <td>{{ e.fechaFin|date('Y-m-d H:m:s') }}</td>
-                    <td>{{ duracions[loop.index0] }}</td>
+                    <td>
+                        {% if(duracions[loop.index0]|slice(0,2) != 0) %}
+                            {{ duracions[loop.index0]|slice(0,1)}} Año
+                        {% endif %}
+                        {% if(duracions[loop.index0]|slice(7,2) != 0) %}
+                            {{ duracions[loop.index0]|slice(7,1)}} Mes
+                        {% endif %}
+                        {% if(duracions[loop.index0]|slice(15,1) != 0) %}
+                            {{ duracions[loop.index0]|slice(15,2)}} Dia
+                        {% endif %}
+                        {% if(duracions[loop.index0]|slice(21,1) != 0) %}
+                            {{ duracions[loop.index0]|slice(21,2)}} Hora
+                        {% endif %}
+                        {% if(duracions[loop.index0]|slice(29,2) != 0) %}
+                            {{ duracions[loop.index0]|slice(29,2)}} Minuto
+                        {% endif %}
+                    </td>
                     <td>{{ e.idtypoexcepcion }}</td>
                     <td>{{ e.idtypoestadoexcepcion }}</td>
                     <td>
@@ -156,14 +190,10 @@
         </tbody>
     </table>
     </div>
-
-   
     <ul>
         <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Nueva Excepción</span></a>
         <a href="{{ path('modificar1') }}"><span class="btn btn-primary">Modificar 1</span></a>
     </ul>
-
-       
 
     <script>
     $(document).ready(function() {
