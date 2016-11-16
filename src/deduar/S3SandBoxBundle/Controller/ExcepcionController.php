@@ -76,19 +76,18 @@ class ExcepcionController extends Controller
         //print_r($this->date = new \DateTime());echo "<br>";
 
         print_r("DATOS DEL Gerente -------"); echo"<br>";
-        if (sizeof($em_j)) {
-            echo "SI <br>";
             print_r($em_j->getIdsupervisor()->getIdsupervisor()->getId());
             echo"<br>";
             $em_s = $em->getRepository('S3SandBoxBundle:Empleado')
                     ->findOneBy(array
                     ('id'=>$em_j->getIdsupervisor()->getIdsupervisor()->getId()));
             print_r($em_s->getId());
-            $p_s = $em->getRepository('S3SandBoxBundle:Persona')
-                    ->findOneBy(array('id'=>$em_s->getId()));
-            print_r($p_s->getPNombre());
-            print_r($p_s->getPApellido()); echo"<br>";
-            print_r($em_s->getIdcargo()->getNombre()); echo "<br>";
+            if (sizeof($em_j)) {
+                $p_s = $em->getRepository('S3SandBoxBundle:Persona')
+                        ->findOneBy(array('id'=>$em_s->getId()));
+                print_r($p_s->getPNombre());
+                print_r($p_s->getPApellido()); echo"<br>";
+                print_r($em_s->getIdcargo()->getNombre()); echo "<br>";
         }
         
 
