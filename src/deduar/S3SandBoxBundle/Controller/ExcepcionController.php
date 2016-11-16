@@ -67,8 +67,9 @@ class ExcepcionController extends Controller
         $em_j = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneBy(array('id'=>$excepcion->getIdempleado()));
 
-        print_r($em_j->getIdsupervisor()->getId()); echo"<br>";
-        if (sizeof($em_s)) {
+        
+        if (sizeof($em_j)) {
+            print_r($em_j->getIdsupervisor()->getId()); echo"<br>";
             $p_j = $em->getRepository('S3SandBoxBundle:Persona')
                     ->findOneBy(array('id'=>$em_j->getIdsupervisor()->getId()));
             print_r($p_j->getPNombre());
