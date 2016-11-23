@@ -145,7 +145,7 @@ class ExcepcionController extends Controller
             $duracions = null;
         }
 
-        switch ($session->get('nivel')) {
+/*        switch ($session->get('nivel')) {
             case 1:
                 die('Empleado');
                 break;
@@ -158,7 +158,7 @@ class ExcepcionController extends Controller
             default:
                 die('Gerente');
                 break;
-        }
+        } */
 
         return $this->render('excepcion/index.html.twig', array(
             'ex' => $ex,

@@ -91,3 +91,7 @@ ul.tab li a:focus, .active {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+.form-control {
+    width: 70%;
+}

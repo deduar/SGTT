@@ -4,7 +4,9 @@
 
     <ul class="tab">
       <li><a href="javascript:void(0)" class="tablinks" onclick="openExcept(event, 'Propias')" id="defaultOpen">Excepciones Propias</a></li>
-      <li><a href="javascript:void(0)" class="tablinks" onclick="openExcept(event, 'Supervisados')">Excepciones de Personal a Cargos</a></li>
+      {% if (app.session.get('nivel') > 1 ) %}
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openExcept(event, 'Supervisados')">Excepciones de Personal a Cargo</a></li>
+      {% endif %}
     </ul>
 
     <div id="Propias" class="tabcontent">
@@ -96,6 +98,7 @@
     </table>
     </div>
     
+    {% if (app.session.get('nivel') > 1 ) %}
     <div id="Supervisados" class="tabcontent">
     <table class="table" id="exs">
         <thead>
@@ -190,6 +193,8 @@
         </tbody>
     </table>
     </div>
+    {% endif %}
+
     <ul>
         <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Nueva Excepción</span></a>
         <a href="{{ path('modificar1') }}"><span class="btn btn-primary">Modificar 1</span></a>

@@ -63,7 +63,7 @@ class ExcepcionType extends AbstractType
                             ->orWhere('u.id = '.$options['data']->getIdempleado());
                         },
                         'data' => $options['data']->getIdempleado()))
-            ->add('estado', ChoiceType::class, 
+/*            ->add('estado', ChoiceType::class, 
                 array('label'=>'Estado de la Excepción',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9'),
@@ -71,11 +71,16 @@ class ExcepcionType extends AbstractType
                         'Creada' => 'Creada',
                         'Por Confirma' => 'Por Confirmar',
                         'Aprobada' => 'Aprobada',
-                        'Negada' => 'Negada')))
+                        'Negada' => 'Negada'))) */
+            ->add('idtypoestadoexcepcion', EntityType::class,
+                array('class'=>'S3SandBoxBundle:TypoEstadoExcepcion',
+                      'label'=>'Tipo de Excepcion',
+                      'label_attr'=>array('class'=>'col-sm-3'),
+                      'attr'=>array('class'=>'col-sm-9')))
             ->add('ejecutada', CheckboxType::class,
                 array('label'=>'En Ejecución',
                       'required' => false,
-                      'label_attr'=>array('class'=>'col-sm-2'),
+                      'label_attr'=>array('class'=>'col-sm-2 col-sm-offset-4'),
                       'attr'=>array('class'=>'col-sm-1')))
             ->add('enviada', CheckboxType::class,
                 array('label'=>'Enviada',
@@ -92,11 +97,6 @@ class ExcepcionType extends AbstractType
                       'required' => false,
                       'label_attr'=>array('class'=>'col-sm-2'),
                       'attr'=>array('class'=>'col-sm-1')))
-            ->add('idtypoestadoexcepcion', EntityType::class,
-                array('class'=>'S3SandBoxBundle:TypoEstadoExcepcion',
-                      'label'=>'Tipo de Excepcion',
-                      'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9')))
             ->add('save', SubmitType::class, 
                 array('label' => 'Guardar Excepción',
                       'attr'  => array(
