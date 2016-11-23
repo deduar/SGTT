@@ -74,7 +74,7 @@ class ExcepcionType extends AbstractType
                         'Negada' => 'Negada'))) */
             ->add('idtypoestadoexcepcion', EntityType::class,
                 array('class'=>'S3SandBoxBundle:TypoEstadoExcepcion',
-                      'label'=>'Tipo de Excepcion',
+                      'label'=>'Estado de Excepcion',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
             ->add('ejecutada', CheckboxType::class,
