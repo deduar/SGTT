@@ -142,6 +142,7 @@ class ExcepcionController extends Controller
 
         if (!(isset($ex))) {
             $ex = null;
+            $duracions = null;
         }
 
         return $this->render('excepcion/index.html.twig', array(

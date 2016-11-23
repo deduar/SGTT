@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"getId",
+				"getIdsupervisor"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
 				"perso",
 				"persona"
 			],
@@ -18,10 +26,6 @@
 			[
 				"getP",
 				"getPNombre"
-			],
-			[
-				"getId",
-				"getIdpersona"
 			],
 			[
 				"ids",
@@ -300,7 +304,16 @@
 			"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 			"settings":
 			{
-				"buffer_size": 10225,
+				"buffer_size": 10377,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/deduar/S3SandBoxBundle/Controller/EmpleadoController.php",
+			"settings":
+			{
+				"buffer_size": 7037,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -309,7 +322,7 @@
 			"file": "app/Resources/views/excepcion/index.html.twig",
 			"settings":
 			{
-				"buffer_size": 7869,
+				"buffer_size": 9675,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -620,7 +633,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -647,10 +660,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 158.0,
+						"translation.y": 54.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -659,15 +672,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10225,
+						"buffer_size": 10377,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10083,
-								10083
+								2966,
+								2966
 							]
 						],
 						"settings":
@@ -677,27 +690,57 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1381.0,
+						"translation.y": 1162.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "app/Resources/views/excepcion/index.html.twig",
+					"file": "src/deduar/S3SandBoxBundle/Controller/EmpleadoController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7869,
+						"buffer_size": 7037,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4211,
-								4211
+								2472,
+								2472
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1188.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/Resources/views/excepcion/index.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9675,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6146,
+								6146
 							]
 						],
 						"settings":
@@ -707,10 +750,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1638.0,
+						"translation.y": 2116.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
