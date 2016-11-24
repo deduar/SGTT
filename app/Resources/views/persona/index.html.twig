@@ -15,9 +15,9 @@
         {% for persona in personas %}
             <tr>
                 <td><a href="{{ path('persona_show', { 'id': persona.id }) }}">{{ persona.id }}</a></td>
-                <td>{{ persona.nombre }}</td>
-                <td>{{ persona.apellido }}</td>
-                <td>{{ persona.ci }}</td>
+                <td>{{ persona.pnombre }}</td>
+                <td>{{ persona.papellido }}</td>
+                <td>{{ persona.id }}</td>
                 <td>
                     <ul>
                         <li>

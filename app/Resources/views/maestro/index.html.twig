@@ -1,0 +1,134 @@
+{% extends 'tematwigcsg/plantilla.html.twig' %}
+
+{% block body %}
+
+<div class="row">
+
+<div class="col-sm-4">
+
+<!--menu del sitio -->
+<div id="menu"  >
+    <div id="inner-menu">
+        <ul id="main-menu" class="menu"> 
+        	<li>
+        		<div href="javascript:void(0)" class="sub-trigger" onclick="openExcept(event, 'Personas')" id="defaultOpen">Personas</div>
+        	</li>
+        	<li>
+        		<div href="javascript:void(0)" class="sub-trigger" onclick="openExcept(event, 'Empleados')" >Empleados</div>
+        	</li>
+        	<li>
+        		<div href="javascript:void(0)" class="sub-trigger" onclick="openExcept(event, 'EdoExcepciones')" >Estado Excepciones</div>
+        	</li>
+        	<li>
+        		<div href="javascript:void(0)" class="sub-trigger" onclick="openExcept(event, 'TipoExcepciones')" >Tipo Excepciones</div>
+        	</li>
+        </ul>
+    </div>
+</div>
+<!-- Fin menu del sitio-->
+
+</div>
+
+<div class="col-sm-8 menu">
+
+	<div id="Personas" class="tabcontent">
+    <table class="table" id="per">
+        <thead>
+            <tr>
+                <th>Acciones en Lote</th>
+                <th>Nombre</th>
+                <th>Inicio</th>
+                <th>Fin</th>
+                <th>Duración</th>
+            </tr>
+        </thead>
+        <tbody>
+        	{% for item in 1..432 %}
+        	<tr>
+        		<td>{{personas[0].pNombre}} {{personas[0].pApellido}}</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+        	</tr>
+        	{% endfor %}
+        </tbody>
+    </table>
+    <ul>
+        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Agregar Persona</span></a>
+    </ul>
+	</div>
+
+	<div id="Empleados" class="tabcontent">
+    <table class="table" id="emp">
+        <thead>
+            <tr>
+                <th>Acciones en Lote</th>
+                <th>Solicitante</th>
+                <th>Inicio</th>
+            </tr>
+        </thead>
+    </table>
+    <ul>
+        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Agregar Empleado</span></a>
+    </ul>
+    </div>
+
+    <div id="EdoExcepciones" class="tabcontent">
+    <table class="table" id="eex">
+        <thead>
+            <tr>
+                <th>Acciones en Lote</th>
+                <th>Solicitante</th>
+            </tr>
+        </thead>
+    </table>
+    <ul>
+        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Agregar Empleado</span></a>
+    </ul>
+    </div>
+
+    <div id="TipoExcepciones" class="tabcontent">
+    <table class="table" id="tex">
+        <thead>
+            <tr>
+                <th>Solicitante</th>
+                <th>Inicio</th>
+            </tr>
+        </thead>
+    </table>
+    <ul>
+        <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Agregar Empleado</span></a>
+    </ul>
+    </div>
+
+</div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#per').DataTable();
+        $('#emp').DataTable();
+        $('#eex').DataTable();
+        $('#tex').DataTable();
+    });
+    </script>
+
+<script>
+function openExcept(evt, criteria) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(criteria).style.display = "block";
+    evt.currentTarget.className += " active";
+};
+document.getElementById("defaultOpen").click();
+</script>
+
+{% endblock %}
