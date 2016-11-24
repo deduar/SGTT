@@ -103,8 +103,9 @@ class ExcepcionType extends AbstractType
                         'class' => 'btn btn-primary col-sm-offset-4 col-sm-2')))
             ->add('cancel', SubmitType::class, 
                 array('label' => 'Cancelar Excepción',
-                      'attr'  => array(
-                         'class' => 'btn btn-danger col-sm-offset-1 col-sm-2')))
+                      'attr' => array(                       
+                        'class' => 'btn btn-danger col-sm-offset-1 col-sm-2',
+                        'formnovalidate'=>'formnovalidate')))
         ;
     }
     

@@ -187,21 +187,21 @@ class ExcepcionController extends Controller
         $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
         $form->handleRequest($request);
 
-        if ($form->get('cancel')->isClicked()) {
+        if ($form->isSubmitted() && $form->get('cancel')->isClicked()) {
             return $this->redirectToRoute('excepcion_index');
-        } else {
-            if ($form->isSubmitted() && $form->isValid()) {
-                //$session = $request->getSession();
-                //$excepcion->setSolicitante($session->get('id'));
-                $excepcion->setEstado("");
-                $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
-                $excepcion->setFechaCreacion(new \DateTime('now'));
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($excepcion);
-                $em->flush();
+        }
 
-                return $this->redirectToRoute('excepcion_index');
-            }
+        if ($form->isSubmitted() && $form->isValid()) {
+            //$session = $request->getSession();
+            //$excepcion->setSolicitante($session->get('id'));
+            $excepcion->setEstado("");
+            $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
+            $excepcion->setFechaCreacion(new \DateTime('now'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($excepcion);
+            $em->flush();
+
+            return $this->redirectToRoute('excepcion_index');
         }
 
         return $this->render('excepcion/new.html.twig', array(
