@@ -95,3 +95,11 @@ ul.tab li a:focus, .active {
 .form-control {
     width: 70%;
 }
+
+.glyphicon-alert_red {
+    color: #FF3535;
+}
+
+.glyphicon-alert_grey {
+    color: #8a8a8a;
+}

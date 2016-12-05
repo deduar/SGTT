@@ -21,8 +21,6 @@
                 <th>Tipo Estado</th>
                 <th>Ejec</th>
                 <th>Env</th>
-                <th>Conf</th>
-                <th>Remu</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -67,26 +65,19 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% if (e.conformada) %}
-                            <span class="glyphicon glyphicon-ok"></span>
-                        {% else %}
-                            <span class="glyphicon glyphicon-remove"></span>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if (e.remunerada) %}
-                            <span class="glyphicon glyphicon-ok"></span>
-                        {% else %}
-                            <span class="glyphicon glyphicon-remove"></span>
-                        {% endif %}
-                    </td>
-                    <td>
                         <a href="{{ path('excepcion_show', { 'id': e.id }) }}"> 
                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         </a>
                         <a href="{{ path('excepcion_edit', { 'id': e.id }) }}"> 
                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
+                        {% if (e.ejecutada == false) %}
+                        <a href="{{ path('excepcion_delete', { 'id': e.id }) }}"> 
+                           <span class="glyphicon glyphicon-remove glyphicon-alert_red" aria-hidden="true"></span>
+                        </a>
+                        {% else %}
+                           <span class="glyphicon glyphicon-remove glyphicon-alert_grey" aria-hidden="true"></span>
+                        {% endif %}
                         <a href="{{ path('gen_report', { 'id': e.id }) }}"> 
                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
@@ -202,8 +193,20 @@
 
     <script>
     $(document).ready(function() {
-        $('#ex').DataTable();
-        $('#exs').DataTable();
+        $('#ex').DataTable({
+            "columnDefs": [ {
+                "targets": [0,6,7,8,9,10],
+                "orderable": false
+            } ],
+            "order": [[3, "desc"]]
+        });
+        $('#exs').DataTable({
+            "columnDefs": [ {
+                "targets": [0,7,8,9,10,11],
+                "orderable": false
+            } ],
+            "order": [[4, "desc"]]
+        });
     });
     </script>
 

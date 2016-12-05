@@ -184,7 +184,11 @@ class ExcepcionController extends Controller
                 ->findOneBy(array('id'=>$empleado->getIdpersona()));
         $excepcion = new Excepcion();
         $excepcion->setIdempleado($request->getSession()->get('id'));
-        $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
+        if ($session->get('nivel') == 1) {
+            $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionEmpleadoType', $excepcion);
+        } else {
+            $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->get('cancel')->isClicked()) {
@@ -195,7 +199,11 @@ class ExcepcionController extends Controller
             //$session = $request->getSession();
             //$excepcion->setSolicitante($session->get('id'));
             $excepcion->setEstado("");
-            $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
+            if ($session->get('nivel') == 1) {
+                $excepcion->setIdempleado($session->get('id'));
+            } else {
+                $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
+            }
             $excepcion->setFechaCreacion(new \DateTime('now'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($excepcion);
@@ -275,6 +283,7 @@ class ExcepcionController extends Controller
      */
     public function deleteAction(Request $request, Excepcion $excepcion)
     {
+        die("DELETE");
         $form = $this->createDeleteForm($excepcion);
         $form->handleRequest($request);
 
