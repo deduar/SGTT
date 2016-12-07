@@ -165,16 +165,19 @@ class ExcepcionController extends Controller
     {
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
-        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
+/*        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
                 ->findOneBy(array('id'=>$session->get('id')));
         $persona = $em->getRepository('S3SandBoxBundle:Persona')
-                ->findOneBy(array('id'=>$empleado->getIdpersona()));
+                ->findOneBy(array('id'=>$empleado->getIdpersona())); */
         $excepcion = new Excepcion();
         $excepcion->setIdempleado($request->getSession()->get('id'));
         if ($session->get('nivel') == 1) {
             $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionEmpleadoType', $excepcion);
-        } else {
-            $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
+            $excepcion->setIdempleado($request->getSession()->get('id'));
+        } 
+        if ($session->get('nivel') == 2)  {
+            $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionSupervisorType', $excepcion);
+            //$excepcion->setIdempleado($request->get('excepcion')['idempleado']);
         }
         $form->handleRequest($request);
 
@@ -186,11 +189,11 @@ class ExcepcionController extends Controller
             //$session = $request->getSession();
             //$excepcion->setSolicitante($session->get('id'));
             $excepcion->setEstado("");
-            if ($session->get('nivel') == 1) {
+            /*if ($session->get('nivel') == 1) {
                 $excepcion->setIdempleado($session->get('id'));
             } else {
                 $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
-            }
+            }*/
             $excepcion->setFechaCreacion(new \DateTime('now'));
             $tee = $em->getRepository('S3SandBoxBundle:TypoEstadoExcepcion')
                 ->findOneBy(array('descripcion'=>'CREADA'));
@@ -253,14 +256,14 @@ class ExcepcionController extends Controller
 
         if ($session->get('nivel') == 1) {
             $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionEmpleadoType', $excepcion);
+            $excepcion->setIdempleado($session->get('id'));
         } else {
             $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
         }
 
         $editForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $excepcion->setIdempleado($session->get('id'));
+            //$excepcion->setIdempleado($session->get('id'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($excepcion);
             $em->flush();

@@ -40,7 +40,7 @@ class ExcepcionType extends AbstractType
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
             ->add('observacion', TextareaType::class, 
-                array('label'=>'Observaciones',
+                array('label'=>'Motivo',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
 /*            ->add('idempleado', EntityType::class, 
