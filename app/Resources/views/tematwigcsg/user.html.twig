@@ -22,7 +22,7 @@
             {% if (app.session.get('nivel') == 3) %}
                     : Jefe de Departamento
             {% endif %}
-            {% if (app.session.get('nivel') == 4) %}
+            {% if (app.session.get('nivel') >= 4) %}
                     : Gerente
             {% endif %}
         </li>

@@ -25,7 +25,7 @@ class TypoEstadoExcepcion
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="string", length=10)
+     * @ORM\Column(name="descripcion", type="string", length=100)
      */
     private $descripcion;
 

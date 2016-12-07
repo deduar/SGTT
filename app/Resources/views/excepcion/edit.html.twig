@@ -1,7 +1,8 @@
 {% extends 'tematwigcsg/plantilla.html.twig' %}
 
 {% block body %}
-
+	
+	{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
     {{ form_end(edit_form) }}

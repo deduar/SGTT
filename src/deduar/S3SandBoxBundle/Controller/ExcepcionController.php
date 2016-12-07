@@ -12,6 +12,8 @@ use deduar\S3SandBoxBundle\Form\ExcepcionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use deduar\S3SandBoxBundle\Entity\Empleado;
 
+use deduar\S3SandBoxBundle\Entity\TypoEstadoExcepcion;
+
 /**
  * Excepcion controller.
  *
@@ -145,21 +147,6 @@ class ExcepcionController extends Controller
             $duracions = null;
         }
 
-/*        switch ($session->get('nivel')) {
-            case 1:
-                die('Empleado');
-                break;
-            case 2:
-                die('Supervisor');
-                break;
-            case 3:
-                die('Jefe');
-                break;
-            default:
-                die('Gerente');
-                break;
-        } */
-
         return $this->render('excepcion/index.html.twig', array(
             'ex' => $ex,
             'persons' => $persons,
@@ -205,6 +192,13 @@ class ExcepcionController extends Controller
                 $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
             }
             $excepcion->setFechaCreacion(new \DateTime('now'));
+            $tee = $em->getRepository('S3SandBoxBundle:TypoEstadoExcepcion')
+                ->findOneBy(array('descripcion'=>'CREADA'));
+            $excepcion->setEjecutada('FALSE');
+            $excepcion->setEnviada('FALSE');
+            $excepcion->setConformada('FALSE');
+            $excepcion->setremunerada('FALSE');
+            $excepcion->setIdtypoestadoexcepcion($tee);
             $em = $this->getDoctrine()->getManager();
             $em->persist($excepcion);
             $em->flush();
@@ -256,11 +250,17 @@ class ExcepcionController extends Controller
                 ->findOneBy(array('id'=>$empleado->getIdpersona()));
 
         $deleteForm = $this->createDeleteForm($excepcion);
-        $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
+
+        if ($session->get('nivel') == 1) {
+            $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionEmpleadoType', $excepcion);
+        } else {
+            $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionType', $excepcion);
+        }
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $excepcion->setIdempleado($excepcion->getIdempleado()->getId());
+            $excepcion->setIdempleado($session->get('id'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($excepcion);
             $em->flush();

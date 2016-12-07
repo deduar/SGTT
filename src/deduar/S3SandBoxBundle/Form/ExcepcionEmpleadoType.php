@@ -40,7 +40,7 @@ class ExcepcionEmpleadoType extends AbstractType
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
             ->add('observacion', TextareaType::class, 
-                array('label'=>'Observaciones',
+                array('label'=>'Motivo',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
 /*            ->add('idempleado', EntityType::class, 
@@ -72,12 +72,12 @@ class ExcepcionEmpleadoType extends AbstractType
                         'Por Confirma' => 'Por Confirmar',
                         'Aprobada' => 'Aprobada',
                         'Negada' => 'Negada'))) */
-            ->add('idtypoestadoexcepcion', EntityType::class,
+/*            ->add('idtypoestadoexcepcion', EntityType::class,
                 array('class'=>'S3SandBoxBundle:TypoEstadoExcepcion',
                       'label'=>'Estado de Excepcion',
                       'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9')))
-            ->add('ejecutada', CheckboxType::class,
+                      'attr'=>array('class'=>'col-sm-9'))) */
+/*            ->add('ejecutada', CheckboxType::class,
                 array('label'=>'En Ejecución',
                       'required' => false,
                       'label_attr'=>array('class'=>'col-sm-2 col-sm-offset-4'),
@@ -87,7 +87,7 @@ class ExcepcionEmpleadoType extends AbstractType
                       'required' => false,
                       'label_attr'=>array('class'=>'col-sm-2'),
                       'attr'=>array('class'=>'col-sm-1',
-                      'checked' => 'checked')))
+                      'checked' => 'checked'))) */
 /*            ->add('conformada', CheckboxType::class,
                 array('label'=>'Conformada',
                       'required' => false,
