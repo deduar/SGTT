@@ -25,6 +25,7 @@
             {% if (app.session.get('nivel') >= 4) %}
                     : Gerente
             {% endif %}
+            ({{app.session.get('nivel')}})
         </li>
         <li>         
             <a href="{{ path('empleado_logout') }}" title="Cerrar Sesión">

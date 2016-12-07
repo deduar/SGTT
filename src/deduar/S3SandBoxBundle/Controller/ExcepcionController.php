@@ -165,19 +165,13 @@ class ExcepcionController extends Controller
     {
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
-/*        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findOneBy(array('id'=>$session->get('id')));
-        $persona = $em->getRepository('S3SandBoxBundle:Persona')
-                ->findOneBy(array('id'=>$empleado->getIdpersona())); */
         $excepcion = new Excepcion();
         $excepcion->setIdempleado($request->getSession()->get('id'));
         if ($session->get('nivel') == 1) {
             $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionEmpleadoType', $excepcion);
-            $excepcion->setIdempleado($request->getSession()->get('id'));
         } 
         if ($session->get('nivel') == 2)  {
-            $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionSupervisorType', $excepcion);
-            //$excepcion->setIdempleado($request->get('excepcion')['idempleado']);
+            $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionSupervisorType', $excepcion);      
         }
         $form->handleRequest($request);
 
@@ -186,22 +180,16 @@ class ExcepcionController extends Controller
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$session = $request->getSession();
-            //$excepcion->setSolicitante($session->get('id'));
-            $excepcion->setEstado("");
-            /*if ($session->get('nivel') == 1) {
-                $excepcion->setIdempleado($session->get('id'));
-            } else {
-                $excepcion->setIdempleado($request->get('excepcion')['idempleado']);
-            }*/
             $excepcion->setFechaCreacion(new \DateTime('now'));
-            $tee = $em->getRepository('S3SandBoxBundle:TypoEstadoExcepcion')
-                ->findOneBy(array('descripcion'=>'CREADA'));
             $excepcion->setEjecutada('FALSE');
             $excepcion->setEnviada('FALSE');
             $excepcion->setConformada('FALSE');
             $excepcion->setremunerada('FALSE');
-            $excepcion->setIdtypoestadoexcepcion($tee);
+            if($session->get('nivel') == 1){
+                $excepcion->setIdempleado($request->getSession()->get('id'));
+            }else{
+                $excepcion->setIdempleado($excepcion->getIdempleado()->getId());
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($excepcion);
             $em->flush();

@@ -63,20 +63,18 @@ class ExcepcionSupervisorType extends AbstractType
                             ->orWhere('u.id = '.$options['data']->getIdempleado());
                         },
                         'data' => $options['data']->getIdempleado()))
-/*            ->add('estado', ChoiceType::class, 
+            ->add('estado', ChoiceType::class, 
                 array('label'=>'Estado de la Excepción',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9'),
                       'choices'=>array(
-                        'Creada' => 'Creada',
-                        'Por Confirma' => 'Por Confirmar',
-                        'Aprobada' => 'Aprobada',
-                        'Negada' => 'Negada'))) */
-            ->add('idtypoestadoexcepcion', EntityType::class,
+                        'CREADA' => 'CREADA',
+                        'POR CONFIRMAR' => 'POR CONFIRMAR'))) 
+/*            ->add('idtypoestadoexcepcion', EntityType::class,
                 array('class'=>'S3SandBoxBundle:TypoEstadoExcepcion',
                       'label'=>'Estado de Excepcion',
                       'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9')))
+                      'attr'=>array('class'=>'col-sm-9'))) */
             ->add('ejecutada', CheckboxType::class,
                 array('label'=>'En Ejecución',
                       'required' => false,
