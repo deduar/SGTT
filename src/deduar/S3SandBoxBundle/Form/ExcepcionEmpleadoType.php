@@ -12,9 +12,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 
 class ExcepcionEmpleadoType extends AbstractType
@@ -43,61 +42,6 @@ class ExcepcionEmpleadoType extends AbstractType
                 array('label'=>'Motivo',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
-/*            ->add('idempleado', EntityType::class, 
-                array('label'=>'Empleado',
-                      'class' => 'S3SandBoxBundle:Empleado',
-                      'query_builder' => function (EntityRepository $er) use ($options) {
-                        return $er->createQueryBuilder('u')
-                            ->where('u.idsupervisor = '.$options['data']->getIdempleado())
-                            ->orWhere('u.id = '.$options['data']->getIdempleado())
-                        ;},
-                        'data' => $options['data']->getIdempleado())) */
-/*            ->add('idempleado', EntityType::class,
-                array('class'=>'S3SandBoxBundle:Empleado',
-                      'label'=>'Empleado',
-                      'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9'),
-                      'query_builder' => function (EntityRepository $er) use ($options) {
-                        return $er->createQueryBuilder('u')
-                            ->where('u.idsupervisor = '.$options['data']->getIdempleado())
-                            ->orWhere('u.id = '.$options['data']->getIdempleado());
-                        },
-                        'data' => $options['data']->getIdempleado())) */
-/*            ->add('estado', ChoiceType::class, 
-                array('label'=>'Estado de la Excepción',
-                      'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9'),
-                      'choices'=>array(
-                        'Creada' => 'Creada',
-                        'Por Confirma' => 'Por Confirmar',
-                        'Aprobada' => 'Aprobada',
-                        'Negada' => 'Negada'))) */
-/*            ->add('idtypoestadoexcepcion', EntityType::class,
-                array('class'=>'S3SandBoxBundle:TypoEstadoExcepcion',
-                      'label'=>'Estado de Excepcion',
-                      'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9'))) */
-/*            ->add('ejecutada', CheckboxType::class,
-                array('label'=>'En Ejecución',
-                      'required' => false,
-                      'label_attr'=>array('class'=>'col-sm-2 col-sm-offset-4'),
-                      'attr'=>array('class'=>'col-sm-1')))
-            ->add('enviada', CheckboxType::class,
-                array('label'=>'Enviada',
-                      'required' => false,
-                      'label_attr'=>array('class'=>'col-sm-2'),
-                      'attr'=>array('class'=>'col-sm-1',
-                      'checked' => 'checked'))) */
-/*            ->add('conformada', CheckboxType::class,
-                array('label'=>'Conformada',
-                      'required' => false,
-                      'label_attr'=>array('class'=>'col-sm-2'),
-                      'attr'=>array('class'=>'col-sm-1')))
-            ->add('remunerada', CheckboxType::class,
-                array('label'=>'Remunerada',
-                      'required' => false,
-                      'label_attr'=>array('class'=>'col-sm-2'),
-                      'attr'=>array('class'=>'col-sm-1'))) */
             ->add('save', SubmitType::class, 
                 array('label' => 'Guardar Excepción',
                       'attr'  => array(

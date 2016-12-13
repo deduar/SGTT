@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"getId",
+				"getIdempleado"
+			],
+			[
+				"T",
+				"TRUE"
+			],
+			[
 				"strto",
 				"strtoupper"
 			],
@@ -22,10 +30,6 @@
 			[
 				"Ti",
 				"TipoExcepciones"
-			],
-			[
-				"getId",
-				"getIdsupervisor"
 			],
 			[
 				"exp",
@@ -316,8 +320,16 @@
 			"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 			"settings":
 			{
-				"buffer_size": 11603,
+				"buffer_size": 11737,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
+			"settings":
+			{
+				"buffer_size": 7467,
 				"line_ending": "Unix"
 			}
 		},
@@ -325,7 +337,19 @@
 			"file": "src/deduar/S3SandBoxBundle/Form/ExcepcionSupervisorType.php",
 			"settings":
 			{
-				"buffer_size": 5785,
+				"buffer_size": 5742,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{% extends 'tematwigcsg/plantilla.html.twig' %}\n\n{% block body %}\n\n    <ul class=\"tab\">\n      <li><a href=\"javascript:void(0)\" class=\"tablinks\" onclick=\"openExcept(event, 'Propias')\" id=\"defaultOpen\">Excepciones Propias</a></li>\n      {% if (app.session.get('nivel') > 1 ) %}\n        <li><a href=\"javascript:void(0)\" class=\"tablinks\" onclick=\"openExcept(event, 'Supervisados')\">Excepciones de Personal a Cargo</a></li>\n      {% endif %}\n    </ul>\n\n    <div id=\"Propias\" class=\"tabcontent\">\n    <table class=\"table\" id=\"ex\">\n        <thead>\n            <tr>\n                <th>Acciones en Lote</th>\n                <th>Inicio</th>\n                <th> Fin</th>\n                <th> Duración</th>\n                <th>Tipo Excepcion</th>\n                <th>Tipo Estado</th>\n                <th>Acciones</th>\n            </tr>\n        </thead>\n        <tbody>\n            {% for e in ex %}\n                {% if (e.idempleado == app.session.get('id')) %}\n                <tr>\n                    <td><input type=\"checkbox\" name=\"checkboxArray\"></td>\n                    <td>{{ e.fechaInicio|date('d/m/Y - H:m') }}</td>\n                    <td>{{ e.fechaFin|date('d/m/Y - H:m') }}</td>\n                    <td>\n                        {% if(duracions[loop.index0]|slice(0,2) != 0) %}\n                            {{ duracions[loop.index0]|slice(0,2)}} Años\n                        {% endif %}\n                        {% if(duracions[loop.index0]|slice(7,3) != 0) %}\n                            {{ duracions[loop.index0]|slice(7,3)}} Meses\n                        {% endif %}\n                        {% if(duracions[loop.index0]|slice(15,3) != 0) %}\n                            {{ duracions[loop.index0]|slice(15,3)}} Dias\n                        {% endif %}\n                        {% if(duracions[loop.index0]|slice(25,2) != 0) %}\n                            {{ duracions[loop.index0]|slice(25,2)}} Horas\n                        {% endif %}\n                        {% if(duracions[loop.index0]|slice(34,2) != 0) %}\n                            {{ duracions[loop.index0]|slice(34,2)}} Minutos\n                        {% endif %}\n                    </td>\n                    <td>{{ e.idtypoexcepcion }}</td>\n                    <td>{{ e.estado }}</td>\n\n                    <td>\n                        <a href=\"{{ path('excepcion_show', { 'id': e.id }) }}\"> \n                           <span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span>\n                        </a>\n                        {% if (e.estado == \"APROBADA\") %}\n                        <span class=\"glyphicon glyphicon-pencil glyphicon-pencil_grey\" aria-hidden=\"true\"></span>\n                        <span class=\"glyphicon glyphicon-remove glyphicon-alert_grey\" aria-hidden=\"true\"></span>\n                        {% else %}\n                        <a href=\"{{ path('excepcion_edit', { 'id': e.id }) }}\">\n                           <span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span>\n                        </a>\n                        <a href=\"{{ path('excepcion_delete', { 'id': e.id }) }}\"> \n                            <span class=\"glyphicon glyphicon-remove glyphicon-alert_red\" aria-hidden=\"true\"></span>\n                        </a>\n                        {% endif %}\n                        <a href=\"{{ path('gen_report', { 'id': e.id }) }}\"> \n                           <span class=\"glyphicon glyphicon-list-alt\" aria-hidden=\"true\"></span>\n                        </a>\n                    </td>\n                </tr>\n                {% endif %}\n            {% endfor %}\n        </tbody>\n    </table>\n    </div>\n    \n    {% if (app.session.get('nivel') > 1 ) %}\n    <div id=\"Supervisados\" class=\"tabcontent\">\n    <table class=\"table\" id=\"exs\">\n        <thead>\n            <tr>\n                <th>Acciones en Lote</th>\n                <th>Solicitante</th>\n                <th>Inicio</th>\n                <th> Fin</th>\n                <th> Duración</th>\n                <th>Tipo Excepcion</th>\n                <th>Tipo Estado</th>\n                <th>Ejec</th>\n                <th>Env</th>\n                <th>Conf</th>\n                <th>Remu</th>\n                <th>Acciones</th>\n            </tr>\n        </thead>\n        <tbody>\n            {% for e in ex %}\n                {% if (e.idempleado != app.session.get('id')) %}\n                <tr>\n                    <td><input type=\"checkbox\" name=\"checkboxArray\"></td>\n                    {% for person in persons %}\n                        {% if (person.id == e.idempleado) %}\n                            <td>{{ person.pNombre }} {{ person.pApellido }}</td>\n                        {% endif %}\n                    {% endfor %}\n                    <td>{{ e.fechaInicio|date('Y-m-d H:m:s') }}</td>\n                    <td>{{ e.fechaFin|date('Y-m-d H:m:s') }}</td>\n                    <td>\n                        {% if(duracions[loop.index0]|slice(0,2) != 0) %}\n                            {{ duracions[loop.index0]|slice(0,2)}} Años\n                        {% endif %}\n                        {% if(duracions[loop.index0]|slice(8,2) != 0) %}\n                            {{ duracions[loop.index0]|slice(8,2)}} Meses\n                        {% endif %}\n                        {% if(duracions[loop.index0]|slice(17,1) != 0) %}\n                            {{ duracions[loop.index0]|slice(17,2)}} Dias\n                        {% endif %}\n                        {% if(duracions[loop.index0]|slice(25,1) != 0) %}\n                            {{ duracions[loop.index0]|slice(25,2)}} Horas\n                        {% endif %}\n                        {% if(duracions[loop.index0]|slice(34,2) != 0) %}\n                            {{ duracions[loop.index0]|slice(34,2)}} Minutos\n                        {% endif %}\n                    </td>\n                    <td>{{ e.idtypoexcepcion }}</td>\n                    <td>{{ e.estado }}</td>\n                    <td>\n                        {% if (e.ejecutada) %}\n                            <span class=\"glyphicon glyphicon-ok\"></span>\n                        {% else %}\n                            <span class=\"glyphicon glyphicon-remove\"></span>\n                        {% endif %}\n                    </td>\n                    <td>\n                        {% if (e.enviada) %}\n                            <span class=\"glyphicon glyphicon-ok\"></span>\n                        {% else %}\n                            <span class=\"glyphicon glyphicon-remove\"></span>\n                        {% endif %}\n                    </td>\n                    <td>\n                        {% if (e.conformada) %}\n                            <span class=\"glyphicon glyphicon-ok\"></span>\n                        {% else %}\n                            <span class=\"glyphicon glyphicon-remove\"></span>\n                        {% endif %}\n                    </td>\n                    <td>\n                        {% if (e.remunerada) %}\n                            <span class=\"glyphicon glyphicon-ok\"></span>\n                        {% else %}\n                            <span class=\"glyphicon glyphicon-remove\"></span>\n                        {% endif %}\n                    </td>\n                    <td>\n                        <a href=\"{{ path('excepcion_show', { 'id': e.id }) }}\"> \n                           <span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span>\n                        </a>\n                        {% if (e.estado == \"APROBADA\") %}\n                        <span class=\"glyphicon glyphicon-pencil glyphicon-pencil_grey\" aria-hidden=\"true\"></span>\n                        <span class=\"glyphicon glyphicon-remove glyphicon-alert_grey\" aria-hidden=\"true\"></span>\n                        {% else %}\n                        <a href=\"{{ path('excepcion_edit', { 'id': e.id }) }}\"> \n                           <span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span>\n                        </a>\n                        <a href=\"{{ path('excepcion_delete', { 'id': e.id }) }}\"> \n                            <span class=\"glyphicon glyphicon-remove glyphicon-alert_red\" aria-hidden=\"true\"></span>\n                        </a>\n                        {% endif %}\n                        <a href=\"{{ path('gen_report', { 'id': e.id }) }}\"> \n                           <span class=\"glyphicon glyphicon-list-alt\" aria-hidden=\"true\"></span>\n                        </a>\n                    </td>\n                </tr>\n                {% endif %}\n            {% endfor %}\n        </tbody>\n    </table>\n    </div>\n    {% endif %}\n\n    <ul>\n        <a href=\"{{ path('excepcion_new') }}\"><span class=\"btn btn-primary\">Nueva Excepción</span></a>\n        {% if (app.session.get('nivel') > 1) %}\n        <a href=\"{{ path('modificar1') }}\"><span class=\"btn btn-primary\">Modificar 1</span></a>\n        {% endif %}\n    </ul>\n\n    <script>\n    $(document).ready(function() {\n        $('#ex').DataTable({\n            \"columnDefs\": [ {\n                \"targets\": [0,6],\n                \"orderable\": false\n            } ],\n            \"order\": [[3, \"desc\"]]\n        });\n        $('#exs').DataTable({\n            \"columnDefs\": [ {\n                \"targets\": [0,7,8,9,10,11],\n                \"orderable\": false\n            } ],\n            \"order\": [[4, \"desc\"]]\n        });\n    });\n    </script>\n\n    <script>\n    function openExcept(evt, criteria) {\n        var i, tabcontent, tablinks;\n        tabcontent = document.getElementsByClassName(\"tabcontent\");\n        for (i = 0; i < tabcontent.length; i++) {\n            tabcontent[i].style.display = \"none\";\n        }\n        tablinks = document.getElementsByClassName(\"tablinks\");\n        for (i = 0; i < tablinks.length; i++) {\n            tablinks[i].className = tablinks[i].className.replace(\" active\", \"\");\n        }\n        document.getElementById(criteria).style.display = \"block\";\n        evt.currentTarget.className += \" active\";\n    };\n    document.getElementById(\"defaultOpen\").click();\n    </script>\n\n{% endblock %}\n",
+			"file": "app/Resources/views/excepcion/index.html.twig",
+			"file_size": 9976,
+			"file_write_time": 131257865159281924,
+			"settings":
+			{
+				"buffer_size": 9970,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -373,6 +397,7 @@
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Resources",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Resources/views",
@@ -385,14 +410,15 @@
 	],
 	"file_history":
 	[
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/new.html.twig",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionSupervisorType.php",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/tematwigcsg/user.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionSupervidorType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionGerenteType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/index.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/web/bundles/web/temacsgwebapp/css/sgtt_main.css",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/edit.html.twig",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/new.html.twig",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/tematwigcsg/user.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/web/bundles/web/temacsgwebapp/css/global.css",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionEmpleadoType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/TypoEstadoExcepcion.php",
@@ -511,8 +537,7 @@
 		"/home/deduar/Projects/SGTT/src/Comsigua/SgttBundle/Resources/views/Default/index.html.twig",
 		"/home/deduar/Projects/SGTT/src/Comsigua/SgttBundle/Controller/DefaultController.php",
 		"/home/deduar/Projects/SGTT/src/Comsigua/SgttBundle/Controller/EmpleadoExcepcionController.php",
-		"/home/deduar/Projects/SGTT/app/Resources/views/empleado/index.html.twig",
-		"/home/deduar/Projects/SGTT/app/Resources/views/empleadoexcepcion/index.html.twig"
+		"/home/deduar/Projects/SGTT/app/Resources/views/empleado/index.html.twig"
 	],
 	"find":
 	{
@@ -530,6 +555,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"6",
+			"setEjecutada",
 			"idempleado",
 			"'));\n",
 			"idempleado",
@@ -673,10 +700,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 370.0,
+						"translation.y": 378.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -685,15 +712,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11603,
+						"buffer_size": 11737,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6642,
-								6642
+								9643,
+								9643
 							]
 						],
 						"settings":
@@ -703,7 +730,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2906.0,
+						"translation.y": 4388.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -711,19 +738,49 @@
 				},
 				{
 					"buffer": 2,
-					"file": "src/deduar/S3SandBoxBundle/Form/ExcepcionSupervisorType.php",
-					"semi_transient": false,
+					"file": "src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 5785,
+						"buffer_size": 7467,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3120,
-								3128
+								1305,
+								1305
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 702.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/deduar/S3SandBoxBundle/Form/ExcepcionSupervisorType.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5742,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								663,
+								663
 							]
 						],
 						"settings":
@@ -733,10 +790,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 756.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/Resources/views/excepcion/index.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9970,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2854,
+								2854
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Syntaxes/HTML (Twig).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -819,7 +906,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 177.0,
+	"side_bar_width": 230.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
