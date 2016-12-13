@@ -244,11 +244,6 @@ class ExcepcionController extends Controller
     {
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
-        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findOneBy(array('id'=>$session->get('id')));
-        $persona = $em->getRepository('S3SandBoxBundle:Persona')
-                ->findOneBy(array('id'=>$empleado->getIdpersona()));
-
         $deleteForm = $this->createDeleteForm($excepcion);
 
         if ($session->get('nivel') == 1) {
@@ -287,6 +282,27 @@ class ExcepcionController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView()
         ));
+    }
+
+    /**
+     * Cahange status a form an existing Excepcion entity.
+     *
+     * @Route("/{id}/reject", name="excepcion_reject")
+     * @Method({"GET", "POST"})
+     */
+    public function rejectAction(Request $request, Excepcion $excepcion)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $ex = $em->getRepository('S3SandBoxBundle:Excepcion')
+                ->findOneBy(array('id'=>$excepcion->getId()));
+        $ex->setEstado("RECHAZADA");
+        $ex->setEjecutada("FALSE");
+        $ex->setEnviada("FALSE");
+        $ex->setConformada("FALSE");
+        $ex->setRemunerada("FALSE");
+        $em->persist($ex);
+        $em->flush();
+        return $this->redirectToRoute('excepcion_index');
     }
 
     /**
