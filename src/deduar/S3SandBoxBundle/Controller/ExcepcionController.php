@@ -54,7 +54,6 @@ class ExcepcionController extends Controller
         print_r($excepcion->getId()); echo"<br>";
         print_r($persona->getPNombre());
         print_r($persona->getPApellido()); echo"<br>";
-        //print_r($empleado->getIdgrupo()->getDescripcion()); echo"<br>";
         print_r($empleado->getFicha()); echo"<br>";
         print_r($excepcion->getFechaCreacion()); echo"<br>";
         print_r($excepcion->getFechaInicio()); echo"<br>";
@@ -170,9 +169,10 @@ class ExcepcionController extends Controller
         if ($session->get('nivel') == 1) {
             $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionEmpleadoType', $excepcion);
         } 
-        if ($session->get('nivel') == 2)  {
+        if (($session->get('nivel') == 2) or ($session->get('nivel') == 3)) {
             $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionSupervisorType', $excepcion);
         }
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->get('cancel')->isClicked()) {
@@ -190,13 +190,13 @@ class ExcepcionController extends Controller
                 $excepcion->setEstado("CREADA");
             }
 
-            if($session->get('nivel') == 2){
+            if (($session->get('nivel') == 2) or ($session->get('nivel') == 3)){
                 $excepcion->setIdempleado($excepcion->getIdempleado()->getId());
                 if($excepcion->getIdempleado() == $session->get('id')){
                     $excepcion->setEstado("CREADA");
                 } else {
-                    $excepcion->setEstado("APROBADA");
-                    $excepcion->setConformada(TRUE);
+                    $excepcion->setEstado("AUTORIZADA");
+//                    $excepcion->setConformada(TRUE);
                 }
             }
             $em = $this->getDoctrine()->getManager();
@@ -250,7 +250,7 @@ class ExcepcionController extends Controller
             $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionEmpleadoType', $excepcion);
         } 
 
-        if ($session->get('nivel') == 2) {
+        if (($session->get('nivel') == 2) or ($session->get('nivel') == 3)) {
             if ($excepcion->getIdempleado() == $session->get('id')) {
                 $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionEmpleadoType', $excepcion);
             } else {
@@ -258,17 +258,23 @@ class ExcepcionController extends Controller
             }
         }
 
+        if ($session->get('nivel') >= 4) {
+            $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionGerenteType', $excepcion);
+        } 
+
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             if($session->get('nivel') == 1){
                 $excepcion->setIdempleado($request->getSession()->get('id'));
             }
-            if($session->get('nivel') == 2){
+            if(($session->get('nivel') == 2) or ($session->get('nivel') == 3)){
                 if (is_object($excepcion->getIdempleado())){
-                    $excepcion->setEstado("APROBADA");
-                    $excepcion->setConformada(TRUE);
+                    $excepcion->setEstado("AUTORIZADA");
                     $excepcion->setIdempleado($excepcion->getIdempleado()->getId());
                 }
+            }
+            if($session->get('nivel') >= 4) {
+                 $excepcion->setIdempleado($excepcion->getIdempleado()->getId());
             }
             $em = $this->getDoctrine()->getManager();
             $em->persist($excepcion);
@@ -308,20 +314,14 @@ class ExcepcionController extends Controller
     /**
      * Deletes a Excepcion entity.
      *
-     * @Route("/{id}", name="excepcion_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="excepcion_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, Excepcion $excepcion)
     {
-        die("DELETE");
-        $form = $this->createDeleteForm($excepcion);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($excepcion);
-            $em->flush();
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($excepcion);
+        $em->flush();
 
         return $this->redirectToRoute('excepcion_index');
     }

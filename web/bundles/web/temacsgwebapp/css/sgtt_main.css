@@ -110,3 +110,7 @@ ul.tab li a:focus, .active {
 .glyphicon-pencil_grey {
     color: #8a8a8a;
 }
+
+.text_red {
+    background: red;
+}

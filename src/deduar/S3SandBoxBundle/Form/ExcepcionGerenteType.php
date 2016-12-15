@@ -12,9 +12,11 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class ExcepcionSupervisorType extends AbstractType
+class ExcepcionGerenteType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -41,6 +43,14 @@ class ExcepcionSupervisorType extends AbstractType
                 array('label'=>'Motivo',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
+            ->add ('estado',ChoiceType::class,
+                array('label'=>'Tipo de Estado',
+                      'label_attr'=>array('class'=>'col-sm-3'),
+                      'attr'=>array('class'=>'col-sm-9'),
+                      'choices'=>array(
+                        'CREADA'=>'CREADA',
+                        'AUTORIZADA'=>'AUTORIZADA',
+                        'RECHAZADA'=>'RECHAZADA')))
             ->add('idempleado', EntityType::class,
                 array('class'=>'S3SandBoxBundle:Empleado',
                       'label'=>'Empleado',
@@ -52,6 +62,22 @@ class ExcepcionSupervisorType extends AbstractType
                             ->orWhere('u.id = '.$options['data']->getIdempleado());
                         },
                         'data' => $options['data']->getIdempleado()))
+            ->add('ejecutada',CheckboxType::class,
+                array('label'=>'Ejecutada',
+                      'label_attr'=>array('class'=>'checkbox-inline col-sm-offset-3 col-sm-2'),
+                      'required'=>false))
+            ->add('enviada',CheckboxType::class,
+                array('label'=>'Enviada',
+                      'label_attr'=>array('class'=>'checkbox-inline col-sm-2'),
+                      'required'=>false))
+            ->add('conformada',CheckboxType::class,
+                array('label'=>'Conformada',
+                      'label_attr'=>array('class'=>'checkbox-inline col-sm-2'),
+                      'required'=>false))
+            ->add('remunerada',CheckboxType::class,
+                array('label'=>'Remunerada',
+                     'label_attr'=>array('class'=>'checkbox-inline col-sm-2'),
+                      'required'=>false))
             ->add('save', SubmitType::class, 
                 array('label' => 'Guardar Excepción',
                       'attr'  => array(
