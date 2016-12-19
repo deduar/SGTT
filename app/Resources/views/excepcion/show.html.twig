@@ -3,46 +3,79 @@
 {% block body %}
 
     <table class="table">
-        <tbody> 
+        <tbody>
             <tr>
-                <th class="table-vertical">Solicitante</th>
-                <td>{{ excepcion.idempleado }}</td>
+                <th class="table-vertical">Id</th>
+                <td>{{ excepcion.id }}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Fechasolicitud</th>
-                <td>{{ excepcion.fechaInicio | date('Y:m:d H:m:s')}}</td>
+                <th class="table-vertical">Empleado</th>
+                <td>{{ persona.pnombre }}
+                    {{ persona.snombre }}
+                    {{ persona.papellido }}
+                    {{ persona.sapellido }}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Fechacreacion</th>
-                <td>{{ excepcion.fechaFin | date('Y:m:d H:m:s')}}</td>
+                <th class="table-vertical">Departamento</th>
+                <td> .... </td>
             </tr>
             <tr>
-                <th class="table-vertical">Observacion</th>
-                <td>{{ excepcion.observacion }}</td>
+                <th class="table-vertical">Cargo</th>
+                <td>{{ empleado.idcargo }}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Tipo excepcion</th>
+                <th class="table-vertical">Ficha</th>
+                <td>{{ empleado.ficha }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Fecha de Creación</th>
+                <td>{{ excepcion.fechaCreacion | date('d-m-Y H:i')}}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Tipo de Excepcion</th>
                 <td>{{ excepcion.idtypoexcepcion }}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Tipo Estado</th>
-                <td>{{ excepcion.idtypoestadoexcepcion }}</td>
+                <th class="table-vertical">Fecha de Inicio</th>
+                <td>{{ excepcion.fechaInicio | date('d-m-Y H:i')}}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Ejecutada</th>
-                <td>{{ excepcion.ejecutada }}</td>
+                <th class="table-vertical">Fecha de Fin</th>
+                <td>{{ excepcion.fechaFin | date('d-m-Y H:i')}}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Enviada</th>
-                <td>{{ excepcion.enviada }}</td>
+                <th class="table-vertical">Duración</th>
+                <td> .... </td>
             </tr>
             <tr>
-                <th class="table-vertical">Conformada</th>
-                <td>{{ excepcion.conformada }}</td>
+                <th class="table-vertical">Motivo</th>
+                <td>{{ excepcion.observacion }}</td>
             </tr>
             <tr>
-                <th class="table-vertical">Remunerada</th>
-                <td>{{ excepcion.remunerada }}</td>
+                <th class="table-vertical">Jefe Inmediato</th>
+                <td>{{ jefe.pnombre }}
+                    {{ jefe.snombre }}
+                    {{ jefe.papellido }}
+                    {{ jefe.sapellido }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Cargo del Jefe</th>
+                <td>{{ jefeEmpleado.idcargo }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Supervisor Inmediato</th>
+                <td>{{ supervisor.pnombre }}
+                    {{ supervisor.snombre }}
+                    {{ supervisor.papellido }}
+                    {{ supervisor.sapellido }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Cargo del Supervisor</th>
+                <td>{{ supervisorEmpleado.idcargo }}</td>
+            </tr>
+            <tr>
+                <th class="table-vertical">Estado</th>
+                <td>{{ excepcion.estado }}</td>
             </tr>
         </tbody>
     </table>

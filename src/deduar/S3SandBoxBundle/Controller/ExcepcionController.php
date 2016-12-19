@@ -180,6 +180,8 @@ class ExcepcionController extends Controller
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $excepcion->setFechaInicio(date_create($excepcion->getFechaInicio()));
+            $excepcion->setFechaFin(date_create($excepcion->getFechaFin()));
             $excepcion->setFechaCreacion(new \DateTime('now'));
             $excepcion->setEjecutada(FALSE);
             $excepcion->setEnviada(FALSE);
@@ -223,13 +225,30 @@ class ExcepcionController extends Controller
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
         $empleado = $em->getRepository('S3SandBoxBundle:Empleado')
-                ->findOneBy(array('id'=>$session->get('id')));
+                ->findOneBy(array('id'=>$excepcion->getIdempleado()));
         $persona = $em->getRepository('S3SandBoxBundle:Persona')
-                ->findOneBy(array('id'=>$empleado->getIdpersona()));
+                ->findOneBy(array('id'=>$excepcion->getIdempleado()));
+        
+        $je = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$empleado->getIdsupervisor()));
+        $jeE = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$je->getId()));
+
+        $su = $em->getRepository('S3SandBoxBundle:Persona')
+                ->findOneBy(array('id'=>$jeE->getIdsupervisor()));
+        $suE = $em->getRepository('S3SandBoxBundle:Empleado')
+                ->findOneBy(array('id'=>$su->getId()));        
+
         $deleteForm = $this->createDeleteForm($excepcion);
 
         return $this->render('excepcion/show.html.twig', array(
             'excepcion' => $excepcion,
+            'empleado' => $empleado,
+            'persona' => $persona,
+            'jefe' => $je,
+            'jefeEmpleado' => $jeE,
+            'supervisor' => $su,
+            'supervisorEmpleado' => $suE,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -245,6 +264,9 @@ class ExcepcionController extends Controller
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($excepcion);
+
+        $excepcion->setFechaInicio($excepcion->getFechaInicio()->format('d-m-Y H:i'));
+        $excepcion->setFechaFin($excepcion->getFechaFin()->format('d-m-Y H:i'));
 
         if ($session->get('nivel') == 1) {
             $editForm = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionEmpleadoType', $excepcion);
@@ -264,6 +286,8 @@ class ExcepcionController extends Controller
 
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $excepcion->setFechaInicio(date_create($excepcion->getFechaInicio()));
+            $excepcion->setFechaFin(date_create($excepcion->getFechaFin()));
             if($session->get('nivel') == 1){
                 $excepcion->setIdempleado($request->getSession()->get('id'));
             }

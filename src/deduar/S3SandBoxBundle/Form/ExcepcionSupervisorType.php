@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ExcepcionSupervisorType extends AbstractType
@@ -52,6 +53,10 @@ class ExcepcionSupervisorType extends AbstractType
                             ->orWhere('u.id = '.$options['data']->getIdempleado());
                         },
                         'data' => $options['data']->getIdempleado()))
+            ->add('remunerada',CheckboxType::class,
+                array('label'=>'Remunerada',
+                      'label_attr'=>array('class'=>'col-sm-offset-3'),
+                      'required'=>false))
             ->add('save', SubmitType::class, 
                 array('label' => 'Guardar Excepción',
                       'attr'  => array(

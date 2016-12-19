@@ -30,14 +30,14 @@ class ExcepcionEmpleadoType extends AbstractType
                       'label'=>'Tipo de Excepción',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
-            ->add('fechaInicio',DateTimeType::class,
+            ->add('fechaInicio',TextType::class,
                 array('label'=>'Fecha y Hora de Inicio',
                       'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9')))
-            ->add('fechaFin',DateTimeType::class,
+                      'attr'=>array('class'=>'col-sm-9 datetimepicker6')))
+            ->add('fechaFin',TextType::class,
                 array('label'=>'Fecha y Hora Final',
                       'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9')))
+                      'attr'=>array('class'=>'col-sm-9 datetimepicker7')))
             ->add('observacion', TextareaType::class, 
                 array('label'=>'Motivo',
                       'label_attr'=>array('class'=>'col-sm-3'),
