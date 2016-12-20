@@ -11,8 +11,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ExcepcionSupervisorType extends AbstractType
@@ -30,33 +28,29 @@ class ExcepcionSupervisorType extends AbstractType
                       'label'=>'Tipo de Excepción',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
-            ->add('fechaInicio',DateTimeType::class,
+            ->add('fechaInicio',TextType::class,
                 array('label'=>'Fecha y Hora de Inicio',
                       'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9')))
-            ->add('fechaFin',DateTimeType::class,
+                      'attr'=>array('class'=>'col-sm-9 datetimepicker6')))
+            ->add('fechaFin',TextType::class,
                 array('label'=>'Fecha y Hora Final',
                       'label_attr'=>array('class'=>'col-sm-3'),
-                      'attr'=>array('class'=>'col-sm-9')))
+                      'attr'=>array('class'=>'col-sm-9 datetimepicker7')))
             ->add('observacion', TextareaType::class, 
                 array('label'=>'Motivo',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
             ->add('idempleado', EntityType::class,
                 array('class'=>'S3SandBoxBundle:Empleado',
-                      'label'=>'Empleado',
+                      'label'=>'Personal',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9'),
                       'query_builder' => function (EntityRepository $er) use ($options) {
-                        return $er->createQueryBuilder('u')
-                            ->where('u.idsupervisor = '.$options['data']->getIdempleado())
-                            ->orWhere('u.id = '.$options['data']->getIdempleado());
+                        return $er->createQueryBuilder('e')
+                            ->where('e.idsupervisor = '.$options['data']->getIdempleado())
+                            ->orWhere('e.id = '.$options['data']->getIdempleado());
                         },
                         'data' => $options['data']->getIdempleado()))
-            ->add('remunerada',CheckboxType::class,
-                array('label'=>'Remunerada',
-                      'label_attr'=>array('class'=>'col-sm-offset-3'),
-                      'required'=>false))
             ->add('save', SubmitType::class, 
                 array('label' => 'Guardar Excepción',
                       'attr'  => array(

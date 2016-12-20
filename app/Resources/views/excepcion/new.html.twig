@@ -11,10 +11,14 @@
 	<script type="text/javascript">
 	    $(function () {
 	        $('.datetimepicker6').datetimepicker({
-            	useCurrent: false //Important! See issue #1075
+	        	format: 'DD/MM/YYYY HH:ss',
+            	useCurrent: false,
+            	sideBySide: true
         	});
         	$('.datetimepicker7').datetimepicker({
-            	useCurrent: false //Important! See issue #1075
+        		format: 'DD/MM/YYYY HH:ss',
+            	useCurrent: false,
+            	sideBySide: true
         	});
 	        $(".datetimepicker6").on("dp.change", function (e) {
 	            $('.datetimepicker7').data("DateTimePicker").minDate(e.date);

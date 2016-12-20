@@ -275,7 +275,7 @@ class Empleado
     }
 
     public function __toString() {
-        return $this->getLogin();
+        return $this->getIdpersona()->getPnombre().' '.$this->getIdpersona()->getPapellido();
     }
 
     /**

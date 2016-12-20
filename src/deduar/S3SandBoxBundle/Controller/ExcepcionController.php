@@ -180,8 +180,14 @@ class ExcepcionController extends Controller
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $excepcion->setFechaInicio(date_create($excepcion->getFechaInicio()));
-            $excepcion->setFechaFin(date_create($excepcion->getFechaFin()));
+
+            $di_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaInicio())[0]),false));
+            $dinit = $di_d[0].'/'.$di_d[1].'/'.$di_d[2].' '.explode(' ',$excepcion->getFechaInicio())[1];
+            $df_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaFin())[0]),false));
+            $dfin = $df_d[0].'/'.$df_d[1].'/'.$df_d[2].' '.explode(' ',$excepcion->getFechaFin())[1];
+
+            $excepcion->setFechaInicio(date_create($dinit));
+            $excepcion->setFechaFin(date_create($dfin));
             $excepcion->setFechaCreacion(new \DateTime('now'));
             $excepcion->setEjecutada(FALSE);
             $excepcion->setEnviada(FALSE);
@@ -290,8 +296,15 @@ class ExcepcionController extends Controller
 
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $excepcion->setFechaInicio(date_create($excepcion->getFechaInicio()));
-            $excepcion->setFechaFin(date_create($excepcion->getFechaFin()));
+
+            $di_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaInicio())[0]),false));
+            $dinit = $di_d[0].'/'.$di_d[1].'/'.$di_d[2].' '.explode(' ',$excepcion->getFechaInicio())[1];
+            $df_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaFin())[0]),false));
+            $dfin = $df_d[0].'/'.$df_d[1].'/'.$df_d[2].' '.explode(' ',$excepcion->getFechaFin())[1];
+
+            $excepcion->setFechaInicio(date_create($dinit));
+            $excepcion->setFechaFin(date_create($dfin));
+
             if($session->get('nivel') == 1){
                 $excepcion->setIdempleado($request->getSession()->get('id'));
             }
