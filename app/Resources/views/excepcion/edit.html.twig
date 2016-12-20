@@ -7,4 +7,21 @@
         {{ form_widget(edit_form) }}
     {{ form_end(edit_form) }}
 
+    <script type="text/javascript">
+	    $(function () {
+	        $('.datetimepicker6').datetimepicker({
+	        	format: 'DD/MM/YYYY H:s'
+        	});
+        	$('.datetimepicker7').datetimepicker({
+        		format: 'DD/MM/YYYY H:s'
+        	});
+	        $(".datetimepicker6").on("dp.change", function (e) {
+	            $('.datetimepicker7').data("DateTimePicker").minDate(e.date);
+	        });
+	        $(".datetimepicker7").on("dp.change", function (e) {
+	            $('.datetimepicker6').data("DateTimePicker").maxDate(e.date);
+	        });
+	    });
+	</script>
+
 {% endblock %}
