@@ -2,6 +2,16 @@
 
 {% block body %}
 
+    {% for type, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+
+            <div class="alert alert-{{ type }} alert-dismissable">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <strong>{{ flash }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <ul class="tab">
       <li><a href="javascript:void(0)" class="tablinks" onclick="openExcept(event, 'Propias')" id="defaultOpen">Excepciones Propias</a></li>
       {% if (app.session.get('nivel') > 1 ) %}
@@ -101,8 +111,8 @@
                             <td>{{ person.pNombre }} {{ person.pApellido }}</td>
                         {% endif %}
                     {% endfor %}
-                    <td>{{ e.fechaInicio|date('Y-m-d H:i') }}</td>
-                    <td>{{ e.fechaFin|date('Y-m-d H:i') }}</td>
+                    <td>{{ e.fechaInicio|date('d/m/Y - H:i') }}</td>
+                    <td>{{ e.fechaFin|date('d/m/Y - H:i') }}</td>
                     <td>
                         {% if(duracions[loop.index0]|slice(0,2) != 0) %}
                             {{ duracions[loop.index0]|slice(0,2)}} Años

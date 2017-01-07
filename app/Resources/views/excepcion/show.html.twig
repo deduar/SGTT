@@ -81,9 +81,12 @@
     </table>
 
     <ul>
+        <a href="{{ path('excepcion_index') }}"><span class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"> Regresar</span></span></a>
         <a href="{{ path('excepcion_edit', { 'id': excepcion.id }) }}"><span class="btn btn-primary">Modificar</span></a>
-        <a href="{#{ path('excepcion_new') }#}"><span class="btn btn-primary disabled">Enviar</span></a>
-        <a href="{#{ path('excepcion_new') }#}"><span class="btn btn-primary disabled">Conformar</span></a>
+        {% if (app.session.get('nivel') > 1 ) %}
+            <a href="{#{ path('excepcion_new') }#}"><span class="btn btn-primary disabled">Enviar</span></a>
+            <a href="{#{ path('excepcion_new') }#}"><span class="btn btn-primary disabled">Conformar</span></a>
+        {% endif %}
     </ul>
 
 {% endblock %}

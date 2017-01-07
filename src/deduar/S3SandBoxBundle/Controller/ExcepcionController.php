@@ -172,6 +172,9 @@ class ExcepcionController extends Controller
         if (($session->get('nivel') == 2) or ($session->get('nivel') == 3)) {
             $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionSupervisorType', $excepcion);
         }
+        if ($session->get('nivel') > 3) {
+            $form = $this->createForm('deduar\S3SandBoxBundle\Form\ExcepcionGerenteType', $excepcion);
+        }
         
         $form->handleRequest($request);
 
@@ -180,6 +183,53 @@ class ExcepcionController extends Controller
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $rep = $this->getDoctrine()->getRepository('S3SandBoxBundle:Excepcion');
+
+            $dif_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaInicio())[0]),false));
+            $fInit = $dif_d[0].'-'.$dif_d[1].'-'.$dif_d[2].' '.explode(' ',$excepcion->getFechaInicio())[1];
+
+            $dff_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaFin())[0]),false));
+            $fFin = $dff_d[0].'-'.$dff_d[1].'-'.$dff_d[2].' '.explode(' ',$excepcion->getFechaFin())[1];
+
+            $qInit = $rep->createQueryBuilder('ex')
+                ->where('ex.idempleado = :idempleado')
+                ->andwhere('ex.fechaInicio <= :fechaInicio')
+                ->andwhere('ex.fechaFin >= :fechaInicio')
+                ->setParameter('idempleado', $excepcion->getIdempleado()->getId())
+                ->setParameter('fechaInicio', $fInit)
+                ->getQuery();
+            $ex1 = $qInit->getResult();
+
+            $qEnd = $rep->createQueryBuilder('ex')
+                ->where('ex.idempleado = :idempleado')
+                ->andwhere('ex.fechaInicio <= :fechaFin')
+                ->andwhere('ex.fechaFin >= :fechaFin')
+                ->setParameter('idempleado', $excepcion->getIdempleado()->getId())
+                ->setParameter('fechaFin', $fFin)
+                ->getQuery();
+            $ex2 = $qEnd->getResult();
+
+            if (sizeof($ex1) or sizeof($ex2)) {
+                if (sizeof($ex1) > 0) {
+                    echo"fecha Inicio ----- <br>";
+                    for ($i=0; $i<sizeof($ex1) ; $i++) {
+                        $this->addFlash(
+                        'danger',
+                        'No se inserto la Excepcion, ya existe '.$ex1[$i]->getId().' - Inicio');
+                    }
+                }
+                if (sizeof($ex2) > 0) {
+                    echo "fecha Fin ----- <br>";
+                    for ($i=0; $i<sizeof($ex2) ; $i++) { 
+                        $this->addFlash(
+                        'danger',
+                        'No se inserto la Excepcion, ya existe '.$ex2[$i]->getId().' - Fin');
+                    }
+                }
+                return $this->redirectToRoute('excepcion_index');
+//                die ("La excepcion ya existe !!!");
+            }
 
             $di_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaInicio())[0]),false));
             $dinit = $di_d[0].'/'.$di_d[1].'/'.$di_d[2].' '.explode(' ',$excepcion->getFechaInicio())[1];
@@ -198,7 +248,7 @@ class ExcepcionController extends Controller
                 $excepcion->setEstado("CREADA");
             }
 
-            if (($session->get('nivel') == 2) or ($session->get('nivel') == 3)){
+            if ($session->get('nivel') > 1){
                 $excepcion->setIdempleado($excepcion->getIdempleado()->getId());
                 if($excepcion->getIdempleado() == $session->get('id')){
                     $excepcion->setEstado("CREADA");

@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"for",
+				"for\tfor …"
+			],
+			[
+				"ex",
+				"ex1"
+			],
+			[
+				"fe",
+				"fechaInicio"
+			],
+			[
+				"fech",
+				"fechaInicio"
+			],
+			[
+				"fecha",
+				"fechaFin"
+			],
+			[
+				"getTy",
+				"gettype"
+			],
+			[
+				"e",
+				"excepciones"
+			],
+			[
+				"getFe",
+				"getFechaFin"
+			],
+			[
+				"empl",
+				"empleado"
+			],
+			[
+				"find",
+				"findOneBy"
+			],
+			[
 				"supe",
 				"supervisorEmpleado"
 			],
@@ -70,10 +110,6 @@
 			[
 				"Ty",
 				"TypoEstadoExcepcion"
-			],
-			[
-				"ex",
-				"excepcion"
 			],
 			[
 				"Ti",
@@ -176,14 +212,6 @@
 				"datetimepicker7"
 			],
 			[
-				"fecha",
-				"fechaInicio"
-			],
-			[
-				"getFe",
-				"getFechaInicio"
-			],
-			[
 				"exce",
 				"excepcions_supervisors"
 			],
@@ -209,10 +237,6 @@
 			],
 			[
 				"excepcion",
-				"excepcions_supervisors"
-			],
-			[
-				"e",
 				"excepcions_supervisors"
 			],
 			[
@@ -304,10 +328,6 @@
 				"width"
 			],
 			[
-				"fe",
-				"fechaCreacion"
-			],
-			[
 				"iss",
 				"isset"
 			],
@@ -357,27 +377,22 @@
 			}
 		},
 		{
+			"contents": "<?php\n\nnamespace deduar\\S3SandBoxBundle\\Controller;\n\nuse Symfony\\Component\\HttpFoundation\\Request;\nuse Symfony\\Bundle\\FrameworkBundle\\Controller\\Controller;\nuse Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\Method;\nuse Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\Route;\nuse deduar\\S3SandBoxBundle\\Entity\\Excepcion;\nuse deduar\\S3SandBoxBundle\\Form\\ExcepcionType;\n\n\n\nuse Symfony\\Component\\Form\\Extension\\Core\\Type\\DateTimeType;\nuse deduar\\S3SandBoxBundle\\Entity\\Empleado;\n\nuse deduar\\S3SandBoxBundle\\Entity\\TypoEstadoExcepcion;\n\n/**\n * Excepcion controller.\n *\n * @Route(\"/excepcion\")\n */\nclass ExcepcionController extends Controller\n{\n\n    /**\n     * Lists all Excepcion entities.\n     *\n     * @Route(\"/modifcar1\", name=\"modificar1\")\n     * @Method({\"GET\", \"POST\"})\n     */\n    public function modificar1Action(Request $request)\n    {\n        print_r($request->request->all());\n        die('modificar1');\n    }\n\n\n    /**\n     * Lists all Excepcion entities.\n     *\n     * @Route(\"/{id}/gen_report\", name=\"gen_report\")\n     * @Method({\"GET\", \"POST\"})\n     */\n    public function genReportAction(Request $request, Excepcion $excepcion)\n    {\n        $session = $request->getSession();\n        $em = $this->getDoctrine()->getManager();\n        $persona = $em->getRepository('S3SandBoxBundle:Persona')\n                ->findOneBy(array('id'=>$excepcion->getIdempleado()));\n        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')\n                ->findOneBy(array('id'=>$excepcion->getIdempleado()));\n\n        print_r(\"DATOS DEL EMPLEADO -------\"); echo\"<br>\";\n        print_r($excepcion->getId()); echo\"<br>\";\n        print_r($persona->getPNombre());\n        print_r($persona->getPApellido()); echo\"<br>\";\n        print_r($empleado->getFicha()); echo\"<br>\";\n        print_r($excepcion->getFechaCreacion()); echo\"<br>\";\n        print_r($excepcion->getFechaInicio()); echo\"<br>\";\n        print_r($excepcion->getFechaFin()); echo\"<br>\";\n        print_r($excepcion->getFechaFin()->\n                diff($excepcion->getFechaInicio())->\n                format('%y Años %m Meses %d Dias %h Horas %i Minutos'));\n        echo\"<br>\";\n        print_r($excepcion->getObservacion()); echo\"<br>\";\n\n        print_r(\"DATOS DEL Supervisor -------\"); echo\"<br>\";\n        $em_j = $em->getRepository('S3SandBoxBundle:Empleado')\n                ->findOneBy(array('id'=>$excepcion->getIdempleado()));\n\n        if ($em_j->getIdsupervisor() != null) {\n            print_r($em_j->getIdsupervisor()->getId()); echo\"<br>\";\n            $p_j = $em->getRepository('S3SandBoxBundle:Persona')\n                    ->findOneBy(array('id'=>$em_j->getIdsupervisor()->getId()));\n            print_r($p_j->getPNombre());\n            print_r($p_j->getPApellido()); echo \"<br>\";\n            print_r($em_j->getIdcargo()->getNombre()); echo \"<br>\";\n            //print_r($this->date = new \\DateTime());echo \"<br>\";\n\n            print_r(\"DATOS DEL Gerente -------\"); echo\"<br>\";\n            print_r($em_j->getIdsupervisor()->getIdsupervisor()->getId());\n            echo\"<br>\";\n            $em_s = $em->getRepository('S3SandBoxBundle:Empleado')\n                    ->findOneBy(array\n                    ('id'=>$em_j->getIdsupervisor()->getIdsupervisor()->getId()));\n\n            print_r($em_s->getId());\n            $p_s = $em->getRepository('S3SandBoxBundle:Persona')\n                    ->findOneBy(array('id'=>$em_s->getId()));\n            print_r($p_s->getPNombre());\n            print_r($p_s->getPApellido()); echo\"<br>\";\n            print_r($em_s->getIdcargo()->getNombre()); echo \"<br>\";\n        }\n        \n\n        die('GenReport to pdf ------>');\n    }        \n\n    /**\n     * Lists all Excepcion entities.\n     *\n     * @Route(\"/\", name=\"excepcion_index\")\n     * @Method(\"GET\")\n     */\n    public function indexAction(Request $request)\n    {\n        $session = $request->getSession();\n        $em = $this->getDoctrine()->getManager();\n\n        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')\n                ->findOneBy(array('id'=>$session->get('id')));\n        $persona = $em->getRepository('S3SandBoxBundle:Persona')\n                ->findOneBy(array('id'=>$empleado->getIdpersona()));\n\n        $id[]=$session->get('id');\n        $persons[]=$persona;\n\n        while (sizeof($id)) {\n            $excepciones = $em->getRepository('S3SandBoxBundle:Excepcion')\n                            ->findByIdempleado($id);\n            $empleados = $em->getRepository('S3SandBoxBundle:Empleado')\n                        ->findByIdsupervisor($id);\n            $personas = $em->getRepository('S3SandBoxBundle:Persona')\n                        ->findById($id);\n\n            for ($i=0; $i < sizeof($personas); $i++) { \n                $persons[]=$personas[$i];\n            }\n\n            $id=null;\n            for($i=0;$i<(sizeof($empleados));$i++){\n                $id[]=$empleados[$i]->getId();\n            }\n\n            for($i=0;$i<sizeof($excepciones);$i++){\n                $ex[] = $excepciones[$i];\n                $duracions[] = \n                    $excepciones[$i]->getFechaFin()->\n                    diff($excepciones[$i]->getFechaInicio())->\n                    format('%y Años %m Meses %d Dias %h Horas %i Minutos');\n            }\n        }\n\n        if (!(isset($ex))) {\n            $ex = null;\n            $duracions = null;\n        }\n\n        return $this->render('excepcion/index.html.twig', array(\n            'ex' => $ex,\n            'persons' => $persons,\n            'duracions' => $duracions\n        ));\n    }\n\n\n    /**\n     * Creates a new Excepcion entity.\n     *\n     * @Route(\"/new\", name=\"excepcion_new\")\n     * @Method({\"GET\", \"POST\"})\n     */\n    public function newAction(Request $request)\n    {\n        $session = $request->getSession();\n        $em = $this->getDoctrine()->getManager();\n        $excepcion = new Excepcion();\n        $excepcion->setIdempleado($request->getSession()->get('id'));\n        if ($session->get('nivel') == 1) {\n            $form = $this->createForm('deduar\\S3SandBoxBundle\\Form\\ExcepcionEmpleadoType', $excepcion);\n        } \n        if (($session->get('nivel') == 2) or ($session->get('nivel') == 3)) {\n            $form = $this->createForm('deduar\\S3SandBoxBundle\\Form\\ExcepcionSupervisorType', $excepcion);\n        }\n        if ($session->get('nivel') > 3) {\n            $form = $this->createForm('deduar\\S3SandBoxBundle\\Form\\ExcepcionGerenteType', $excepcion);\n        }\n        \n        $form->handleRequest($request);\n\n        if ($form->isSubmitted() && $form->get('cancel')->isClicked()) {\n            return $this->redirectToRoute('excepcion_index');\n        }\n\n        if ($form->isSubmitted() && $form->isValid()) {\n\n            $rep = $this->getDoctrine()->getRepository('S3SandBoxBundle:Excepcion');\n\n            $dif_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaInicio())[0]),false));\n            $fInit = $dif_d[0].'-'.$dif_d[1].'-'.$dif_d[2].' '.explode(' ',$excepcion->getFechaInicio())[1];\n\n            $dff_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaFin())[0]),false));\n            $fFin = $dff_d[0].'-'.$dff_d[1].'-'.$dff_d[2].' '.explode(' ',$excepcion->getFechaFin())[1];\n\n            $qInit = $rep->createQueryBuilder('ex')\n                ->where('ex.idempleado = :idempleado')\n                ->andwhere('ex.fechaInicio <= :fechaInicio')\n                ->andwhere('ex.fechaFin >= :fechaInicio')\n                ->setParameter('idempleado', $excepcion->getIdempleado()->getId())\n                ->setParameter('fechaInicio', $fInit)\n                ->getQuery();\n            $ex1 = $qInit->getResult();\n\n            $qEnd = $rep->createQueryBuilder('ex')\n                ->where('ex.idempleado = :idempleado')\n                ->andwhere('ex.fechaInicio <= :fechaFin')\n                ->andwhere('ex.fechaFin >= :fechaFin')\n                ->setParameter('idempleado', $excepcion->getIdempleado()->getId())\n                ->setParameter('fechaFin', $fFin)\n                ->getQuery();\n            $ex2 = $qEnd->getResult();\n\n            if (sizeof($ex1) or sizeof($ex2)) {\n                if (sizeof($ex1) > 0) {\n                    echo\"fecha Inicio ----- <br>\";\n                    for ($i=0; $i<sizeof($ex1) ; $i++) {\n                        $this->addFlash(\n                        'danger',\n                        'No se inserto la Excepcion, ya existe '.$ex1[$i]->getId().' - Inicio');\n                    }\n                }\n                if (sizeof($ex2) > 0) {\n                    echo \"fecha Fin ----- <br>\";\n                    for ($i=0; $i<sizeof($ex2) ; $i++) { \n                        $this->addFlash(\n                        'danger',\n                        'No se inserto la Excepcion, ya existe '.$ex2[$i]->getId().' - Fin');\n                    }\n                }\n                return $this->redirectToRoute('excepcion_index');\n//                die (\"La excepcion ya existe !!!\");\n            }\n\n            $di_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaInicio())[0]),false));\n            $dinit = $di_d[0].'/'.$di_d[1].'/'.$di_d[2].' '.explode(' ',$excepcion->getFechaInicio())[1];\n            $df_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaFin())[0]),false));\n            $dfin = $df_d[0].'/'.$df_d[1].'/'.$df_d[2].' '.explode(' ',$excepcion->getFechaFin())[1];\n\n            $excepcion->setFechaInicio(date_create($dinit));\n            $excepcion->setFechaFin(date_create($dfin));\n            $excepcion->setFechaCreacion(new \\DateTime('now'));\n            $excepcion->setEjecutada(FALSE);\n            $excepcion->setEnviada(FALSE);\n            $excepcion->setConformada(FALSE);\n            $excepcion->setRemunerada(FALSE);\n            if($session->get('nivel') == 1){\n                $excepcion->setIdempleado($request->getSession()->get('id'));\n                $excepcion->setEstado(\"CREADA\");\n            }\n\n            if ($session->get('nivel') > 1){\n                $excepcion->setIdempleado($excepcion->getIdempleado()->getId());\n                if($excepcion->getIdempleado() == $session->get('id')){\n                    $excepcion->setEstado(\"CREADA\");\n                } else {\n                    $excepcion->setEstado(\"AUTORIZADA\");\n//                    $excepcion->setConformada(TRUE);\n                }\n            }\n            $em = $this->getDoctrine()->getManager();\n            $em->persist($excepcion);\n            $em->flush();\n\n            return $this->redirectToRoute('excepcion_index');\n        }\n\n        return $this->render('excepcion/new.html.twig', array(\n            'excepcion' => $excepcion,\n            'form' => $form->createView()\n        ));\n    }\n\n    /**\n     * Finds and displays a Excepcion entity.\n     *\n     * @Route(\"/{id}\", name=\"excepcion_show\")\n     * @Method(\"GET\")\n     */\n    public function showAction(Request $request, Excepcion $excepcion)\n    {\n        $session = $request->getSession();\n        $em = $this->getDoctrine()->getManager();\n        $empleado = $em->getRepository('S3SandBoxBundle:Empleado')\n                ->findOneBy(array('id'=>$excepcion->getIdempleado()));\n        $persona = $em->getRepository('S3SandBoxBundle:Persona')\n                ->findOneBy(array('id'=>$excepcion->getIdempleado()));\n        \n        $je = $em->getRepository('S3SandBoxBundle:Persona')\n                ->findOneBy(array('id'=>$empleado->getIdsupervisor()));\n        $jeE = $em->getRepository('S3SandBoxBundle:Empleado')\n                ->findOneBy(array('id'=>$je->getId()));\n\n        $su = $em->getRepository('S3SandBoxBundle:Persona')\n                ->findOneBy(array('id'=>$jeE->getIdsupervisor()));\n        $suE = $em->getRepository('S3SandBoxBundle:Empleado')\n                ->findOneBy(array('id'=>$su->getId()));\n\n        $area = $em->getRepository('S3SandBoxBundle:Area')\n                ->findOneBy(array('id' => $empleado->getIdareaubicacion()));\n\n        $deleteForm = $this->createDeleteForm($excepcion);\n\n        return $this->render('excepcion/show.html.twig', array(\n            'excepcion' => $excepcion,\n            'empleado' => $empleado,\n            'persona' => $persona,\n            'jefe' => $je,\n            'jefeEmpleado' => $jeE,\n            'supervisor' => $su,\n            'supervisorEmpleado' => $suE,\n            'area' => $area,\n            'delete_form' => $deleteForm->createView(),\n        ));\n    }\n\n    /**\n     * Displays a form to edit an existing Excepcion entity.\n     *\n     * @Route(\"/{id}/edit\", name=\"excepcion_edit\")\n     * @Method({\"GET\", \"POST\"})\n     */\n    public function editAction(Request $request, Excepcion $excepcion)\n    {\n        $session = $request->getSession();\n        $em = $this->getDoctrine()->getManager();\n        $deleteForm = $this->createDeleteForm($excepcion);\n\n        $excepcion->setFechaInicio($excepcion->getFechaInicio()->format('d/m/Y H:i'));\n        $excepcion->setFechaFin($excepcion->getFechaFin()->format('d/m/Y H:i'));\n\n        if ($session->get('nivel') == 1) {\n            $editForm = $this->createForm('deduar\\S3SandBoxBundle\\Form\\ExcepcionEmpleadoType', $excepcion);\n        } \n\n        if (($session->get('nivel') == 2) or ($session->get('nivel') == 3)) {\n            if ($excepcion->getIdempleado() == $session->get('id')) {\n                $editForm = $this->createForm('deduar\\S3SandBoxBundle\\Form\\ExcepcionEmpleadoType', $excepcion);\n            } else {\n                $editForm = $this->createForm('deduar\\S3SandBoxBundle\\Form\\ExcepcionSupervisorType', $excepcion);\n            }\n        }\n\n        if ($session->get('nivel') >= 4) {\n            $editForm = $this->createForm('deduar\\S3SandBoxBundle\\Form\\ExcepcionGerenteType', $excepcion);\n        } \n\n        $editForm->handleRequest($request);\n        if ($editForm->isSubmitted() && $editForm->isValid()) {\n\n            $di_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaInicio())[0]),false));\n            $dinit = $di_d[0].'/'.$di_d[1].'/'.$di_d[2].' '.explode(' ',$excepcion->getFechaInicio())[1];\n            $df_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaFin())[0]),false));\n            $dfin = $df_d[0].'/'.$df_d[1].'/'.$df_d[2].' '.explode(' ',$excepcion->getFechaFin())[1];\n\n            $excepcion->setFechaInicio(date_create($dinit));\n            $excepcion->setFechaFin(date_create($dfin));\n\n            if($session->get('nivel') == 1){\n                $excepcion->setIdempleado($request->getSession()->get('id'));\n            }\n            if(($session->get('nivel') == 2) or ($session->get('nivel') == 3)){\n                if (is_object($excepcion->getIdempleado())){\n                    $excepcion->setEstado(\"AUTORIZADA\");\n                    $excepcion->setIdempleado($excepcion->getIdempleado()->getId());\n                }\n            }\n            if($session->get('nivel') >= 4) {\n                 $excepcion->setIdempleado($excepcion->getIdempleado()->getId());\n            }\n            $em = $this->getDoctrine()->getManager();\n            $em->persist($excepcion);\n            $em->flush();\n\n            return $this->redirectToRoute('excepcion_index');\n        }\n\n        return $this->render('excepcion/edit.html.twig', array(\n            'excepcion' => $excepcion,\n            'edit_form' => $editForm->createView(),\n            'delete_form' => $deleteForm->createView()\n        ));\n    }\n\n    /**\n     * Cahange status a form an existing Excepcion entity.\n     *\n     * @Route(\"/{id}/reject\", name=\"excepcion_reject\")\n     * @Method({\"GET\", \"POST\"})\n     */\n    public function rejectAction(Request $request, Excepcion $excepcion)\n    {\n        $em = $this->getDoctrine()->getManager();\n        $ex = $em->getRepository('S3SandBoxBundle:Excepcion')\n                ->findOneBy(array('id'=>$excepcion->getId()));\n        $ex->setEstado(\"RECHAZADA\");\n        $ex->setEjecutada(\"FALSE\");\n        $ex->setEnviada(\"FALSE\");\n        $ex->setConformada(\"FALSE\");\n        $ex->setRemunerada(\"FALSE\");\n        $em->persist($ex);\n        $em->flush();\n        return $this->redirectToRoute('excepcion_index');\n    }\n\n    /**\n     * Deletes a Excepcion entity.\n     *\n     * @Route(\"/{id}/delete\", name=\"excepcion_delete\")\n     * @Method(\"GET\")\n     */\n    public function deleteAction(Request $request, Excepcion $excepcion)\n    {\n\n        $em = $this->getDoctrine()->getManager();\n        $em->remove($excepcion);\n        $em->flush();\n\n        return $this->redirectToRoute('excepcion_index');\n    }\n\n    /**\n     * Creates a form to delete a Excepcion entity.\n     *\n     * @param Excepcion $excepcion The Excepcion entity\n     *\n     * @return \\Symfony\\Component\\Form\\Form The form\n     */\n    private function createDeleteForm(Excepcion $excepcion)\n    {\n        return $this->createFormBuilder()\n            ->setAction($this->generateUrl('excepcion_delete', array('id' => $excepcion->getId())))\n            ->setMethod('DELETE')\n            ->getForm()\n        ;\n    }\n}\n",
 			"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
+			"file_size": 16902,
+			"file_write_time": 131282068274011993,
 			"settings":
 			{
-				"buffer_size": 13624,
+				"buffer_size": 16903,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
+			"file": "app/Resources/views/excepcion/index.html.twig",
 			"settings":
 			{
-				"buffer_size": 7467,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/Resources/views/excepcion/show.html.twig",
-			"settings":
-			{
-				"buffer_size": 3251,
+				"buffer_size": 10446,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -425,7 +440,6 @@
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Resources",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/web",
@@ -434,15 +448,17 @@
 	],
 	"file_history":
 	[
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/show.html.twig",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionGerenteType.php",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionSupervisorType.php",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/index.html.twig",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/new.html.twig",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Empleado.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionEmpleadoType.php",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/new.html.twig",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/index.html.twig",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/show.html.twig",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionSupervisorType.php",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionGerenteType.php",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/web/bundles/web/temacsgwebapp/css/sgtt_main.css",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/edit.html.twig",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/web/bundles/web/temacsgwebapp/css/sgtt_main.css",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/tematwigcsg/user.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionSupervidorType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionType.php",
@@ -453,7 +469,6 @@
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller/MaestroController.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/persona/index.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/admin/index.html.twig",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller/EmpleadoController.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/GenderType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/empleado/show.html.twig",
@@ -471,7 +486,6 @@
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/tematwigcsg/plantilla.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/.gitignore",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Persona.php",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/AppKernel.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/config/config.yml",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/config/parameters.yml",
@@ -565,7 +579,7 @@
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -579,6 +593,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Fin",
+			"05",
+			"andWhere",
+			"idempleado",
 			"check",
 			"APROBA",
 			"Confo",
@@ -701,7 +719,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -728,10 +746,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 445.0,
+						"translation.y": 426.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -740,15 +758,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13624,
+						"buffer_size": 16903,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8982,
-								8982
+								371,
+								371
 							]
 						],
 						"settings":
@@ -758,57 +776,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4497.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 7467,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1430,
-								1430
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1083.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/Resources/views/excepcion/show.html.twig",
+					"file": "app/Resources/views/excepcion/index.html.twig",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3251,
+						"buffer_size": 10446,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2823,
-								2823
+								223,
+								223
 							]
 						],
 						"settings":
@@ -818,7 +806,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 958.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -904,7 +892,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 207.0,
+	"side_bar_width": 199.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
