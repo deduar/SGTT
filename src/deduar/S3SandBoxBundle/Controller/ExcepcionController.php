@@ -410,6 +410,7 @@ class ExcepcionController extends Controller
      */
     public function deleteAction(Request $request, Excepcion $excepcion)
     {
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($excepcion);
         $em->flush();
