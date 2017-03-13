@@ -39,6 +39,17 @@ class ExcepcionEmpleadoType extends AbstractType
                 array('label'=>'Motivo',
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9')))
+            ->add('idempleado', EntityType::class,
+                array('class'=>'S3SandBoxBundle:Empleado',
+                      'label'=>'Personal',
+                      'label_attr'=>array('class'=>'col-sm-3'),
+                      'attr'=>array('class'=>'col-sm-9','style'=>'display:none'),
+                      'query_builder' => function (EntityRepository $er) use ($options) {
+                        return $er->createQueryBuilder('e')
+                            ->where('e.idsupervisor = '.$options['data']->getIdempleado())
+                            ->orWhere('e.id = '.$options['data']->getIdempleado());
+                        },
+                        'data' => $options['data']->getIdempleado()))
             ->add('save', SubmitType::class, 
                 array('label' => 'Guardar Excepción',
                       'attr'  => array(

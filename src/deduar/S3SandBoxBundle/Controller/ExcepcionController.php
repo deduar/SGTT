@@ -191,12 +191,11 @@ class ExcepcionController extends Controller
 
             $dff_d = (array_reverse(explode('/',explode(' ',$excepcion->getFechaFin())[0]),false));
             $fFin = $dff_d[0].'-'.$dff_d[1].'-'.$dff_d[2].' '.explode(' ',$excepcion->getFechaFin())[1];
-
             $qInit = $rep->createQueryBuilder('ex')
                 ->where('ex.idempleado = :idempleado')
                 ->andwhere('ex.fechaInicio <= :fechaInicio')
                 ->andwhere('ex.fechaFin >= :fechaInicio')
-                ->setParameter('idempleado', $excepcion->getIdempleado()->getId())
+                ->setParameter('idempleado', $excepcion->getIdempleado()->getid())
                 ->setParameter('fechaInicio', $fInit)
                 ->getQuery();
             $ex1 = $qInit->getResult();
@@ -210,7 +209,17 @@ class ExcepcionController extends Controller
                 ->getQuery();
             $ex2 = $qEnd->getResult();
 
-            if (sizeof($ex1) or sizeof($ex2)) {
+            $qSur = $rep->createQueryBuilder('ex')
+                ->where('ex.idempleado = :idempleado')
+                ->andwhere('ex.fechaInicio >= :fechaInicio')
+                ->andwhere('ex.fechaFin <= :fechaFin')
+                ->setParameter('idempleado', $excepcion->getIdempleado()->getId())
+                ->setParameter('fechaInicio', $fInit)
+                ->setParameter('fechaFin', $fFin)
+                ->getQuery();
+            $ex3 = $qSur->getResult();
+
+            if (sizeof($ex1) or sizeof($ex2) or sizeof($ex3)) {
                 if (sizeof($ex1) > 0) {
                     echo"fecha Inicio ----- <br>";
                     for ($i=0; $i<sizeof($ex1) ; $i++) {
@@ -225,6 +234,14 @@ class ExcepcionController extends Controller
                         $this->addFlash(
                         'danger',
                         'No se inserto la Excepcion, ya existe '.$ex2[$i]->getId().' - Fin');
+                    }
+                }
+                if (sizeof($ex3) > 0) {
+                    echo "fecha Inicio y fecha Fin ----- <br>";
+                    for ($i=0; $i<sizeof($ex3) ; $i++) { 
+                        $this->addFlash(
+                        'danger',
+                        'No se inserto la Excepcion, ya existe '.$ex3[$i]->getId().' - Inicio y Fin');
                     }
                 }
                 return $this->redirectToRoute('excepcion_index');

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"dum",
+				"var_dump"
+			],
+			[
 				"for",
 				"for\tfor …"
 			],
@@ -380,7 +384,7 @@
 			"file": "src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
 			"settings":
 			{
-				"buffer_size": 16901,
+				"buffer_size": 16883,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -389,7 +393,7 @@
 			"file": "app/Resources/views/excepcion/index.html.twig",
 			"settings":
 			{
-				"buffer_size": 10446,
+				"buffer_size": 10400,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -411,7 +415,7 @@
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 146.0,
 		"history":
 		[
 		]
@@ -445,10 +449,10 @@
 	],
 	"file_history":
 	[
-		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/show.html.twig",
-		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionGerenteType.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Form/ExcepcionSupervisorType.php",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/show.html.twig",
+		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Entity/Excepcion.php",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/index.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/app/Resources/views/excepcion/new.html.twig",
 		"/home/deduar/Projects/S3-Sandbox_SGTT/src/deduar/S3SandBoxBundle/Controller/ExcepcionController.php",
@@ -732,8 +736,8 @@
 						"selection":
 						[
 							[
-								487,
-								487
+								860,
+								860
 							]
 						],
 						"settings":
@@ -743,10 +747,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 426.0,
+						"translation.y": 270.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -755,15 +759,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16901,
+						"buffer_size": 16883,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								371,
-								371
+								7884,
+								7884
 							]
 						],
 						"settings":
@@ -773,7 +777,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 3650.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -785,15 +789,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10446,
+						"buffer_size": 10400,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								223,
-								223
+								8010,
+								8010
 							]
 						],
 						"settings":
@@ -803,10 +807,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4047.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -889,7 +893,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 199.0,
+	"side_bar_width": 248.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
