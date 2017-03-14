@@ -134,10 +134,17 @@ class ExcepcionController extends Controller
 
             for($i=0;$i<sizeof($excepciones);$i++){
                 $ex[] = $excepciones[$i];
+/*
+var_dump($excepciones[$i]->getFechaInicio());echo "<br>";
+var_dump($excepciones[$i]->getFechaFin());echo "<br>";
+$interval = $excepciones[$i]->getFechaInicio()->diff($excepciones[$i]->getFechaFin())->format('%y %m %d %h %i');
+var_dump($interval);
+die();                
+*/
                 $duracions[] = 
                     $excepciones[$i]->getFechaFin()->
                     diff($excepciones[$i]->getFechaInicio())->
-                    format('%y Años %m Meses %d Dias %h Horas %i Minutos');
+                    format('%y %m %d %h %i');
             }
         }
 
