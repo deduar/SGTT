@@ -41,20 +41,20 @@
                     <td>{{ e.fechaInicio|date('d/m/Y - H:i') }}</td>
                     <td>{{ e.fechaFin|date('d/m/Y - H:i') }}</td>
                     <td>
-                        {% if(duracions[loop.index0]|slice(0,2) != 0) %}
-                            {{ duracions[loop.index0]|slice(0,2)}} Años
+                        {% if(duracions[loop.index0]|split(' ')[0] ) %}
+                            {{ duracions[loop.index0]|split(' ')[0] }} Años
                         {% endif %}
-                        {% if(duracions[loop.index0]|slice(7,3) != 0) %}
-                            {{ duracions[loop.index0]|slice(7,3)}} Meses
+                        {% if(duracions[loop.index0]|split(' ')[1] ) %}
+                            {{ duracions[loop.index0]|split(' ')[1] }} Mese
                         {% endif %}
-                        {% if(duracions[loop.index0]|slice(15,3) != 0) %}
-                            {{ duracions[loop.index0]|slice(15,3)}} Dias
+                        {% if(duracions[loop.index0]|split(' ')[2] ) %}
+                            {{ duracions[loop.index0]|split(' ')[2] }} Dias
                         {% endif %}
-                        {% if(duracions[loop.index0]|slice(25,2) != 0) %}
-                            {{ duracions[loop.index0]|slice(25,2)}} Horas
+                        {% if(duracions[loop.index0]|split(' ')[3] ) %}
+                            {{ duracions[loop.index0]|split(' ')[3] }} Horas
                         {% endif %}
-                        {% if(duracions[loop.index0]|slice(34,2) != 0) %}
-                            {{ duracions[loop.index0]|slice(34,2)}} Minutos
+                        {% if(duracions[loop.index0]|split(' ')[4] ) %}
+                            {{ duracions[loop.index0]|split(' ')[4] }} Minutos
                         {% endif %}
                     </td>
                     <td>{{ e.idtypoexcepcion }}</td>
