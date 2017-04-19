@@ -128,6 +128,7 @@ class ExcepcionController extends Controller
             }
 
             $id=null;
+            
             for($i=0;$i<(sizeof($empleados));$i++){
                 $id[]=$empleados[$i]->getId();
                 $empleads[] = $empleados[$i];
@@ -147,12 +148,22 @@ class ExcepcionController extends Controller
             $duracions = null;
         }
 
-        return $this->render('excepcion/index.html.twig', array(
-            'ex' => $ex,
-            'persons' => $persons,
-            'empleados' => $empleads,
-            'duracions' => $duracions
-        ));
+        if ($session->get('nivel') == 1) {
+            return $this->render('excepcion/index.html.twig', array(
+                'ex' => $ex,
+                'persons' => $persons,
+                'duracions' => $duracions
+            ));    
+        } else {
+            return $this->render('excepcion/index.html.twig', array(
+                'ex' => $ex,
+                'persons' => $persons,
+                'empleados' => $empleads,
+                'duracions' => $duracions
+            ));
+        }
+
+        
     }
 
 
