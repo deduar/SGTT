@@ -119,20 +119,20 @@
                     <td>{{ e.fechaInicio|date('d/m/Y - H:i') }}</td>
                     <td>{{ e.fechaFin|date('d/m/Y - H:i') }}</td>
                     <td>
-                        {% if(duracions[loop.index0]|split(' ')[0] ) %}
-                            {{ duracions[loop.index0]|split(' ')[0] }} Años
+                        {% if(duracions[loop.parent.loop.index0]|split(' ')[0] ) %}
+                            {{ duracions[loop.parent.loop.index0]|split(' ')[0] }} Años
                         {% endif %}
-                        {% if(duracions[loop.index0]|split(' ')[1] ) %}
-                            {{ duracions[loop.index0]|split(' ')[1] }} Mese
+                        {% if(duracions[loop.parent.loop.index0]|split(' ')[1] ) %}
+                            {{ duracions[loop.parent.loop.index0]|split(' ')[1] }} Mese
                         {% endif %}
-                        {% if(duracions[loop.index0]|split(' ')[2] ) %}
-                            {{ duracions[loop.index0]|split(' ')[2] }} Dias
+                        {% if(duracions[loop.parent.loop.index0]|split(' ')[2] ) %}
+                            {{ duracions[loop.parent.loop.index0]|split(' ')[2] }} Dias
                         {% endif %}
-                        {% if(duracions[loop.index0]|split(' ')[3] ) %}
-                            {{ duracions[loop.index0]|split(' ')[3] }} Horas
+                        {% if(duracions[loop.parent.loop.index0]|split(' ')[3] ) %}
+                            {{ duracions[loop.parent.loop.index0]|split(' ')[3] }} Horas
                         {% endif %}
-                        {% if(duracions[loop.index0]|split(' ')[4] ) %}
-                            {{ duracions[loop.index0]|split(' ')[4] }} Minutos
+                        {% if(duracions[loop.parent.loop.index0]|split(' ')[4] ) %}
+                            {{ duracions[loop.parent.loop.index0]|split(' ')[4] }} Minutos
                         {% endif %}
                     </td>
                     <td>{{ e.idtypoexcepcion }}</td>
