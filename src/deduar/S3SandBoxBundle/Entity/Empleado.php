@@ -118,6 +118,11 @@ class Empleado
      */
     private $personajefe;
 
+    /**
+     * @var boolean $activo
+     * @ORM\Column(name="activo", type="boolean", nullable=false)
+     */
+    private $activo;
 
 
     /**
@@ -493,4 +498,28 @@ class Empleado
     {
         return $this->idsupervisor;
     }
+
+     /**
+     * Set activo
+     *
+     * @param boolean $activo
+     *
+     * @return Empleado
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+        return $this;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean
+     */
+    public function getActivo()
+    {
+        return $this->activo;
+    }
+
 }

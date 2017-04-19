@@ -49,7 +49,8 @@ class ExcepcionSupervisorType extends AbstractType
                       'query_builder' => function (EntityRepository $er) use ($options) {
                         return $er->createQueryBuilder('e')
                             ->where('e.idsupervisor = '.$options['data']->getIdempleado())
-                            ->orWhere('e.id = '.$options['data']->getIdempleado());
+                            ->orWhere('e.id = '.$options['data']->getIdempleado())
+                            ->andWhere('e.activo = TRUE');
                         },
                         'data' => $options['data']->getIdempleado()))
             ->add('ejecutada',CheckboxType::class,

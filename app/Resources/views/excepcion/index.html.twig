@@ -103,13 +103,17 @@
             </tr>
         </thead>
         <tbody>
+ 
             {% for e in ex %}
+                {% for emp in empleados %}
+                    {% if(e.idempleado == emp.id) and (emp.activo == TRUE) %}
+                       
                 {% if (e.idempleado != app.session.get('id')) %}
                 <tr>
                     <td><input type="checkbox" name="checkboxArray"></td>
                     {% for person in persons %}
                         {% if (person.id == e.idempleado) %}
-                            <td>{{ person.pNombre }} {{ person.pApellido }}</td>
+                            <td> {{ person.pNombre }} {{ person.pApellido }}</td>
                         {% endif %}
                     {% endfor %}
                     <td>{{ e.fechaInicio|date('d/m/Y - H:i') }}</td>
@@ -174,7 +178,7 @@
                         </a>
 
 
-                        {% if (not((e.estado == "AUTORIZADA") or (e.estado == "RECHAZADA"))) %}
+                        {% if (not((e.estado == "AUTORIZADA") or (e.estado == "RECHAZADA") or (e.estado == "APROBADA") or (e.estado == "NO APROBADA"))) %}
                         <a href="{{ path('excepcion_reject', { 'id': e.id }) }}"> 
                             <span class="glyphicon glyphicon-remove-circle glyphicon-alert_red" aria-hidden="true"></span>
                         </a>
@@ -188,6 +192,8 @@
                     </td>
                 </tr>
                 {% endif %}
+                {% endif %}
+                {% endfor %}
             {% endfor %}
         </tbody>
     </table>

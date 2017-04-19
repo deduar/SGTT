@@ -47,9 +47,8 @@ class ExcepcionGerenteType extends AbstractType
                       'label_attr'=>array('class'=>'col-sm-3'),
                       'attr'=>array('class'=>'col-sm-9'),
                       'choices'=>array(
-                        'CREADA'=>'CREADA',
-                        'AUTORIZADA'=>'AUTORIZADA',
-                        'RECHAZADA'=>'RECHAZADA')))
+                        'APROBADA'=>'APROBADA',
+                        'NO APROBADA'=>'NO APROBADA')))
             ->add('idempleado', EntityType::class,
                 array('class'=>'S3SandBoxBundle:Empleado',
                       'label'=>'Personal',
