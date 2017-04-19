@@ -74,7 +74,7 @@ class EmpleadoController extends Controller
             $em = $this->getDoctrine()->getManager();
             $e = $em->getRepository('S3SandBoxBundle:Empleado')
                     ->findOneBy(array('login'=>$empleado->getLogin()));
-            if ($e) {
+            if ($e and $e->getActivo() == TRUE) {
                 $p = $em->getRepository('S3SandBoxBundle:Persona')
                     ->findOneBy(array('id'=>$e->getIdpersona()));
                 $session = $request->getSession();
