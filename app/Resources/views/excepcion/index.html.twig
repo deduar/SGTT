@@ -204,6 +204,7 @@
         <a href="{{ path('excepcion_new') }}"><span class="btn btn-primary">Nueva Excepción</span></a>
         {% if (app.session.get('nivel') > 1) %}
         <a href="{{ path('modificar1') }}"><span class="btn btn-primary">Modificar 1</span></a>
+        <a href="{{ path('excepcion_procesar') }}"><span class="btn btn-primary">Procesar</span></a>
         {% endif %}
     </ul>
 

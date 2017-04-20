@@ -31,7 +31,36 @@ class ExcepcionController extends Controller
     public function modificar1Action(Request $request)
     {
         print_r($request->request->all());
-        die('modificar1');
+        die('procesar');
+    }
+
+    /**
+     * Process Excecpiones automatic when date is over.
+     *
+     * @Route("/procesar", name="excepcion_procesar")
+     * @Method({"GET", "POST"})
+     */
+    public function procesarAction(Request $request)
+    {
+        $now = new \DateTime('now');
+        $em = $this->getDoctrine()->getManager();
+        $excepciones = $em->getRepository('S3SandBoxBundle:Excepcion')
+                            ->findAll();
+        for ($i=0; $i < sizeof($excepciones); $i++ ){
+        print_r($excepciones[$i]->getFechaInicio());
+        print_r($excepciones[$i]->getEstado());
+        if ($excepciones[$i]->getFechaInicio() < $now) {
+            if (($excepciones[$i]->getEstado() == "CREADA") or 
+                ($excepciones[$i]->getEstado() == "AUTORIZADA")) {
+                echo " - Promover a Aprobada <br>";
+            } else {
+                echo " - NO Promover <br>";
+            }
+        }else{
+            echo " - NO Procesar Fecha<br>";
+        }
+        }
+        die();
     }
 
 
